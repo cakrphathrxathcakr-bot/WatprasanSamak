@@ -139,7 +139,6 @@
               <input id="last-name" class="form-field" type="text" required>
             </div>
             
-            <!-- ปรับปรุงช่องวันเกิด -->
             <div>
               <label class="mb-2 block font-semibold text-slate-700">เกิด (วัน/เดือน/ปี พ.ศ.) <span class="text-red-500">*</span></label> 
               <div class="grid grid-cols-3 gap-2">
@@ -157,7 +156,6 @@
               </div>
             </div>
 
-            <!-- ปรับปรุงช่องวันอุปสมบท -->
             <div>
               <label class="mb-2 block font-semibold text-slate-700">อุปสมบท (วัน/เดือน/ปี พ.ศ.) <span class="text-red-500">*</span></label> 
               <div class="grid grid-cols-3 gap-2">
@@ -208,50 +206,80 @@
             <span class="section-number">4</span>
             <h2 class="thai-heading text-2xl text-[#064e3b]">ประโยคเดิม (วุฒิเดิมที่สอบได้)</h2>
           </div>
-          <div class="grid gap-6 md:grid-cols-2 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+          <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 grid gap-8">
+            
+            <!-- ส่วนนักธรรม -->
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">สำนักศาสนศึกษา/สถานศึกษา <span class="text-red-500">*</span></label> 
-              <input id="prev-edu-center" class="form-field prev-edu-input" type="text" required>
+              <h3 class="font-bold text-lg text-emerald-800 mb-4 border-b border-slate-200 pb-2">วุฒินักธรรม</h3>
+              <div class="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒินักธรรม <span class="text-red-500">*</span></label> 
+                  <select id="dhamma-level" class="form-field prev-edu-input" required>
+                    <option value="ไม่มี">ไม่มี</option>
+                    <option value="ตรี">ตรี</option>
+                    <option value="โท">โท</option>
+                    <option value="เอก">เอก</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="mb-1 block font-semibold text-slate-700 text-sm">ปีที่สอบได้ (พ.ศ.) <span class="text-red-500">*</span></label> 
+                  <input id="dhamma-year" class="form-field prev-edu-input" type="number" min="2400" max="2600" placeholder="ถ้าไม่มีให้ใส่ 0" required>
+                </div>
+                <div>
+                  <label class="mb-1 block font-semibold text-slate-700 text-sm">สำนักเรียนคณะจังหวัด <span class="text-red-500">*</span></label> 
+                  <input id="dhamma-province" class="form-field prev-edu-input" type="text" placeholder="ถ้าไม่มีให้ใส่ -" required>
+                </div>
+                <div>
+                  <label class="mb-1 block font-semibold text-slate-700 text-sm">เลขที่ใบประกาศ <span class="text-red-500">*</span></label> 
+                  <input id="dhamma-cert-no" class="form-field prev-edu-input" type="text" placeholder="ถ้าไม่มีให้ใส่ -" required>
+                </div>
+              </div>
             </div>
+
+            <!-- ส่วนบาลี -->
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">ตำบล <span class="text-red-500">*</span></label> 
-              <input id="prev-edu-subdistrict" class="form-field prev-edu-input" type="text" required>
+              <h3 class="font-bold text-lg text-emerald-800 mb-4 border-b border-slate-200 pb-2">วุฒิบาลี</h3>
+              <div class="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒิบาลี <span class="text-red-500">*</span></label> 
+                  <select id="pali-level" class="form-field prev-edu-input" required>
+                    <option value="ไม่มี">ไม่มี</option>
+                    <option value="1-2">ประโยค 1-2</option>
+                    <option value="3">ประโยค ป.ธ. 3</option>
+                    <option value="4">ประโยค ป.ธ. 4</option>
+                    <option value="5">ประโยค ป.ธ. 5</option>
+                    <option value="6">ประโยค ป.ธ. 6</option>
+                    <option value="7">ประโยค ป.ธ. 7</option>
+                    <option value="8">ประโยค ป.ธ. 8</option>
+                    <option value="9">ประโยค ป.ธ. 9</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="mb-1 block font-semibold text-slate-700 text-sm">ปีที่สอบได้ (พ.ศ.) <span class="text-red-500">*</span></label> 
+                  <input id="pali-year" class="form-field prev-edu-input" type="number" min="2400" max="2600" placeholder="ถ้าไม่มีให้ใส่ 0" required>
+                </div>
+                <div>
+                  <label class="mb-1 block font-semibold text-slate-700 text-sm">สำนักเรียนคณะจังหวัด <span class="text-red-500">*</span></label> 
+                  <input id="pali-province" class="form-field prev-edu-input" type="text" placeholder="ถ้าไม่มีให้ใส่ -" required>
+                </div>
+                <div>
+                  <label class="mb-1 block font-semibold text-slate-700 text-sm">เลขที่ใบประกาศ <span class="text-red-500">*</span></label> 
+                  <input id="pali-cert-no" class="form-field prev-edu-input" type="text" placeholder="ถ้าไม่มีให้ใส่ -" required>
+                </div>
+              </div>
             </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">อำเภอ <span class="text-red-500">*</span></label> 
-              <input id="prev-edu-district" class="form-field prev-edu-input" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
-              <input id="prev-edu-province" class="form-field prev-edu-input" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">สำนักเรียน <span class="text-red-500">*</span></label> 
-              <input id="prev-edu-office" class="form-field prev-edu-input" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">พ.ศ. (ที่สอบได้) <span class="text-red-500">*</span></label> 
-              <input id="prev-edu-year" class="form-field prev-edu-input" type="number" min="2400" max="2600" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">เลขที่ ปกศ. <span class="text-red-500">*</span></label> 
-              <input id="prev-edu-cert-no" class="form-field prev-edu-input" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">สำนักเรียนวัด/คณะจังหวัด <span class="text-red-500">*</span></label> 
-              <input id="prev-edu-provincial-office" class="form-field prev-edu-input" type="text" required>
-            </div>
+
           </div>
         </section>
 
         <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">5</span>
-            <h2 class="thai-heading text-2xl text-[#064e3b]">เพิ่มเติม</h2>
+            <h2 class="thai-heading text-2xl text-[#064e3b]">เพิ่มเติม (ไม่บังคับ)</h2>
           </div>
           <div>
-            <label class="mb-2 block font-semibold text-slate-700">หมายเหตุ <span class="text-red-500">*</span></label> 
-            <textarea id="remarks" class="form-field h-28 resize-none" placeholder="กรอกหมายเหตุ (หากไม่มีให้ใส่เครื่องหมาย - )" required></textarea>
+            <label class="mb-2 block font-semibold text-slate-700">หมายเหตุ</label> 
+            <textarea id="remarks" class="form-field h-28 resize-none" placeholder="กรอกหมายเหตุ หรือเว้นว่างไว้"></textarea>
           </div>
         </section>
 
@@ -259,7 +287,7 @@
         
         <div class="mt-12 flex flex-col items-stretch justify-between gap-6 border-t-2 border-slate-100 pt-8 sm:flex-row sm:items-center">
           <p class="text-sm text-[#d97706] font-medium flex items-center gap-2 bg-amber-50 px-4 py-2 rounded-lg border border-amber-200/50">
-            <i data-lucide="info" class="h-4 w-4"></i> ระบบบังคับกรอกทุกช่อง หากไม่มีให้ใส่เครื่องหมาย -
+            <i data-lucide="info" class="h-4 w-4"></i> โปรดตรวจสอบข้อมูลทั้งหมดให้ถูกต้อง
           </p>
           <button id="review-btn" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#064e3b] text-white px-10 py-4 font-bold text-lg focus:outline-none focus:ring-4 focus:ring-emerald-500/30" type="submit"> 
             <i data-lucide="file-check-2" class="h-6 w-6"></i> 
@@ -298,7 +326,6 @@
   </div>
 
   <script>
-    // URL ของ Google Apps Script ที่ทำการอัปเดตเรียบร้อยแล้ว
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDShK_0ZIhg0IG6LCI9RgnDELik2umcCQDMt5kfgn6iygCnQhXHrCZqz7AJNMfKYL8/exec';
 
     const form = document.getElementById('application-form');
@@ -339,14 +366,12 @@
           prevEduSection.classList.add('opacity-0');
           prevEduInputs.forEach(input => {
             input.required = false;
-            input.value = '-'; 
           });
         } else {
           prevEduSection.classList.remove('hidden');
           setTimeout(() => prevEduSection.classList.remove('opacity-0'), 10);
           prevEduInputs.forEach(input => {
             input.required = true;
-            if(input.value === '-') input.value = ''; 
           });
         }
       });
@@ -384,10 +409,10 @@
 
       if (!isBeginner) {
         labels.push(
-          ['สำนักศาสนศึกษา (เดิม)', 'prev-edu-center'], ['ตำบล (เดิม)', 'prev-edu-subdistrict'],
-          ['อำเภอ (เดิม)', 'prev-edu-district'], ['จังหวัด (เดิม)', 'prev-edu-province'],
-          ['สำนักเรียน', 'prev-edu-office'], ['พ.ศ. ที่สอบได้', 'prev-edu-year'],
-          ['เลขที่ ปกศ.', 'prev-edu-cert-no'], ['สำนักเรียนวัด/คณะ', 'prev-edu-provincial-office']
+          ['วุฒินักธรรม', 'dhamma-level'], ['ปีที่สอบได้ (นักธรรม)', 'dhamma-year'],
+          ['สำนักเรียน (นักธรรม)', 'dhamma-province'], ['เลขที่ใบประกาศ (นักธรรม)', 'dhamma-cert-no'],
+          ['วุฒิบาลี', 'pali-level'], ['ปีที่สอบได้ (บาลี)', 'pali-year'],
+          ['สำนักเรียน (บาลี)', 'pali-province'], ['เลขที่ใบประกาศ (บาลี)', 'pali-cert-no']
         );
       }
       
@@ -452,15 +477,21 @@
         'monastic_name': 'monastic-name', 'last_name': 'last-name',
         'current_temple': 'current-temple', 'current_subdistrict': 'current-subdistrict',
         'current_district': 'current-district', 'current_province': 'current-province',
-        'prev_edu_center': 'prev-edu-center', 'prev_edu_subdistrict': 'prev-edu-subdistrict',
-        'prev_edu_district': 'prev-edu-district', 'prev_edu_province': 'prev-edu-province',
-        'prev_edu_office': 'prev-edu-office', 'prev_edu_year': 'prev-edu-year',
-        'prev_edu_cert_no': 'prev-edu-cert-no', 'prev_edu_provincial_office': 'prev-edu-provincial-office',
+        'dhamma_level': 'dhamma-level', 'dhamma_year': 'dhamma-year',
+        'dhamma_province': 'dhamma-province', 'dhamma_cert_no': 'dhamma-cert-no',
+        'pali_level': 'pali-level', 'pali_year': 'pali-year',
+        'pali_province': 'pali-province', 'pali_cert_no': 'pali-cert-no',
         'remarks': 'remarks'
       };
 
+      const isBeginner = (getSelectedExamLevel() === 'นักธรรมชั้นตรี');
+
       for (const [key, id] of Object.entries(fieldMapping)) {
-        formData.append(key, fieldValue(id));
+        if (isBeginner && (key.startsWith('dhamma_') || key.startsWith('pali_'))) {
+          formData.append(key, '-'); // ใส่ค่าขีดถ้าเป็นชั้นตรีและไม่ต้องส่งวุฒิเดิม
+        } else {
+          formData.append(key, fieldValue(id));
+        }
       }
 
       fetch(SCRIPT_URL, { method: 'POST', body: formData })
