@@ -36,48 +36,43 @@
       }
       .btn-primary { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
       .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(76, 29, 149, 0.2); }
-      .radio-card-input:checked + .radio-card { border-color: var(--gold); background-color: #fffbeb; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15); }
-      .radio-card-input:checked + .radio-card .radio-title { color: var(--gold); }
-      .radio-card-input:checked + .radio-card .check-icon { opacity: 1; transform: scale(1); }
     }
 
+    /* จัดหน้ากระดาษ A4 สำหรับพิมพ์ให้พอดี 1 หน้า */
     @media print {
-      @page { size: A4; margin: 15mm 20mm; }
-      body { background: white; color: #000; font-size: 15pt; line-height: 1.4; }
+      @page { size: A4; margin: 10mm 15mm; } /* ลดขอบกระดาษลง */
+      body { background: white; color: #000; font-size: 14pt; line-height: 1.3; } /* ลดขนาดฟอนต์เล็กน้อย */
       .no-print, main, #review-panel { display: none !important; }
       #printable-document { display: block !important; position: relative; }
       
-      .print-title-wrapper { text-align: center; margin-bottom: 20px; font-weight: bold; }
-      .print-title-1 { font-size: 18pt; margin-bottom: 5px; }
-      .print-title-2 { font-size: 16pt; margin-bottom: 5px; }
-      .print-title-3 { font-size: 14pt; font-weight: normal; }
-      .print-logo { width: 90px; height: 90px; margin: 0 auto 10px auto; display: block; object-fit: contain; }
+      .print-title-wrapper { text-align: center; margin-bottom: 12px; font-weight: bold; }
+      .print-title-1 { font-size: 16pt; margin-bottom: 2px; }
+      .print-title-2 { font-size: 14pt; margin-bottom: 2px; }
+      .print-title-3 { font-size: 12pt; font-weight: normal; }
+      .print-logo { width: 65px; height: 65px; margin: 0 auto 5px auto; display: block; object-fit: contain; }
       
-      .photo-box { position: absolute; top: 0; right: 0; width: 30mm; height: 40mm; border: 1px solid #000; display: flex; align-items: center; justify-content: center; font-size: 10pt; text-align: center; }
+      .photo-box { position: absolute; top: 0; right: 0; width: 25mm; height: 32mm; border: 1px solid #000; display: flex; align-items: center; justify-content: center; font-size: 9pt; text-align: center; line-height: 1.2; }
       
-      .print-sec-title { font-weight: bold; font-size: 15pt; margin-top: 15px; margin-bottom: 10px; }
-      .print-row { display: flex; flex-wrap: wrap; margin-bottom: 8px; align-items: baseline; }
+      .print-sec-title { font-weight: bold; font-size: 14pt; margin-top: 10px; margin-bottom: 6px; }
+      .print-row { display: flex; flex-wrap: nowrap; margin-bottom: 6px; align-items: flex-end; width: 100%; }
       .print-label { white-space: nowrap; margin-right: 5px; }
-      .print-val { border-bottom: 1px dotted #000; display: inline-block; padding: 0 5px; text-align: center; color: #000; flex-grow: 1; min-width: 40px; }
+      .print-val { border-bottom: 1px dotted #000; display: inline-block; padding: 0 4px; text-align: center; color: #000; flex-grow: 1; min-width: 20px; line-height: 1.1; overflow: hidden; white-space: nowrap; }
       
-      .id-card-boxes { display: inline-flex; gap: 2px; }
-      .id-card-box { border: 1px solid #000; width: 18px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 14pt; }
-      .id-dash { margin: 0 4px; }
+      .id-card-boxes { display: inline-flex; gap: 1px; }
+      .id-card-box { border: 1px solid #000; width: 16px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 13pt; }
+      .id-dash { margin: 0 2px; }
       
-      .checkbox-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-left: 20px; }
-      .checkbox-item { display: flex; align-items: center; gap: 8px; }
-      .check-box { width: 16px; height: 16px; border: 1px solid #000; display: inline-block; position: relative; }
-      .check-box.checked::after { content: '✓'; position: absolute; top: -5px; left: 1px; font-size: 14pt; }
+      .declaration { text-indent: 40px; margin-top: 15px; text-align: justify; font-size: 13.5pt; }
       
-      .declaration { text-indent: 40px; margin-top: 30px; text-align: justify; }
-      
-      .signature-block { display: flex; justify-content: flex-end; margin-top: 30px; margin-bottom: 20px; }
+      .signature-block { display: flex; justify-content: flex-end; margin-top: 15px; margin-bottom: 15px; }
       .signature-content { text-align: center; width: 60%; }
       
-      .bottom-blocks { display: flex; gap: 20px; margin-top: 20px; align-items: flex-start; }
-      .official-use { border: 1px solid #000; padding: 10px; width: 35%; height: 180px; }
-      .required-docs { border: 1px solid #000; padding: 10px; width: 65%; font-size: 13pt; position: relative; }
-      .qr-placeholder { position: absolute; right: 10px; bottom: 10px; width: 60px; height: 60px; border: 1px dashed #000; text-align: center; font-size: 9pt; display: flex; align-items: center; justify-content: center; }
+      .bottom-blocks { display: flex; gap: 15px; margin-top: 10px; align-items: flex-start; }
+      .official-use { border: 1px solid #000; padding: 8px; width: 35%; height: 130px; }
+      .required-docs { border: 1px solid #000; padding: 8px; width: 65%; font-size: 11.5pt; position: relative; line-height: 1.4; }
+      .checkbox-item { display: flex; align-items: center; gap: 6px; }
+      .check-box { width: 12px; height: 12px; border: 1px solid #000; display: inline-block; position: relative; }
+      .qr-placeholder { position: absolute; right: 8px; bottom: 8px; width: 50px; height: 50px; border: 1px dashed #000; text-align: center; font-size: 8pt; display: flex; align-items: center; justify-content: center; line-height: 1.1; }
     }
   </style>
 </head>
@@ -154,10 +149,10 @@
               </div>
             </div>
             <div class="md:col-span-6">
-              <label class="mb-2 block font-semibold text-slate-700">อุปสมบท (วัน/เดือน/ปี พ.ศ.) <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">อุปสมบท (วัน/เดือน/ปี พ.ศ.)</label> 
               <div class="grid grid-cols-3 gap-2">
-                <input id="ordination-day" class="form-field text-center px-2" type="number" min="1" max="31" placeholder="วัน" required>
-                <select id="ordination-month" class="form-field text-center px-1" required>
+                <input id="ordination-day" class="form-field text-center px-2" type="number" min="1" max="31" placeholder="วัน">
+                <select id="ordination-month" class="form-field text-center px-1">
                   <option value="">เดือน</option>
                   <option value="มกราคม">ม.ค.</option><option value="กุมภาพันธ์">ก.พ.</option>
                   <option value="มีนาคม">มี.ค.</option><option value="เมษายน">เม.ย.</option>
@@ -166,7 +161,7 @@
                   <option value="กันยายน">ก.ย.</option><option value="ตุลาคม">ต.ค.</option>
                   <option value="พฤศจิกายน">พ.ย.</option><option value="ธันวาคม">ธ.ค.</option>
                 </select>
-                <input id="ordination-year" class="form-field text-center px-2" type="number" min="2400" max="2600" placeholder="พ.ศ." required>
+                <input id="ordination-year" class="form-field text-center px-2" type="number" min="2400" max="2600" placeholder="พ.ศ.">
               </div>
             </div>
             
@@ -230,7 +225,7 @@
             <h2 class="thai-heading text-2xl text-[#4c1d95]">วุฒิการศึกษาเดิม</h2>
           </div>
           <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 grid gap-6">
-            <div class="grid gap-4 md:grid-cols-4 items-end mb-2">
+            <div class="grid gap-4 md:grid-cols-4 items-end">
               <div>
                 <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒินักธรรม <span class="text-red-500">*</span></label> 
                 <select id="dhamma-level" class="form-field" required>
@@ -308,7 +303,7 @@
   <!-- โครงสร้างเอกสาร PDF สำหรับพิมพ์ -->
   <div id="printable-document">
     <div class="photo-box">
-      ติดภาพถ่าย<br>๑ นิ้ว หรือ ๑.๕ นิ้ว
+      ติดภาพถ่าย<br>๑ นิ้ว<br>หรือ ๑.๕ นิ้ว
     </div>
 
     <div class="print-title-wrapper">
@@ -336,7 +331,7 @@
       <span class="print-label">เดือน</span><span class="print-val" id="p-ord-month" style="flex:1;"></span>
       <span class="print-label">พ.ศ.</span><span class="print-val" id="p-ord-year" style="flex:0.8;"></span>
     </div>
-    <div class="print-row" style="margin-top: 10px;">
+    <div class="print-row" style="margin-top: 8px;">
       <span class="print-label">เลขประจำตัวประชาชน</span>
       <div class="id-card-boxes" id="p-idboxes"></div>
     </div>
@@ -360,18 +355,15 @@
 
     <div class="print-sec-title">๓. วุฒิการศึกษาเดิม</div>
     <div class="print-row">
-      <span class="print-label">วุฒินักธรรม</span><span class="print-val" id="p-dh-lvl" style="flex:0.8;"></span>
+      <span class="print-label">วุฒินักธรรม</span><span class="print-val" id="p-dh-lvl" style="flex:1;"></span>
       <span class="print-label">พ.ศ.</span><span class="print-val" id="p-dh-yr" style="flex:0.5;"></span>
       <span class="print-label">สำนักศาสนศึกษา</span><span class="print-val" id="p-dh-sch" style="flex:2;"></span>
-      <span class="print-label">เลขที่ใบประกาศ</span><span class="print-val" id="p-dh-cert" style="flex:1;"></span>
+      <span class="print-label">เลขที่ใบประกาศ</span><span class="print-val" id="p-dh-cert" style="flex:1.5;"></span>
     </div>
 
     <div class="print-sec-title">๔. มีความประสงค์ในการสมัครเรียนต่อในชั้น</div>
-    <div class="checkbox-grid">
-      <div style="font-weight: bold; margin-bottom: 5px;">แผนกธรรม</div>
-      <div class="checkbox-item"><span class="check-box" id="cb-dh-1"></span> นักธรรมชั้นตรี</div>
-      <div class="checkbox-item"><span class="check-box" id="cb-dh-2"></span> นักธรรมชั้นโท</div>
-      <div class="checkbox-item"><span class="check-box" id="cb-dh-3"></span> นักธรรมชั้นเอก</div>
+    <div class="print-row" style="padding-left: 20px;">
+      <span class="print-val" id="p-exam-level-print" style="width: 100%; text-align: left; font-weight: bold; font-size: 15pt; border: none;"></span>
     </div>
 
     <div class="declaration">
@@ -383,10 +375,10 @@
         <div class="print-row" style="justify-content: center;">
           <span class="print-label">ลงชื่อ</span><span class="print-val" style="width: 200px; flex:none;"></span><span class="print-label">ผู้สมัคร</span>
         </div>
-        <div style="margin-top: 10px;">
+        <div style="margin-top: 8px;">
           (<span class="print-val" id="p-signname" style="width: 200px; flex:none; border-bottom: none;"></span>)
         </div>
-        <div class="print-row" style="justify-content: center; margin-top: 10px;">
+        <div class="print-row" style="justify-content: center; margin-top: 8px;">
           <span class="print-label">วันที่</span><span class="print-val" style="width: 40px; flex:none;"></span>
           <span class="print-label">เดือน</span><span class="print-val" style="width: 100px; flex:none;"></span>
           <span class="print-label">พ.ศ.</span><span class="print-val" style="width: 60px; flex:none;"></span>
@@ -396,22 +388,21 @@
 
     <div class="bottom-blocks">
       <div class="official-use">
-        <div style="text-align: center; font-weight: bold; margin-bottom: 20px;">สำหรับเจ้าหน้าที่</div>
+        <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">สำหรับเจ้าหน้าที่</div>
       </div>
       <div class="required-docs">
-        <div style="font-weight: bold; margin-bottom: 10px;">หมายเหตุ: เอกสารที่ต้องแนบ</div>
+        <div style="font-weight: bold; margin-bottom: 8px;">หมายเหตุ: เอกสารที่ต้องแนบ</div>
         <div class="checkbox-item"><span class="check-box"></span> ๑. รูปถ่ายขนาด ๑ นิ้ว หรือ ๑.๕ นิ้ว จำนวน ๑ รูป</div>
         <div class="checkbox-item"><span class="check-box"></span> ๒. สำเนาหนังสือสุทธิ จำนวน ๑ ฉบับ (รับรองสำเนาถูกต้อง)</div>
-        <div class="checkbox-item"><span class="check-box"></span> ๓. สำเนาบัตรประจำตัวประชาชน จำนวน ๑ ฉบับ (รับรองสำเนาถูกต้อง)</div>
+        <div class="checkbox-item"><span class="check-box"></span> ๓. สำเนาบัตรประจำตัวประชาชน จำนวน ๑ ฉบับ</div>
         <div class="checkbox-item"><span class="check-box"></span> ๔. สำเนาใบประกาศนียบัตรนักธรรม (ถ้ามี) จำนวน ๑ ฉบับ</div>
-        <div style="font-size: 11pt; margin-top: 10px; color: #333;">**กรณีไม่ได้เอาเอกสารมา กรุณาแจ้งเจ้าหน้าที่ และถ่ายภาพส่งในกลุ่มไลน์ภายหลัง</div>
+        <div style="font-size: 10.5pt; margin-top: 8px; color: #333;">**กรณีไม่ได้เอาเอกสารมา กรุณาแจ้งเจ้าหน้าที่ และส่งในกลุ่มไลน์ภายหลัง</div>
         <div class="qr-placeholder">กลุ่มไลน์<br>ส่งเอกสาร</div>
       </div>
     </div>
   </div>
 
   <script>
-    // URL ของ Google Apps Script
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDShK_0ZIhg0IG6LCI9RgnDELik2umcCQDMt5kfgn6iygCnQhXHrCZqz7AJNMfKYL8/exec';
 
     const form = document.getElementById('application-form');
@@ -432,18 +423,16 @@
       });
     });
 
-    // ซ่อนวุฒิเดิมหากสอบนักธรรมชั้นตรี
+    // ให้แสดงส่วนที่ 3 ไว้ตลอด แต่ถ้าเลือกชั้นตรี จะปิดช่องวุฒิให้เป็น "ไม่มี"
     examRadios.forEach(radio => {
       radio.addEventListener('change', (e) => {
         const val = e.target.value;
-        const prevEduSection = document.getElementById('prev-edu-section');
-        const prevEduInputs = document.querySelectorAll('.prev-edu-input');
         if (val === 'นักธรรมชั้นตรี') {
-          prevEduSection.classList.add('hidden', 'opacity-0');
-          prevEduInputs.forEach(input => input.required = false);
+          dhammaLevelSelect.value = 'ไม่มี';
+          dhammaLevelSelect.disabled = true;
+          dhammaLevelSelect.dispatchEvent(new Event('change'));
         } else {
-          prevEduSection.classList.remove('hidden');
-          setTimeout(() => prevEduSection.classList.remove('opacity-0'), 10);
+          dhammaLevelSelect.disabled = false;
           dhammaLevelSelect.dispatchEvent(new Event('change'));
         }
       });
@@ -496,19 +485,15 @@
         document.getElementById('p-line').textContent = fieldValue('line-id') || '-';
 
         const isBeginner = (getSelectedExamLevel() === 'นักธรรมชั้นตรี');
-        document.getElementById('p-dh-lvl').textContent = isBeginner ? '-' : (fieldValue('dhamma-level') || '-');
+        document.getElementById('p-dh-lvl').textContent = isBeginner ? 'ไม่มี' : (fieldValue('dhamma-level') || '-');
         document.getElementById('p-dh-yr').textContent = isBeginner ? '-' : (fieldValue('dhamma-year') || '-');
         document.getElementById('p-dh-sch').textContent = isBeginner ? '-' : (fieldValue('dhamma-office') || '-');
         document.getElementById('p-dh-cert').textContent = isBeginner ? '-' : (fieldValue('dhamma-cert-no') || '-');
 
         document.getElementById('p-signname').textContent = title + fname + " " + lname;
 
-        // Checkboxes Exam Level
-        const exLevel = getSelectedExamLevel();
-        document.querySelectorAll('.check-box').forEach(cb => cb.classList.remove('checked'));
-        if(exLevel === 'นักธรรมชั้นตรี') document.getElementById('cb-dh-1').classList.add('checked');
-        if(exLevel === 'นักธรรมชั้นโท') document.getElementById('cb-dh-2').classList.add('checked');
-        if(exLevel === 'นักธรรมชั้นเอก') document.getElementById('cb-dh-3').classList.add('checked');
+        // แสดงชั้นที่สมัครเรียนแบบตรงๆ ไม่ต้องติ๊ก
+        document.getElementById('p-exam-level-print').textContent = `แผนกธรรม (${getSelectedExamLevel()})`;
     }
 
     form.addEventListener('submit', function(e) {
