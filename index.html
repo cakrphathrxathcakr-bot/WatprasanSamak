@@ -3,106 +3,117 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>บัญชีผู้ขอเข้าสอบความรู้ ธรรม-บาลี สนามหลวง</title>
+  <title>บัญชีผู้ขอเข้าสอบความรู้ ธรรมศึกษา สนามหลวง</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Pridi:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --primary: #1e3a8a; --primary-light: #2563eb; --gold: #d97706; --text-main: #0f172a; }
+    :root { 
+      --primary: #064e3b; 
+      --primary-light: #059669; 
+      --gold: #d97706; 
+      --text-main: #1e293b; 
+    }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: "Sarabun", sans-serif; color: var(--text-main); background: #f8fafc; }
-    .paper-mark { background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px); background-size: 24px 24px; }
+    body { margin: 0; font-family: "Sarabun", sans-serif; color: var(--text-main); background: #f1f5f9; }
+    .paper-mark { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 28px 28px; }
     .thai-heading { font-family: "Pridi", serif; }
     .form-field {
-      width: 100%; border: 1.5px solid #cbd5e1; border-radius: 0.5rem; background: #f8fafc;
-      padding: 0.75rem 1rem; color: var(--text-main); font: inherit; transition: all 0.2s;
+      width: 100%; border: 1.5px solid #cbd5e1; border-radius: 0.75rem; background: #ffffff;
+      padding: 0.85rem 1rem; color: var(--text-main); font: inherit; transition: all 0.25s;
     }
-    .form-field:focus { outline: none; border-color: var(--primary-light); background: #ffffff; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); }
+    .form-field:focus { outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15); }
     .section-rule { border-top: 2px dashed #e2e8f0; }
     .section-number {
-      display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px;
+      display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 12px;
       background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #ffffff; font-weight: 700;
-      font-family: 'Pridi', serif; box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2);
+      font-family: 'Pridi', serif; box-shadow: 0 4px 12px rgba(6, 78, 59, 0.25);
     }
     .review-row:nth-child(odd) { background: #f8fafc; }
     .review-row { display: grid; grid-template-columns: minmax(160px, .8fr) 1.5fr; gap: 1rem; padding: 0.85rem 1.25rem; }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25); }
+    .btn-primary { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(6, 78, 59, 0.2); }
+    
+    .radio-card-input:checked + .radio-card {
+      border-color: var(--gold); background-color: #fffbeb; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15);
+    }
+    .radio-card-input:checked + .radio-card .radio-title { color: var(--gold); }
+    .radio-card-input:checked + .radio-card .check-icon { opacity: 1; transform: scale(1); }
+    
     @media (max-width: 640px) { .review-row { grid-template-columns: 1fr; gap: 0.25rem; padding: 0.75rem 1rem; } }
   </style>
 </head>
 <body class="paper-mark py-6 sm:py-12 min-h-screen">
-  <main class="mx-auto w-full max-w-5xl px-4 sm:px-6">
-    <div class="overflow-hidden rounded-2xl bg-white shadow-[0_20px_60px_-15px_rgba(30,58,138,0.15)] ring-1 ring-slate-200">
+  <main class="mx-auto w-full max-w-4xl px-4 sm:px-6">
+    <div class="overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-15px_rgba(6,78,59,0.15)] ring-1 ring-slate-200">
       
-      <header class="relative overflow-hidden bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#2563eb] px-5 py-10 text-center sm:px-10">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent bg-[length:20px_20px]"></div>
+      <header class="relative overflow-hidden bg-gradient-to-br from-[#064e3b] via-[#065f46] to-[#047857] px-6 py-12 text-center sm:px-12">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent bg-[length:24px_24px]"></div>
         <div class="relative z-10 mx-auto flex max-w-3xl flex-col items-center">
-          <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#fbbf24] bg-white/10 backdrop-blur-sm text-[#fbbf24] shadow-[0_0_20px_rgba(251,191,36,0.3)]">
-            <i data-lucide="file-text" class="h-8 w-8"></i>
+          <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-[#fbbf24] bg-white/10 backdrop-blur-md text-[#fbbf24] shadow-[0_0_25px_rgba(251,191,36,0.25)] rotate-3">
+            <i data-lucide="book-open-check" class="h-8 w-8 -rotate-3"></i>
           </div>
-          <p class="mb-2 tracking-[.15em] text-[#fbbf24] font-medium text-sm">ระบบลงทะเบียนรวมทุกช่วงชั้น</p>
-          <h1 class="thai-heading text-3xl sm:text-4xl text-white mt-1 drop-shadow-md">บัญชีผู้ขอเข้าสอบความรู้</h1>
-          <p class="mt-3 text-blue-100 font-light text-lg">แฟ้มสำหรับส่งสำนักงานแม่กองธรรมและแม่กองบาลี</p>
-          <div class="mt-4 bg-rose-500/20 text-rose-100 px-4 py-2 rounded-lg border border-rose-500/30 text-sm font-medium inline-flex items-center gap-2">
-            <i data-lucide="alert-circle" class="h-4 w-4"></i>
-            บังคับกรอกข้อมูลทุกช่อง (หากไม่มีให้ใส่เครื่องหมาย - )
-          </div>
+          <p class="mb-2 tracking-[.2em] text-[#fbbf24] font-medium text-sm">การศึกษาคณะสงฆ์</p>
+          <h1 class="thai-heading text-3xl sm:text-4xl text-white mt-1 drop-shadow-lg">บัญชีผู้ขอเข้าสอบความรู้</h1>
+          <p class="mt-3 text-emerald-100 font-light text-lg">แฟ้มสำหรับส่งสำนักงานแม่กองธรรมสนามหลวง</p>
         </div>
       </header>
 
-      <section class="border-b border-slate-200 bg-slate-50/80 px-5 py-4 sm:px-10">
+      <section class="border-b border-slate-100 bg-slate-50/50 px-6 py-4 sm:px-12 flex justify-between items-center">
         <div class="flex items-center gap-3">
-          <p class="text-sm font-semibold text-slate-500">ลำดับ/เลขอ้างอิง:</p>
-          <p id="application-number" class="font-bold tracking-[.1em] text-[#1e3a8a] text-lg"></p>
+          <p class="text-sm font-semibold text-slate-500">เลขที่รายการ:</p>
+          <p id="application-number" class="font-bold tracking-[.1em] text-[#064e3b] text-lg bg-white px-3 py-1 rounded-lg shadow-sm border border-slate-200"></p>
         </div>
       </section>
 
-      <form id="application-form" class="px-5 py-8 sm:px-12 sm:py-10" novalidate>
+      <form id="application-form" class="px-6 py-8 sm:px-12 sm:py-10" novalidate>
         
-        <!-- ส่วนที่ 1: ข้อมูลการสมัคร -->
         <section class="pt-2">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">1</span>
-            <h2 class="thai-heading text-xl text-[#1e3a8a]">ข้อมูลการสมัคร</h2>
+            <h2 class="thai-heading text-2xl text-[#064e3b]">ระดับชั้นที่สมัครสอบ <span class="text-red-500 text-lg">*</span></h2>
           </div>
-          <div class="grid gap-6 md:grid-cols-2">
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="exam-level">ระดับชั้นที่สอบ <span class="text-red-500">*</span></label>
-              <select id="exam-level" class="form-field font-bold text-[#1e3a8a]" required>
-                <option value="">-- กรุณาเลือก --</option>
-                <optgroup label="นักธรรม">
-                  <option value="นักธรรมชั้นตรี">นักธรรมชั้นตรี (ไม่ต้องกรอกวุฒิเดิม)</option>
-                  <option value="นักธรรมชั้นโท">นักธรรมชั้นโท</option>
-                  <option value="นักธรรมชั้นเอก">นักธรรมชั้นเอก</option>
-                </optgroup>
-                <optgroup label="ธรรมศึกษา">
-                  <option value="ธรรมศึกษาชั้นตรี">ธรรมศึกษาชั้นตรี (ไม่ต้องกรอกวุฒิเดิม)</option>
-                  <option value="ธรรมศึกษาชั้นโท">ธรรมศึกษาชั้นโท</option>
-                  <option value="ธรรมศึกษาชั้นเอก">ธรรมศึกษาชั้นเอก</option>
-                </optgroup>
-                <optgroup label="บาลี">
-                  <option value="บาลีไวยากรณ์">บาลีไวยากรณ์ (ไม่ต้องกรอกวุฒิเดิม)</option>
-                  <option value="ประโยค 1-2">ประโยค 1-2</option>
-                  <option value="ประโยค ป.ธ.3">ประโยค ป.ธ.3 ขึ้นไป</option>
-                </optgroup>
-              </select>
-            </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <label class="cursor-pointer relative">
+              <input type="radio" name="exam-level" value="นักธรรมชั้นตรี" class="radio-card-input sr-only" required>
+              <div class="radio-card rounded-2xl border-2 border-slate-200 p-5 transition-all hover:bg-slate-50 flex flex-col items-center justify-center text-center h-full relative overflow-hidden">
+                <i data-lucide="check-circle-2" class="check-icon absolute top-3 right-3 h-5 w-5 text-[#d97706] opacity-0 transition-all scale-50"></i>
+                <div class="radio-title font-bold text-lg text-slate-700 transition-colors thai-heading">นักธรรมชั้นตรี</div>
+                <div class="text-xs text-slate-500 mt-2 bg-slate-100 px-2 py-1 rounded-md">(ไม่ต้องกรอกวุฒิเดิม)</div>
+              </div>
+            </label>
+            
+            <label class="cursor-pointer relative">
+              <input type="radio" name="exam-level" value="นักธรรมชั้นโท" class="radio-card-input sr-only" required>
+              <div class="radio-card rounded-2xl border-2 border-slate-200 p-5 transition-all hover:bg-slate-50 flex flex-col items-center justify-center text-center h-full relative overflow-hidden">
+                <i data-lucide="check-circle-2" class="check-icon absolute top-3 right-3 h-5 w-5 text-[#d97706] opacity-0 transition-all scale-50"></i>
+                <div class="radio-title font-bold text-lg text-slate-700 transition-colors thai-heading">นักธรรมชั้นโท</div>
+              </div>
+            </label>
+
+            <label class="cursor-pointer relative">
+              <input type="radio" name="exam-level" value="นักธรรมชั้นเอก" class="radio-card-input sr-only" required>
+              <div class="radio-card rounded-2xl border-2 border-slate-200 p-5 transition-all hover:bg-slate-50 flex flex-col items-center justify-center text-center h-full relative overflow-hidden">
+                <i data-lucide="check-circle-2" class="check-icon absolute top-3 right-3 h-5 w-5 text-[#d97706] opacity-0 transition-all scale-50"></i>
+                <div class="radio-title font-bold text-lg text-slate-700 transition-colors thai-heading">นักธรรมชั้นเอก</div>
+              </div>
+            </label>
           </div>
         </section>
 
-        <!-- ส่วนที่ 2: ข้อมูลผู้เข้าสอบ -->
-        <section class="section-rule mt-10 pt-8">
+        <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">2</span>
-            <h2 class="thai-heading text-xl text-[#1e3a8a]">ข้อมูลผู้เข้าสอบ</h2>
+            <h2 class="thai-heading text-2xl text-[#064e3b]">ประวัติผู้เข้าสอบ</h2>
           </div>
           <div class="grid gap-6 md:grid-cols-2">
             <div class="md:col-span-2">
-              <label class="mb-2 block font-semibold text-slate-700" for="id-card">เลขประจำตัวประชาชน ๑๓ หลัก <span class="text-red-500">*</span></label> 
-              <input id="id-card" class="form-field" type="text" maxlength="13" required>
+              <label class="mb-2 block font-semibold text-slate-700">เลขประจำตัวประชาชน ๑๓ หลัก <span class="text-red-500">*</span></label> 
+              <input id="id-card" class="form-field text-lg tracking-widest text-center md:text-left" type="text" maxlength="13" placeholder="ระบุเฉพาะตัวเลข 13 หลัก" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="title">คำนำหน้าชื่อ <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">คำนำหน้าชื่อ <span class="text-red-500">*</span></label> 
               <select id="title" class="form-field" required>
                 <option value="">-- เลือกคำนำหน้า --</option>
                 <option value="พระ">พระ</option>
@@ -116,117 +127,142 @@
               </select>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="first-name">ชื่อ <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">ชื่อ <span class="text-red-500">*</span></label> 
               <input id="first-name" class="form-field" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="monastic-name">ฉายา <span class="text-red-500">*</span></label> 
-              <input id="monastic-name" class="form-field" type="text" placeholder="หากไม่มีให้ใส่ -" required>
+              <label class="mb-2 block font-semibold text-slate-700">ฉายา <span class="text-red-500">*</span></label> 
+              <input id="monastic-name" class="form-field" type="text" placeholder="หากไม่มีให้ใส่เครื่องหมาย -" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="last-name">นามสกุล <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">นามสกุล <span class="text-red-500">*</span></label> 
               <input id="last-name" class="form-field" type="text" required>
             </div>
+            
+            <!-- ปรับปรุงช่องวันเกิด -->
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="birth-date">เกิด (วัน / เดือน / ปี) <span class="text-red-500">*</span></label> 
-              <input id="birth-date" class="form-field" type="date" required>
+              <label class="mb-2 block font-semibold text-slate-700">เกิด (วัน/เดือน/ปี พ.ศ.) <span class="text-red-500">*</span></label> 
+              <div class="grid grid-cols-3 gap-2">
+                <input id="birth-day" class="form-field text-center px-2" type="number" min="1" max="31" placeholder="วัน" required>
+                <select id="birth-month" class="form-field text-center px-1" required>
+                  <option value="">เดือน</option>
+                  <option value="มกราคม">ม.ค.</option><option value="กุมภาพันธ์">ก.พ.</option>
+                  <option value="มีนาคม">มี.ค.</option><option value="เมษายน">เม.ย.</option>
+                  <option value="พฤษภาคม">พ.ค.</option><option value="มิถุนายน">มิ.ย.</option>
+                  <option value="กรกฎาคม">ก.ค.</option><option value="สิงหาคม">ส.ค.</option>
+                  <option value="กันยายน">ก.ย.</option><option value="ตุลาคม">ต.ค.</option>
+                  <option value="พฤศจิกายน">พ.ย.</option><option value="ธันวาคม">ธ.ค.</option>
+                </select>
+                <input id="birth-year" class="form-field text-center px-2" type="number" min="2400" max="2600" placeholder="พ.ศ." required>
+              </div>
             </div>
+
+            <!-- ปรับปรุงช่องวันอุปสมบท -->
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="ordination-date">อุปสมบท (วัน / เดือน / ปี) <span class="text-red-500">*</span></label> 
-              <input id="ordination-date" class="form-field" type="date" required>
-              <p class="text-xs text-slate-500 mt-1">ฆราวาสให้ใส่วันที่ปัจจุบันหรือข้ามไป (ระบบจะบันทึกตามจริง)</p>
+              <label class="mb-2 block font-semibold text-slate-700">อุปสมบท (วัน/เดือน/ปี พ.ศ.) <span class="text-red-500">*</span></label> 
+              <div class="grid grid-cols-3 gap-2">
+                <input id="ordination-day" class="form-field text-center px-2" type="number" min="1" max="31" placeholder="วัน" required>
+                <select id="ordination-month" class="form-field text-center px-1" required>
+                  <option value="">เดือน</option>
+                  <option value="มกราคม">ม.ค.</option><option value="กุมภาพันธ์">ก.พ.</option>
+                  <option value="มีนาคม">มี.ค.</option><option value="เมษายน">เม.ย.</option>
+                  <option value="พฤษภาคม">พ.ค.</option><option value="มิถุนายน">มิ.ย.</option>
+                  <option value="กรกฎาคม">ก.ค.</option><option value="สิงหาคม">ส.ค.</option>
+                  <option value="กันยายน">ก.ย.</option><option value="ตุลาคม">ต.ค.</option>
+                  <option value="พฤศจิกายน">พ.ย.</option><option value="ธันวาคม">ธ.ค.</option>
+                </select>
+                <input id="ordination-year" class="form-field text-center px-2" type="number" min="2400" max="2600" placeholder="พ.ศ." required>
+              </div>
+              <p class="text-xs text-slate-500 mt-1.5 flex items-center gap-1"><i data-lucide="info" class="h-3 w-3"></i> ฆราวาสให้ใส่วันที่ปัจจุบัน</p>
             </div>
           </div>
         </section>
 
-        <!-- ส่วนที่ 3: ที่อยู่ปัจจุบัน -->
-        <section class="section-rule mt-10 pt-8">
+        <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">3</span>
-            <h2 class="thai-heading text-xl text-[#1e3a8a]">ที่อยู่ปัจจุบัน</h2>
+            <h2 class="thai-heading text-2xl text-[#064e3b]">ที่อยู่ปัจจุบัน</h2>
           </div>
           <div class="grid gap-6 md:grid-cols-2">
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="current-temple">ชื่อวัด/สถานที่อยู่ <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">ชื่อวัด/สถานที่อยู่ <span class="text-red-500">*</span></label> 
               <input id="current-temple" class="form-field" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="current-subdistrict">ตำบล <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">ตำบล <span class="text-red-500">*</span></label> 
               <input id="current-subdistrict" class="form-field" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="current-district">อำเภอ <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">อำเภอ <span class="text-red-500">*</span></label> 
               <input id="current-district" class="form-field" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="current-province">จังหวัด <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
               <input id="current-province" class="form-field" type="text" required>
             </div>
           </div>
         </section>
 
-        <!-- ส่วนที่ 4: ประโยคเดิม (วุฒิการศึกษาเดิม) -->
-        <section id="prev-edu-section" class="section-rule mt-10 pt-8 transition-all duration-300">
+        <section id="prev-edu-section" class="section-rule mt-12 pt-10 transition-all duration-300">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">4</span>
-            <h2 class="thai-heading text-xl text-[#1e3a8a]">ประโยคเดิม (วุฒิเดิมที่สอบได้)</h2>
+            <h2 class="thai-heading text-2xl text-[#064e3b]">ประโยคเดิม (วุฒิเดิมที่สอบได้)</h2>
           </div>
-          <div class="grid gap-6 md:grid-cols-2">
+          <div class="grid gap-6 md:grid-cols-2 bg-slate-50 p-6 rounded-2xl border border-slate-200">
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-center">สำนักศาสนศึกษา/สถานศึกษา <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">สำนักศาสนศึกษา/สถานศึกษา <span class="text-red-500">*</span></label> 
               <input id="prev-edu-center" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-subdistrict">ตำบล <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">ตำบล <span class="text-red-500">*</span></label> 
               <input id="prev-edu-subdistrict" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-district">อำเภอ <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">อำเภอ <span class="text-red-500">*</span></label> 
               <input id="prev-edu-district" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-province">จังหวัด <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
               <input id="prev-edu-province" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-office">สำนักเรียน <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">สำนักเรียน <span class="text-red-500">*</span></label> 
               <input id="prev-edu-office" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-year">พ.ศ. (ที่สอบได้) <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">พ.ศ. (ที่สอบได้) <span class="text-red-500">*</span></label> 
               <input id="prev-edu-year" class="form-field prev-edu-input" type="number" min="2400" max="2600" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-cert-no">เลขที่ ปกศ. <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">เลขที่ ปกศ. <span class="text-red-500">*</span></label> 
               <input id="prev-edu-cert-no" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-provincial-office">สำนักเรียนวัด/คณะจังหวัด <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700">สำนักเรียนวัด/คณะจังหวัด <span class="text-red-500">*</span></label> 
               <input id="prev-edu-provincial-office" class="form-field prev-edu-input" type="text" required>
             </div>
           </div>
         </section>
 
-        <!-- ส่วนที่ 5: หมายเหตุ -->
-        <section class="section-rule mt-10 pt-8">
+        <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">5</span>
-            <h2 class="thai-heading text-xl text-[#1e3a8a]">เพิ่มเติม</h2>
+            <h2 class="thai-heading text-2xl text-[#064e3b]">เพิ่มเติม</h2>
           </div>
           <div>
-            <label class="mb-2 block font-semibold text-slate-700" for="remarks">หมายเหตุ <span class="text-red-500">*</span></label> 
-            <textarea id="remarks" class="form-field h-24" placeholder="กรอกหมายเหตุ (หากไม่มีให้ใส่ - )" required></textarea>
+            <label class="mb-2 block font-semibold text-slate-700">หมายเหตุ <span class="text-red-500">*</span></label> 
+            <textarea id="remarks" class="form-field h-28 resize-none" placeholder="กรอกหมายเหตุ (หากไม่มีให้ใส่เครื่องหมาย - )" required></textarea>
           </div>
         </section>
 
         <div id="form-message" class="mt-8 hidden rounded-xl border px-4 py-3 text-sm" role="status"></div>
         
-        <div class="mt-10 flex flex-col items-stretch justify-between gap-5 border-t border-slate-200 pt-8 sm:flex-row sm:items-center">
-          <p class="text-sm text-[#d97706] font-medium flex items-center gap-2">
-            <i data-lucide="info" class="h-4 w-4"></i> ระบบบังคับกรอกทุกช่อง หากไม่มีข้อมูลให้ใส่ -
+        <div class="mt-12 flex flex-col items-stretch justify-between gap-6 border-t-2 border-slate-100 pt-8 sm:flex-row sm:items-center">
+          <p class="text-sm text-[#d97706] font-medium flex items-center gap-2 bg-amber-50 px-4 py-2 rounded-lg border border-amber-200/50">
+            <i data-lucide="info" class="h-4 w-4"></i> ระบบบังคับกรอกทุกช่อง หากไม่มีให้ใส่เครื่องหมาย -
           </p>
-          <button id="review-btn" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#1e3a8a] text-white px-8 py-3.5 font-semibold transition focus:outline-none" type="submit"> 
-            <i data-lucide="clipboard-check" class="h-5 w-5"></i> 
+          <button id="review-btn" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#064e3b] text-white px-10 py-4 font-bold text-lg focus:outline-none focus:ring-4 focus:ring-emerald-500/30" type="submit"> 
+            <i data-lucide="file-check-2" class="h-6 w-6"></i> 
             <span>ตรวจสอบข้อมูลบัญชี</span> 
           </button>
         </div>
@@ -234,41 +270,39 @@
     </div>
   </main>
 
-  <!-- Review Panel -->
-  <div id="review-panel" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-sm p-4 sm:p-8 transition-opacity">
-    <div class="mx-auto my-4 sm:my-8 w-full max-w-4xl rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden">
-      <div class="flex items-start justify-between border-b border-slate-100 bg-slate-50/50 px-6 py-6 sm:px-10">
+  <div id="review-panel" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-md p-4 sm:p-8 transition-opacity">
+    <div class="mx-auto my-4 sm:my-8 w-full max-w-4xl rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden flex flex-col">
+      <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-6 py-6 sm:px-10">
         <div>
-          <p class="text-sm font-bold text-[#d97706] tracking-wide mb-1">ตรวจสอบก่อนส่ง</p>
-          <h2 class="thai-heading text-[#1e3a8a] text-2xl">ยืนยันข้อมูลผู้ขอเข้าสอบ</h2>
+          <p class="text-sm font-bold text-[#d97706] tracking-wider mb-1">ขั้นตอนสุดท้าย</p>
+          <h2 class="thai-heading text-[#064e3b] text-2xl">ยืนยันข้อมูลผู้ขอเข้าสอบ</h2>
         </div>
-        <button id="close-review" class="rounded-full p-2 text-slate-400 hover:bg-slate-200 hover:text-slate-600"> 
-          <i data-lucide="x" class="h-5 w-5"></i> 
+        <button id="close-review" class="rounded-full p-2 text-slate-400 hover:bg-slate-200 hover:text-slate-700 transition-colors"> 
+          <i data-lucide="x" class="h-6 w-6"></i> 
         </button>
       </div>
       
-      <div class="px-6 py-6 sm:px-10">
-        <div id="review-list" class="overflow-hidden rounded-xl border border-slate-200 bg-white grid grid-cols-1 md:grid-cols-2"></div>
-        <div id="submit-message" class="mt-5 hidden rounded-xl border px-4 py-3 text-sm font-medium"></div>
-        
-        <div class="mt-8 flex flex-col-reverse gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:justify-end">
-          <button id="edit-button" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-700 px-6 py-3 font-semibold hover:bg-slate-50" type="button">กลับไปแก้ไข</button> 
-          <button id="submit-button" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#d97706] text-white px-8 py-3 font-semibold shadow-md hover:bg-[#b45309]" type="button"> 
-            <i data-lucide="send" class="h-4 w-4"></i> 
-            <span>บันทึกส่งข้อมูล</span> 
-          </button>
-        </div>
+      <div class="px-6 py-6 sm:px-10 flex-1 overflow-y-auto max-h-[70vh]">
+        <div id="review-list" class="overflow-hidden rounded-2xl border border-slate-200 bg-white grid grid-cols-1 md:grid-cols-2"></div>
+        <div id="submit-message" class="mt-6 hidden rounded-xl border px-4 py-4 text-sm font-medium"></div>
+      </div>
+
+      <div class="bg-slate-50 px-6 py-6 sm:px-10 border-t border-slate-100 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+        <button id="edit-button" class="inline-flex items-center justify-center rounded-xl border-2 border-slate-300 bg-white text-slate-700 px-8 py-3.5 font-bold hover:bg-slate-50 hover:text-[#064e3b] transition-colors" type="button">กลับไปแก้ไข</button> 
+        <button id="submit-button" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#d97706] text-white px-10 py-3.5 font-bold shadow-lg hover:bg-[#b45309]" type="button"> 
+          <i data-lucide="send" class="h-5 w-5"></i> 
+          <span>บันทึกส่งข้อมูล</span> 
+        </button>
       </div>
     </div>
   </div>
 
   <script>
-    // =============== ใส่ URL ที่ได้จาก Google Apps Script ที่นี่ ===============
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_XXXXXXXXXXX/exec';
-    // ====================================================================
+    // URL ของ Google Apps Script ที่ทำการอัปเดตเรียบร้อยแล้ว
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDShK_0ZIhg0IG6LCI9RgnDELik2umcCQDMt5kfgn6iygCnQhXHrCZqz7AJNMfKYL8/exec';
 
     const form = document.getElementById('application-form');
-    const examLevelSelect = document.getElementById('exam-level');
+    const examRadios = document.querySelectorAll('input[name="exam-level"]');
     const prevEduSection = document.getElementById('prev-edu-section');
     const prevEduInputs = document.querySelectorAll('.prev-edu-input');
     const reviewPanel = document.getElementById('review-panel');
@@ -279,55 +313,71 @@
 
     lucide.createIcons();
 
-    // สร้างหมายเลขใบสมัคร
     function createApplicationNumber() {
-      return 'EXAM-' + Date.now().toString().slice(-6);
+      return 'NKT-' + Date.now().toString().slice(-6);
     }
     applicationNumberEl.textContent = createApplicationNumber();
 
-    // Logic จัดการซ่อน/แสดง ฟิลด์วุฒิการศึกษาเดิม
-    examLevelSelect.addEventListener('change', (e) => {
-      const val = e.target.value;
-      if (val === 'นักธรรมชั้นตรี' || val === 'ธรรมศึกษาชั้นตรี' || val === 'บาลีไวยากรณ์') {
-        prevEduSection.classList.add('hidden');
-        prevEduInputs.forEach(input => {
-          input.required = false;
-          input.value = '-'; 
-        });
-      } else {
-        prevEduSection.classList.remove('hidden');
-        prevEduInputs.forEach(input => {
-          input.required = true;
-          if(input.value === '-') input.value = ''; 
-        });
-      }
+    function getSelectedExamLevel() {
+      const selected = document.querySelector('input[name="exam-level"]:checked');
+      return selected ? selected.value : '';
+    }
+
+    function getCombinedDate(type) {
+      const day = document.getElementById(`${type}-day`).value;
+      const month = document.getElementById(`${type}-month`).value;
+      const year = document.getElementById(`${type}-year`).value;
+      if(!day || !month || !year) return '';
+      return `${day} ${month} ${year}`;
+    }
+
+    examRadios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const val = e.target.value;
+        if (val === 'นักธรรมชั้นตรี') {
+          prevEduSection.classList.add('hidden');
+          prevEduSection.classList.add('opacity-0');
+          prevEduInputs.forEach(input => {
+            input.required = false;
+            input.value = '-'; 
+          });
+        } else {
+          prevEduSection.classList.remove('hidden');
+          setTimeout(() => prevEduSection.classList.remove('opacity-0'), 10);
+          prevEduInputs.forEach(input => {
+            input.required = true;
+            if(input.value === '-') input.value = ''; 
+          });
+        }
+      });
     });
 
     function showMessage(element, message, type) {
-      element.className = 'mt-5 rounded-xl border px-4 py-3.5 text-sm block font-medium flex items-center gap-2';
+      element.className = 'mt-6 rounded-xl border px-5 py-4 text-sm block font-medium flex items-center gap-3';
       const iconHTML = type === 'success' 
-        ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> `
-        : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> `;
+        ? `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> `
+        : `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> `;
       element.innerHTML = iconHTML + message;
-      if (type === 'success') { element.classList.add('border-emerald-200', 'bg-emerald-50', 'text-emerald-700'); } 
-      else { element.classList.add('border-rose-200', 'bg-rose-50', 'text-rose-700'); }
+      if (type === 'success') { element.classList.add('border-emerald-200', 'bg-emerald-50', 'text-emerald-800'); } 
+      else { element.classList.add('border-rose-200', 'bg-rose-50', 'text-rose-800'); }
     }
 
     function clearMessage(element) {
-      element.className = 'mt-5 hidden rounded-xl border px-4 py-3 text-sm';
+      element.className = 'mt-6 hidden rounded-xl border px-4 py-3 text-sm';
       element.textContent = '';
     }
 
     function fieldValue(id) { return document.getElementById(id) ? document.getElementById(id).value.trim() : ''; }
 
     function buildReview() {
-      const isBeginner = prevEduSection.classList.contains('hidden');
+      const selectedLevel = getSelectedExamLevel();
+      const isBeginner = (selectedLevel === 'นักธรรมชั้นตรี');
       
       const labels = [
-        ['ระดับชั้นที่สอบ', 'exam-level'],
+        ['ระดับชั้นที่สอบ', 'exam-level-display'],
         ['เลข ปชช. ๑๓ หลัก', 'id-card'], ['คำนำหน้า', 'title'],
         ['ชื่อ', 'first-name'], ['ฉายา', 'monastic-name'], ['นามสกุล', 'last-name'],
-        ['เกิด', 'birth-date'], ['อุปสมบท', 'ordination-date'],
+        ['เกิด', 'birth-date-combined'], ['อุปสมบท', 'ordination-date-combined'],
         ['ชื่อวัด/สถานที่อยู่', 'current-temple'], ['ตำบล', 'current-subdistrict'],
         ['อำเภอ', 'current-district'], ['จังหวัด', 'current-province']
       ];
@@ -346,16 +396,21 @@
       reviewList.replaceChildren();
       labels.forEach(([label, id]) => {
         const row = document.createElement('div');
-        row.className = 'review-row border-b border-slate-100 last:border-0 md:border-r';
+        row.className = 'review-row border-b border-slate-100 last:border-0 md:border-r hover:bg-slate-50 transition-colors';
         const labelEl = document.createElement('span'); labelEl.className = 'font-semibold text-slate-500 text-sm'; labelEl.textContent = label;
-        const valueEl = document.createElement('span'); valueEl.className = 'font-medium text-slate-800 text-sm break-words';
+        const valueEl = document.createElement('span'); valueEl.className = 'font-medium text-[#064e3b] text-sm break-words';
         
-        let val = fieldValue(id);
-
-        if ((id === 'birth-date' || id === 'ordination-date') && val && val !== '-') {
-            const dateObj = new Date(val);
-            val = dateObj.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' });
+        let val = '';
+        if (id === 'exam-level-display') {
+          val = selectedLevel;
+        } else if (id === 'birth-date-combined') {
+          val = getCombinedDate('birth');
+        } else if (id === 'ordination-date-combined') {
+          val = getCombinedDate('ordination');
+        } else {
+          val = fieldValue(id);
         }
+
         valueEl.textContent = val || '-';
         row.appendChild(labelEl); row.appendChild(valueEl); reviewList.appendChild(row);
       });
@@ -363,6 +418,12 @@
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      const selectedLevel = getSelectedExamLevel();
+      if(!selectedLevel) {
+        alert('กรุณาเลือกระดับชั้นที่สมัครสอบ (ข้อ 1)');
+        return;
+      }
+
       if (form.checkValidity()) { 
         buildReview(); 
         reviewPanel.classList.remove('hidden'); 
@@ -375,24 +436,20 @@
     document.getElementById('edit-button').addEventListener('click', () => reviewPanel.classList.add('hidden'));
 
     submitButton.addEventListener('click', () => {
-      if(SCRIPT_URL.includes('XXXXXXXXXXX')) {
-          showMessage(submitMessage, 'กรุณาใส่ Web App URL ของ Google Sheets ในโค้ดก่อนครับ', 'error');
-          return;
-      }
-
       submitButton.disabled = true;
-      submitButton.innerHTML = `<i data-lucide="loader-2" class="h-4 w-4 animate-spin"></i> กำลังบันทึก...`;
+      submitButton.innerHTML = `<i data-lucide="loader-2" class="h-5 w-5 animate-spin"></i> กำลังบันทึก...`;
       lucide.createIcons();
-      showMessage(submitMessage, 'กำลังส่งข้อมูลไปที่ฐานข้อมูล...', 'success');
+      showMessage(submitMessage, 'กำลังส่งข้อมูลไปที่ระบบ...', 'success');
 
       const formData = new FormData();
       formData.append('application_number', applicationNumberEl.textContent);
+      formData.append('exam_level', getSelectedExamLevel());
+      formData.append('birth_date', getCombinedDate('birth'));
+      formData.append('ordination_date', getCombinedDate('ordination'));
       
       const fieldMapping = {
-        'exam_level': 'exam-level',
         'id_card': 'id-card', 'title': 'title', 'first_name': 'first-name', 
         'monastic_name': 'monastic-name', 'last_name': 'last-name',
-        'birth_date': 'birth-date', 'ordination_date': 'ordination-date',
         'current_temple': 'current-temple', 'current_subdistrict': 'current-subdistrict',
         'current_district': 'current-district', 'current_province': 'current-province',
         'prev_edu_center': 'prev-edu-center', 'prev_edu_subdistrict': 'prev-edu-subdistrict',
@@ -409,7 +466,7 @@
       fetch(SCRIPT_URL, { method: 'POST', body: formData })
         .then(() => {
           showMessage(submitMessage, 'บันทึกข้อมูลเรียบร้อยแล้ว!', 'success');
-          submitButton.innerHTML = `<i data-lucide="check-circle" class="h-4 w-4"></i> บันทึกสำเร็จ`;
+          submitButton.innerHTML = `<i data-lucide="check-circle" class="h-5 w-5"></i> บันทึกสำเร็จ`;
           lucide.createIcons();
           submitButton.classList.replace('bg-[#d97706]', 'bg-emerald-600');
 
@@ -420,7 +477,7 @@
             applicationNumberEl.textContent = createApplicationNumber();
             submitButton.disabled = false;
             submitButton.classList.replace('bg-emerald-600', 'bg-[#d97706]');
-            submitButton.innerHTML = `<i data-lucide="send" class="h-4 w-4"></i> บันทึกส่งข้อมูล`;
+            submitButton.innerHTML = `<i data-lucide="send" class="h-5 w-5"></i> บันทึกส่งข้อมูล`;
             lucide.createIcons();
             clearMessage(submitMessage);
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -429,7 +486,7 @@
         .catch(() => {
           showMessage(submitMessage, 'เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง', 'error');
           submitButton.disabled = false;
-          submitButton.innerHTML = `<i data-lucide="send" class="h-4 w-4"></i> ลองใหม่อีกครั้ง`;
+          submitButton.innerHTML = `<i data-lucide="send" class="h-5 w-5"></i> ลองใหม่อีกครั้ง`;
           lucide.createIcons();
         });
     });
