@@ -9,9 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Pridi:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root { 
-      --primary: #064e3b; 
-      --primary-light: #059669; 
-      --gold: #d97706; 
+      /* ปรับโทนสีหลักเป็นสีม่วงตามโลโก้ */
+      --primary: #4c1d95; /* Purple 900 */
+      --primary-light: #6d28d9; /* Purple 700 */
+      --gold: #d97706; /* Amber 600 */
       --text-main: #1e293b; 
     }
     * { box-sizing: border-box; }
@@ -26,22 +27,22 @@
         width: 100%; border: 1.5px solid #cbd5e1; border-radius: 0.75rem; background: #ffffff;
         padding: 0.85rem 1rem; color: var(--text-main); font: inherit; transition: all 0.25s;
       }
-      .form-field:focus { outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15); }
+      .form-field:focus { outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.15); }
       .form-field:disabled { background-color: #f8fafc; color: #94a3b8; border-color: #e2e8f0; cursor: not-allowed; box-shadow: none; }
       .section-rule { border-top: 2px dashed #e2e8f0; }
       .section-number {
         display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 12px;
         background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #ffffff; font-weight: 700;
-        font-family: 'Pridi', serif; box-shadow: 0 4px 12px rgba(6, 78, 59, 0.25);
+        font-family: 'Pridi', serif; box-shadow: 0 4px 12px rgba(76, 29, 149, 0.25);
       }
       .btn-primary { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
-      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(6, 78, 59, 0.2); }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(76, 29, 149, 0.2); }
       .radio-card-input:checked + .radio-card { border-color: var(--gold); background-color: #fffbeb; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15); }
       .radio-card-input:checked + .radio-card .radio-title { color: var(--gold); }
       .radio-card-input:checked + .radio-card .check-icon { opacity: 1; transform: scale(1); }
     }
 
-    /* การตั้งค่าหน้าพิมพ์ (Print CSS) ให้เป๊ะตามไฟล์ต้นฉบับ */
+    /* การตั้งค่าหน้าพิมพ์ (Print CSS) */
     @media print {
       @page { size: A4; margin: 15mm 20mm; }
       body { background: white; color: #000; font-size: 15pt; line-height: 1.4; }
@@ -52,6 +53,7 @@
       .print-title-1 { font-size: 18pt; margin-bottom: 5px; }
       .print-title-2 { font-size: 16pt; margin-bottom: 5px; }
       .print-title-3 { font-size: 14pt; font-weight: normal; }
+      .print-logo { width: 90px; height: 90px; margin: 0 auto 10px auto; display: block; object-fit: contain; }
       
       .photo-box { position: absolute; top: 0; right: 0; width: 30mm; height: 40mm; border: 1px solid #000; display: flex; align-items: center; justify-content: center; font-size: 10pt; text-align: center; }
       
@@ -84,16 +86,16 @@
 <body class="paper-mark py-6 sm:py-12 min-h-screen">
   
   <main class="mx-auto w-full max-w-4xl px-4 sm:px-6 no-print">
-    <div class="overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-15px_rgba(6,78,59,0.15)] ring-1 ring-slate-200">
+    <div class="overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-15px_rgba(76,29,149,0.15)] ring-1 ring-slate-200">
       
-      <header class="relative overflow-hidden bg-gradient-to-br from-[#064e3b] via-[#065f46] to-[#047857] px-6 py-10 text-center sm:px-12">
+      <header class="relative overflow-hidden bg-gradient-to-br from-[#4c1d95] via-[#5b21b6] to-[#6d28d9] px-6 py-10 text-center sm:px-12">
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent bg-[length:24px_24px]"></div>
         <div class="relative z-10 mx-auto flex max-w-3xl flex-col items-center">
-          <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-[#fbbf24] bg-white/10 backdrop-blur-md text-[#fbbf24] shadow-[0_0_25px_rgba(251,191,36,0.25)] rotate-3">
-            <i data-lucide="book-open-check" class="h-8 w-8 -rotate-3"></i>
+          <div class="mb-5 flex h-24 w-24 items-center justify-center rounded-full border-4 border-[#fbbf24] bg-white shadow-[0_0_25px_rgba(251,191,36,0.4)] overflow-hidden">
+            <img src="7.png" alt="ตราสำนักศาสนศึกษาวัดประสานศรัทธา" class="w-full h-full object-cover">
           </div>
           <h1 class="thai-heading text-2xl sm:text-3xl text-white mt-1 drop-shadow-lg">ใบสมัครขอเข้าศึกษาพระปริยัติธรรม แผนกธรรมและบาลี</h1>
-          <p class="mt-2 text-emerald-100 font-light text-lg">สำนักศาสนศึกษาวัดประสานศรัทธา ประจำปีการศึกษา ๒๕๖๙</p>
+          <p class="mt-2 text-purple-200 font-light text-lg">สำนักศาสนศึกษาวัดประสานศรัทธา ประจำปีการศึกษา ๒๕๖๙</p>
         </div>
       </header>
 
@@ -103,7 +105,7 @@
         <section class="pt-2">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">1</span>
-            <h2 class="thai-heading text-2xl text-[#064e3b]">ข้อมูลประวัติส่วนตัว</h2>
+            <h2 class="thai-heading text-2xl text-[#4c1d95]">ข้อมูลประวัติส่วนตัว</h2>
           </div>
           <div class="grid gap-6 md:grid-cols-12">
             <div class="md:col-span-3">
@@ -169,7 +171,7 @@
         <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">2</span>
-            <h2 class="thai-heading text-2xl text-[#064e3b]">ข้อมูลที่อยู่และการติดต่อ</h2>
+            <h2 class="thai-heading text-2xl text-[#4c1d95]">ข้อมูลที่อยู่และการติดต่อ</h2>
           </div>
           <div class="grid gap-6 md:grid-cols-12">
             <div class="md:col-span-6">
@@ -215,7 +217,7 @@
         <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">3</span>
-            <h2 class="thai-heading text-2xl text-[#064e3b]">วุฒิการศึกษาเดิม</h2>
+            <h2 class="thai-heading text-2xl text-[#4c1d95]">วุฒิการศึกษาเดิม</h2>
           </div>
           <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 grid gap-6">
             <div>
@@ -268,28 +270,28 @@
         <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">4</span>
-            <h2 class="thai-heading text-2xl text-[#064e3b]">มีความประสงค์ในการสมัครเรียนต่อในชั้น <span class="text-red-500 text-lg">*</span></h2>
+            <h2 class="thai-heading text-2xl text-[#4c1d95]">มีความประสงค์ในการสมัครเรียนต่อในชั้น <span class="text-red-500 text-lg">*</span></h2>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="border border-slate-200 rounded-xl p-5">
-              <h3 class="font-bold text-emerald-800 mb-4 border-b pb-2">แผนกธรรม</h3>
+            <div class="border border-slate-200 rounded-xl p-5 hover:border-purple-300 hover:shadow-md transition-all">
+              <h3 class="font-bold text-purple-800 mb-4 border-b pb-2">แผนกธรรม</h3>
               <div class="flex flex-col gap-3">
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="นักธรรมตรี" required class="w-4 h-4 text-emerald-600"> นักธรรมตรี / ธรรมศึกษาตรี</label>
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="นักธรรมโท" required class="w-4 h-4 text-emerald-600"> นักธรรมโท / ธรรมศึกษาโท</label>
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="นักธรรมเอก" required class="w-4 h-4 text-emerald-600"> นักธรรมเอก / ธรรมศึกษาเอก</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="นักธรรมตรี" required class="w-4 h-4 text-purple-600"> นักธรรมตรี / ธรรมศึกษาตรี</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="นักธรรมโท" required class="w-4 h-4 text-purple-600"> นักธรรมโท / ธรรมศึกษาโท</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="นักธรรมเอก" required class="w-4 h-4 text-purple-600"> นักธรรมเอก / ธรรมศึกษาเอก</label>
               </div>
             </div>
-            <div class="border border-slate-200 rounded-xl p-5">
-              <h3 class="font-bold text-emerald-800 mb-4 border-b pb-2">แผนกบาลี</h3>
+            <div class="border border-slate-200 rounded-xl p-5 hover:border-purple-300 hover:shadow-md transition-all">
+              <h3 class="font-bold text-purple-800 mb-4 border-b pb-2">แผนกบาลี</h3>
               <div class="grid grid-cols-2 gap-3">
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ประโยค 1-2" required class="w-4 h-4 text-emerald-600"> ประโยค 1-2</label>
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.3" required class="w-4 h-4 text-emerald-600"> ป.ธ.3</label>
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.4" required class="w-4 h-4 text-emerald-600"> ป.ธ.4</label>
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.5" required class="w-4 h-4 text-emerald-600"> ป.ธ.5</label>
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.6" required class="w-4 h-4 text-emerald-600"> ป.ธ.6</label>
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.7" required class="w-4 h-4 text-emerald-600"> ป.ธ.7</label>
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.8" required class="w-4 h-4 text-emerald-600"> ป.ธ.8</label>
-                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.9" required class="w-4 h-4 text-emerald-600"> ป.ธ.9</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ประโยค 1-2" required class="w-4 h-4 text-purple-600"> ประโยค 1-2</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.3" required class="w-4 h-4 text-purple-600"> ป.ธ.3</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.4" required class="w-4 h-4 text-purple-600"> ป.ธ.4</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.5" required class="w-4 h-4 text-purple-600"> ป.ธ.5</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.6" required class="w-4 h-4 text-purple-600"> ป.ธ.6</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.7" required class="w-4 h-4 text-purple-600"> ป.ธ.7</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.8" required class="w-4 h-4 text-purple-600"> ป.ธ.8</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.9" required class="w-4 h-4 text-purple-600"> ป.ธ.9</label>
               </div>
             </div>
           </div>
@@ -301,7 +303,7 @@
           <p class="text-sm text-[#d97706] font-medium flex items-center gap-2 bg-amber-50 px-4 py-2 rounded-lg border border-amber-200/50">
             <i data-lucide="info" class="h-4 w-4"></i> โปรดตรวจสอบข้อมูลทั้งหมดให้ถูกต้องก่อนบันทึก
           </p>
-          <button class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#064e3b] text-white px-10 py-4 font-bold text-lg focus:outline-none focus:ring-4 focus:ring-emerald-500/30" type="submit" id="main-submit-btn"> 
+          <button class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#4c1d95] text-white px-10 py-4 font-bold text-lg focus:outline-none focus:ring-4 focus:ring-purple-500/30 hover:bg-[#3b0764]" type="submit" id="main-submit-btn"> 
             <i data-lucide="send" class="h-6 w-6"></i> 
             <span>บันทึกและสร้างใบสมัคร</span> 
           </button>
@@ -313,10 +315,10 @@
   <!-- หน้าต่างความสำเร็จ -->
   <div id="success-panel" class="no-print fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-md p-4 sm:p-8 transition-opacity">
     <div class="mx-auto my-4 sm:my-8 w-full max-w-2xl rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden flex flex-col p-10 text-center">
-      <div class="h-24 w-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+      <div class="h-24 w-24 bg-purple-100 text-[#4c1d95] rounded-full flex items-center justify-center mx-auto mb-6">
           <i data-lucide="check-circle-2" class="h-12 w-12"></i>
       </div>
-      <h2 class="thai-heading text-[#064e3b] text-3xl mb-3">บันทึกข้อมูลสำเร็จ!</h2>
+      <h2 class="thai-heading text-[#4c1d95] text-3xl mb-3">บันทึกข้อมูลสำเร็จ!</h2>
       <p class="text-slate-600 text-lg mb-8">ระบบจัดทำฟอร์มใบสมัครสำหรับปริ้นและลงนามเรียบร้อยแล้ว</p>
       
       <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -329,13 +331,14 @@
     </div>
   </div>
 
-  <!-- โครงสร้างเอกสาร PDF สำหรับพิมพ์ (อิงจากใบสมัครขอเข้าศึกษาพระปริยัติธรรม) -->
+  <!-- โครงสร้างเอกสาร PDF สำหรับพิมพ์ -->
   <div id="printable-document">
     <div class="photo-box">
       ติดภาพถ่าย<br>๑ นิ้ว หรือ ๑.๕ นิ้ว
     </div>
 
     <div class="print-title-wrapper">
+      <img src="7.png" alt="ตราสำนักศาสนศึกษาวัดประสานศรัทธา" class="print-logo">
       <div class="print-title-1">ใบสมัครขอเข้าศึกษาพระปริยัติธรรม แผนกธรรมและบาลี</div>
       <div class="print-title-2">สำนักศาสนศึกษาวัดประสานศรัทธา</div>
       <div class="print-title-3">ประจำปีการศึกษา ๒๕๖๙</div>
@@ -356,9 +359,7 @@
     </div>
     <div class="print-row" style="margin-top: 10px;">
       <span class="print-label">เลขประจำตัวประชาชน</span>
-      <div class="id-card-boxes" id="p-idboxes">
-        <!-- Rendered by JS -->
-      </div>
+      <div class="id-card-boxes" id="p-idboxes"></div>
     </div>
 
     <div class="print-sec-title">๒. ข้อมูลที่อยู่และการติดต่อ</div>
@@ -385,7 +386,6 @@
     <div class="print-row">
       <span class="print-label">วุฒินักธรรม</span><span class="print-val" id="p-dh-lvl" style="flex:0.8;"></span>
       <span class="print-label">สำนักศาสนศึกษา</span><span class="print-val" id="p-dh-sch" style="flex:2;"></span>
-      <span class="print-label">จาก</span><span class="print-val" id="p-dh-from" style="flex:1; border-bottom:none;"></span> <!-- "จาก" is part of the sentence but usually no fill -->
       <span class="print-label">เลขที่ใบประกาศ</span><span class="print-val" id="p-dh-cert" style="flex:1;"></span>
     </div>
     <div class="print-row">
