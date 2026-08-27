@@ -1,553 +1,485 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>TaeBank - Wealth Manager Console</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Sarabun:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <style>
-        /* --- MIDNIGHT SAPPHIRE VARIABLES --- */
-        :root {
-            --bg-body: #070B19; /* Deepest Navy Blue */
-            --bg-surface: #121C33; /* Lighter Navy for cards */
-            --text-main: #F0F6FC; /* Off-white for high contrast */
-            --text-muted: #8B9BB4; /* Soft blue-gray */
-            --gold-primary: #D4AF37;
-            --gold-grad: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #B38728 100%);
-            --border-light: #1E2B4D; /* Blue slate border */
-        }
-
-        body {
-            font-family: 'Sarabun', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .font-eng { font-family: 'Cinzel', serif; }
-        .font-num { font-family: 'Outfit', sans-serif; }
-        
-        .text-gold { color: var(--gold-primary); }
-        .bg-gold { background: var(--gold-grad); color: #000; }
-
-        /* Panels */
-        .glass-box {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-        }
-
-        /* Inputs (Dark mode input) */
-        .input-light {
-            background: #0B1121; border: 1px solid var(--border-light); color: var(--text-main); transition: 0.3s; width: 100%;
-        }
-        .input-light::placeholder { color: #4B5E82; }
-        .input-light:focus { border-color: var(--gold-primary); outline: none; background: #0B1121; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); }
-
-        /* User Card */
-        .user-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        .user-card:active { transform: scale(0.98); border-color: var(--gold-primary); background: #16223D; }
-
-        .btn-action {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold-primary);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 10px; padding: 10px 14px;
-            font-size: 13px; font-weight: 600;
-            display: flex; align-items: center; gap: 6px;
-            transition: 0.2s;
-        }
-        .btn-action:active { background: var(--gold-primary); color: #000; }
-
-        /* Tool Buttons */
-        .btn-tool {
-            background: #0B1121;
-            border: 1px solid var(--border-light);
-            border-radius: 10px;
-            padding: 8px 0;
-            display: flex; flex-direction: column; align-items: center; gap: 4px;
-            transition: 0.2s;
-            font-size: 10px; font-weight: 500;
-        }
-        .btn-tool-history { color: #8B9BB4; }
-        .btn-tool-history:active { background: #2A3B61; color: #FFF; }
-        .btn-tool-edit { color: #3B82F6; }
-        .btn-tool-edit:active { background: #3B82F6; color: white; }
-        .btn-tool-del { color: #EF4444; }
-        .btn-tool-del:active { background: #EF4444; color: white; }
-
-        /* SweetAlert Custom Dark Mode */
-        .swal2-popup { border-radius: 24px !important; box-shadow: 0 20px 50px rgba(0,0,0,0.6) !important; border: 1px solid var(--border-light) !important; }
-        .swal2-html-container { margin: 0.5em 1em 0.3em !important; color: var(--text-muted) !important; }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #2A3B61; border-radius: 3px; }
-
-        .chart-container { position: relative; height: 260px; width: 100%; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>บัญชีผู้ขอเข้าสอบความรู้ ธรรม-บาลี สนามหลวง</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Pridi:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary: #1e3a8a; --primary-light: #2563eb; --gold: #d97706; --text-main: #0f172a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Sarabun", sans-serif; color: var(--text-main); background: #f8fafc; }
+    .paper-mark { background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px); background-size: 24px 24px; }
+    .thai-heading { font-family: "Pridi", serif; }
+    .form-field {
+      width: 100%; border: 1.5px solid #cbd5e1; border-radius: 0.5rem; background: #f8fafc;
+      padding: 0.75rem 1rem; color: var(--text-main); font: inherit; transition: all 0.2s;
+    }
+    .form-field:focus { outline: none; border-color: var(--primary-light); background: #ffffff; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); }
+    .section-rule { border-top: 2px dashed #e2e8f0; }
+    .section-number {
+      display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #ffffff; font-weight: 700;
+      font-family: 'Pridi', serif; box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2);
+    }
+    .review-row:nth-child(odd) { background: #f8fafc; }
+    .review-row { display: grid; grid-template-columns: minmax(160px, .8fr) 1.5fr; gap: 1rem; padding: 0.85rem 1.25rem; }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25); }
+    @media (max-width: 640px) { .review-row { grid-template-columns: 1fr; gap: 0.25rem; padding: 0.75rem 1rem; } }
+  </style>
 </head>
-<body class="pb-10">
-
-    <div id="loginSection" class="fixed inset-0 bg-[var(--bg-body)] z-50 flex items-center justify-center p-6">
-        <div class="glass-box p-10 w-full max-w-sm text-center border-t-2 border-[var(--gold-primary)]">
-            <div class="w-20 h-20 mx-auto mb-5 bg-[var(--bg-input)] rounded-full flex items-center justify-center shadow-lg border border-[var(--border-light)]">
-                <i class="fas fa-crown text-4xl text-[#D4AF37] drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]"></i>
-            </div>
-            <h2 class="text-2xl font-eng text-[var(--text-main)] mb-1 tracking-[4px]">MANAGEMENT</h2>
-            <p class="text-xs text-[var(--text-muted)] mb-8 font-num tracking-widest uppercase">Admin Authorization</p>
-            
-            <input type="password" id="pass" placeholder="Enter PIN" class="input-light p-4 rounded-xl text-center text-xl font-num tracking-[10px] mb-6">
-            <button onclick="doLogin()" class="w-full bg-gold py-4 rounded-xl font-medium tracking-wider text-sm font-outfit shadow-md">AUTHORIZE ACCESS</button>
+<body class="paper-mark py-6 sm:py-12 min-h-screen">
+  <main class="mx-auto w-full max-w-5xl px-4 sm:px-6">
+    <div class="overflow-hidden rounded-2xl bg-white shadow-[0_20px_60px_-15px_rgba(30,58,138,0.15)] ring-1 ring-slate-200">
+      
+      <header class="relative overflow-hidden bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#2563eb] px-5 py-10 text-center sm:px-10">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent bg-[length:20px_20px]"></div>
+        <div class="relative z-10 mx-auto flex max-w-3xl flex-col items-center">
+          <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#fbbf24] bg-white/10 backdrop-blur-sm text-[#fbbf24] shadow-[0_0_20px_rgba(251,191,36,0.3)]">
+            <i data-lucide="file-text" class="h-8 w-8"></i>
+          </div>
+          <p class="mb-2 tracking-[.15em] text-[#fbbf24] font-medium text-sm">ระบบลงทะเบียนรวมทุกช่วงชั้น</p>
+          <h1 class="thai-heading text-3xl sm:text-4xl text-white mt-1 drop-shadow-md">บัญชีผู้ขอเข้าสอบความรู้</h1>
+          <p class="mt-3 text-blue-100 font-light text-lg">แฟ้มสำหรับส่งสำนักงานแม่กองธรรมและแม่กองบาลี</p>
+          <div class="mt-4 bg-rose-500/20 text-rose-100 px-4 py-2 rounded-lg border border-rose-500/30 text-sm font-medium inline-flex items-center gap-2">
+            <i data-lucide="alert-circle" class="h-4 w-4"></i>
+            บังคับกรอกข้อมูลทุกช่อง (หากไม่มีให้ใส่เครื่องหมาย - )
+          </div>
         </div>
+      </header>
+
+      <section class="border-b border-slate-200 bg-slate-50/80 px-5 py-4 sm:px-10">
+        <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+          <div>
+            <p class="text-sm font-semibold text-slate-500">ลำดับ/เลขอ้างอิง</p>
+            <p id="application-number" class="mt-1 font-bold tracking-[.1em] text-[#1e3a8a] text-lg"></p>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-slate-500 font-medium bg-white px-3 py-1.5 rounded-full ring-1 ring-slate-200 shadow-sm">
+            <label for="exam-level" class="font-semibold text-emerald-700">เลือกระดับชั้น:</label>
+            <select id="exam-level" class="bg-transparent outline-none text-[#1e3a8a] font-bold" required>
+              <option value="">-- กรุณาเลือก --</option>
+              <optgroup label="นักธรรม">
+                <option value="นักธรรมชั้นตรี">นักธรรมชั้นตรี (ไม่ต้องกรอกวุฒิเดิม)</option>
+                <option value="นักธรรมชั้นโท">นักธรรมชั้นโท</option>
+                <option value="นักธรรมชั้นเอก">นักธรรมชั้นเอก</option>
+              </optgroup>
+              <optgroup label="ธรรมศึกษา">
+                <option value="ธรรมศึกษาชั้นตรี">ธรรมศึกษาชั้นตรี (ไม่ต้องกรอกวุฒิเดิม)</option>
+                <option value="ธรรมศึกษาชั้นโท">ธรรมศึกษาชั้นโท</option>
+                <option value="ธรรมศึกษาชั้นเอก">ธรรมศึกษาชั้นเอก</option>
+              </optgroup>
+              <optgroup label="บาลี">
+                <option value="บาลีไวยากรณ์">บาลีไวยากรณ์ (ไม่ต้องกรอกวุฒิเดิม)</option>
+                <option value="ประโยค 1-2">ประโยค 1-2</option>
+                <option value="ประโยค ป.ธ.3">ประโยค ป.ธ.3 ขึ้นไป</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <form id="application-form" class="px-5 py-8 sm:px-12 sm:py-10" novalidate>
+        
+        <!-- ส่วนที่ 1: ข้อมูลสนามสอบ -->
+        <section class="pt-2">
+          <div class="mb-6 flex items-center gap-4">
+            <span class="section-number">1</span>
+            <h2 class="thai-heading text-xl text-[#1e3a8a]">ข้อมูลสนามสอบ</h2>
+          </div>
+          <div class="grid gap-6 md:grid-cols-2">
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">รหัสสนามสอบ <span class="text-red-500">*</span></label> 
+              <input id="exam-center-code" class="form-field" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">ชื่อสนามสอบ <span class="text-red-500">*</span></label> 
+              <input id="exam-center-name" class="form-field" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">ตำบล <span class="text-red-500">*</span></label> 
+              <input id="exam-center-subdistrict" class="form-field" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">อำเภอ <span class="text-red-500">*</span></label> 
+              <input id="exam-center-district" class="form-field" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
+              <input id="exam-center-province" class="form-field" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">ภาค <span class="text-red-500">*</span></label> 
+              <input id="exam-center-region" class="form-field" type="text" placeholder="เช่น 1, 2, 14" required>
+            </div>
+          </div>
+        </section>
+
+        <!-- ส่วนที่ 2: ข้อมูลผู้เข้าสอบ -->
+        <section class="section-rule mt-10 pt-8">
+          <div class="mb-6 flex items-center gap-4">
+            <span class="section-number">2</span>
+            <h2 class="thai-heading text-xl text-[#1e3a8a]">ข้อมูลผู้เข้าสอบ</h2>
+          </div>
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="md:col-span-2">
+              <label class="mb-2 block font-semibold text-slate-700">เลขประจำตัวประชาชน ๑๓ หลัก <span class="text-red-500">*</span></label> 
+              <input id="id-card" class="form-field" type="text" maxlength="13" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">คำนำหน้าชื่อ <span class="text-red-500">*</span></label> 
+              <select id="title" class="form-field" required>
+                <option value="">-- เลือกคำนำหน้า --</option>
+                <option value="พระ">พระ</option>
+                <option value="พระมหา">พระมหา</option>
+                <option value="สามเณร">สามเณร</option>
+                <option value="นาย">นาย</option>
+                <option value="นาง">นาง</option>
+                <option value="นางสาว">นางสาว</option>
+                <option value="เด็กชาย">เด็กชาย</option>
+                <option value="เด็กหญิง">เด็กหญิง</option>
+              </select>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">ชื่อ <span class="text-red-500">*</span></label> 
+              <input id="first-name" class="form-field" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">ฉายา <span class="text-red-500">*</span></label> 
+              <input id="monastic-name" class="form-field" type="text" placeholder="หากไม่มีให้ใส่ -" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">นามสกุล <span class="text-red-500">*</span></label> 
+              <input id="last-name" class="form-field" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">เกิด (วัน / เดือน / ปี) <span class="text-red-500">*</span></label> 
+              <input id="birth-date" class="form-field" type="date" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">อุปสมบท (วัน / เดือน / ปี) <span class="text-red-500">*</span></label> 
+              <input id="ordination-date" class="form-field" type="date" required>
+              <p class="text-xs text-slate-500 mt-1">ฆราวาสให้ใส่วันที่ปัจจุบันหรือข้ามไป (ระบบจะบันทึกตามจริง)</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ส่วนที่ 3: ที่อยู่ปัจจุบัน -->
+        <section class="section-rule mt-10 pt-8">
+          <div class="mb-6 flex items-center gap-4">
+            <span class="section-number">3</span>
+            <h2 class="thai-heading text-xl text-[#1e3a8a]">ที่อยู่ปัจจุบัน</h2>
+          </div>
+          <div class="grid gap-6 md:grid-cols-2">
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">ชื่อวัด/สถานที่อยู่ <span class="text-red-500">*</span></label> 
+              <input id="current-temple" class="form-field" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">ตำบล <span class="text-red-500">*</span></label> 
+              <input id="current-subdistrict" class="form-field" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">อำเภอ <span class="text-red-500">*</span></label> 
+              <input id="current-district" class="form-field" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
+              <input id="current-province" class="form-field" type="text" required>
+            </div>
+          </div>
+        </section>
+
+        <!-- ส่วนที่ 4: ประโยคเดิม (วุฒิการศึกษาเดิม) -->
+        <section id="prev-edu-section" class="section-rule mt-10 pt-8 transition-all duration-300">
+          <div class="mb-6 flex items-center gap-4">
+            <span class="section-number">4</span>
+            <h2 class="thai-heading text-xl text-[#1e3a8a]">ประโยคเดิม (วุฒิเดิมที่สอบได้)</h2>
+          </div>
+          <div class="grid gap-6 md:grid-cols-2">
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">สำนักศาสนศึกษา/สถานศึกษา <span class="text-red-500">*</span></label> 
+              <input id="prev-edu-center" class="form-field prev-edu-input" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">ตำบล <span class="text-red-500">*</span></label> 
+              <input id="prev-edu-subdistrict" class="form-field prev-edu-input" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">อำเภอ <span class="text-red-500">*</span></label> 
+              <input id="prev-edu-district" class="form-field prev-edu-input" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
+              <input id="prev-edu-province" class="form-field prev-edu-input" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">สำนักเรียน <span class="text-red-500">*</span></label> 
+              <input id="prev-edu-office" class="form-field prev-edu-input" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">พ.ศ. (ที่สอบได้) <span class="text-red-500">*</span></label> 
+              <input id="prev-edu-year" class="form-field prev-edu-input" type="number" min="2400" max="2600" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">เลขที่ ปกศ. <span class="text-red-500">*</span></label> 
+              <input id="prev-edu-cert-no" class="form-field prev-edu-input" type="text" required>
+            </div>
+            <div>
+              <label class="mb-2 block font-semibold text-slate-700">สำนักเรียนวัด/คณะจังหวัด <span class="text-red-500">*</span></label> 
+              <input id="prev-edu-provincial-office" class="form-field prev-edu-input" type="text" required>
+            </div>
+          </div>
+        </section>
+
+        <!-- ส่วนที่ 5: หมายเหตุ -->
+        <section class="section-rule mt-10 pt-8">
+          <div class="mb-6 flex items-center gap-4">
+            <span class="section-number">5</span>
+            <h2 class="thai-heading text-xl text-[#1e3a8a]">เพิ่มเติม</h2>
+          </div>
+          <div>
+            <label class="mb-2 block font-semibold text-slate-700">หมายเหตุ <span class="text-red-500">*</span></label> 
+            <textarea id="remarks" class="form-field h-24" placeholder="กรอกหมายเหตุ (หากไม่มีให้ใส่ - )" required></textarea>
+          </div>
+        </section>
+
+        <div id="form-message" class="mt-8 hidden rounded-xl border px-4 py-3 text-sm" role="status"></div>
+        
+        <div class="mt-10 flex flex-col items-stretch justify-between gap-5 border-t border-slate-200 pt-8 sm:flex-row sm:items-center">
+          <p class="text-sm text-[#d97706] font-medium flex items-center gap-2">
+            <i data-lucide="info" class="h-4 w-4"></i> ระบบบังคับกรอกทุกช่อง หากไม่มีข้อมูลให้ใส่ -
+          </p>
+          <button id="review-btn" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#1e3a8a] text-white px-8 py-3.5 font-semibold transition focus:outline-none" type="submit"> 
+            <i data-lucide="clipboard-check" class="h-5 w-5"></i> 
+            <span>ตรวจสอบข้อมูลบัญชี</span> 
+          </button>
+        </div>
+      </form>
     </div>
+  </main>
 
-    <div id="mainApp" class="hidden w-full max-w-3xl mx-auto p-4 md:p-6 flex flex-col gap-6">
+  <!-- Review Panel -->
+  <div id="review-panel" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-sm p-4 sm:p-8 transition-opacity">
+    <div class="mx-auto my-4 sm:my-8 w-full max-w-4xl rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden">
+      <div class="flex items-start justify-between border-b border-slate-100 bg-slate-50/50 px-6 py-6 sm:px-10">
+        <div>
+          <p class="text-sm font-bold text-[#d97706] tracking-wide mb-1">ตรวจสอบก่อนส่ง</p>
+          <h2 class="thai-heading text-[#1e3a8a] text-2xl">ยืนยันข้อมูลผู้ขอเข้าสอบ</h2>
+        </div>
+        <button id="close-review" class="rounded-full p-2 text-slate-400 hover:bg-slate-200 hover:text-slate-600"> 
+          <i data-lucide="x" class="h-5 w-5"></i> 
+        </button>
+      </div>
+      
+      <div class="px-6 py-6 sm:px-10">
+        <div id="review-list" class="overflow-hidden rounded-xl border border-slate-200 bg-white grid grid-cols-1 md:grid-cols-2"></div>
+        <div id="submit-message" class="mt-5 hidden rounded-xl border px-4 py-3 text-sm font-medium"></div>
         
-        <header class="flex justify-between items-center glass-box p-5">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-full bg-[rgba(212,175,55,0.1)] flex items-center justify-center text-[#D4AF37] border border-[rgba(212,175,55,0.2)]">
-                    <i class="fas fa-shield-alt text-xl"></i>
-                </div>
-                <div>
-                    <h1 class="text-lg font-bold text-[var(--text-main)] font-eng tracking-widest">TAEBANK <span class="text-[#D4AF37] text-[9px] border border-[#D4AF37] px-1.5 py-0.5 rounded-full ml-1 font-sans">ADMIN</span></h1>
-                    <p class="text-[10px] text-[var(--text-muted)] mt-0.5">พระมหาจักรภัทร คมฺภีรญาณเมธี</p>
-                </div>
-            </div>
-            <button onclick="location.reload()" class="w-10 h-10 rounded-full bg-[var(--bg-input)] text-[var(--text-muted)] flex items-center justify-center border border-[var(--border-light)] hover:bg-red-500 hover:text-white hover:border-red-500 transition-all">
-                <i class="fas fa-sign-out-alt"></i>
-            </button>
-        </header>
-
-        <div class="grid grid-cols-2 gap-4">
-            <div class="glass-box p-6 relative overflow-hidden group">
-                <div class="absolute -right-4 -bottom-4 opacity-5 text-7xl text-[#D4AF37]"><i class="fas fa-gem"></i></div>
-                <p class="text-[10px] text-[#D4AF37] font-eng tracking-widest mb-2 font-semibold">Total Assets</p>
-                <h3 id="totalSystemBalance" class="text-3xl font-semibold text-[var(--text-main)] font-num tracking-tight drop-shadow-md">0.00</h3>
-                <p class="text-[10px] text-[var(--text-muted)] mt-1 font-medium">ยอดเงินรวมทั้งธนาคาร</p>
-            </div>
-            <div class="glass-box p-6 relative overflow-hidden">
-                <div class="absolute -right-4 -bottom-4 opacity-5 text-7xl text-[#D4AF37]"><i class="fas fa-users"></i></div>
-                <p class="text-[10px] text-[#D4AF37] font-eng tracking-widest mb-2 font-semibold">Active Members</p>
-                <h3 id="totalMembers" class="text-3xl font-semibold text-[var(--text-main)] font-num tracking-tight drop-shadow-md">0</h3>
-                <p class="text-[10px] text-[var(--text-muted)] mt-1 font-medium">บัญชีในระบบทั้งหมด</p>
-            </div>
+        <div class="mt-8 flex flex-col-reverse gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:justify-end">
+          <button id="edit-button" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-700 px-6 py-3 font-semibold hover:bg-slate-50" type="button">กลับไปแก้ไข</button> 
+          <button id="submit-button" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#d97706] text-white px-8 py-3 font-semibold shadow-md hover:bg-[#b45309]" type="button"> 
+            <i data-lucide="send" class="h-4 w-4"></i> 
+            <span>บันทึกส่งข้อมูล</span> 
+          </button>
         </div>
-
-        <div class="glass-box p-5 md:p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-sm font-bold text-[var(--text-main)] font-eng tracking-widest"><i class="fas fa-chart-pie text-[#D4AF37] mr-2"></i> Wealth Distribution</h3>
-                <span class="text-[10px] text-[#D4AF37] bg-[rgba(212,175,55,0.1)] px-3 py-1 rounded-full font-medium">สัดส่วนเงินฝาก (%)</span>
-            </div>
-            <div class="chart-container">
-                <canvas id="financeChart"></canvas>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
-            <button onclick="window.openAddModal()" class="glass-box p-4 flex flex-col items-center justify-center gap-2 hover:border-[#D4AF37] transition-all">
-                <div class="w-10 h-10 rounded-full bg-blue-900/30 text-blue-400 flex items-center justify-center mb-1 border border-blue-800/50"><i class="fas fa-user-plus text-lg"></i></div>
-                <span class="text-xs font-semibold text-[var(--text-main)]">เพิ่มสมาชิกใหม่</span>
-            </button>
-            <label class="glass-box p-4 flex flex-col items-center justify-center gap-2 hover:border-[#D4AF37] transition-all cursor-pointer">
-                <div class="w-10 h-10 rounded-full bg-green-900/30 text-green-400 flex items-center justify-center mb-1 border border-green-800/50"><i class="fas fa-file-excel text-lg"></i></div>
-                <span class="text-xs font-semibold text-[var(--text-main)]">นำเข้าไฟล์ CSV</span>
-                <input type="file" id="csvInput" accept=".csv" class="hidden" onchange="importCSV(this)">
-            </label>
-        </div>
-
-        <div class="glass-box p-5 md:p-6 min-h-[400px]">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                <h3 class="text-sm font-bold text-[var(--text-main)] font-eng tracking-widest"><i class="fas fa-address-book text-[#D4AF37] mr-2"></i> Client Accounts</h3>
-                <div class="relative w-full sm:w-64">
-                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-[#4B5E82]"></i>
-                    <input type="text" id="search" oninput="doSearch()" placeholder="ค้นหาชื่อ หรือ เลขบัญชี..." class="input-light pl-11 pr-4 py-2.5 rounded-xl text-sm">
-                </div>
-            </div>
-
-            <div id="tableBody" class="space-y-0">
-                </div>
-            
-            <div id="emptyState" class="hidden py-12 text-center text-[var(--text-muted)]">
-                <div class="w-16 h-16 bg-[var(--bg-input)] rounded-full flex items-center justify-center mx-auto mb-3 border border-[var(--border-light)]">
-                    <i class="fas fa-inbox text-2xl text-[#4B5E82]"></i>
-                </div>
-                <p class="text-sm font-medium">ไม่พบข้อมูลสมาชิกในระบบ</p>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-        import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+  <script>
+    // =============== ใส่ URL ที่ได้จาก Google Apps Script ที่นี่ ===============
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_XXXXXXXXXXX/exec';
+    // ====================================================================
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAiCtKW-U5QWp3yUsvToJlh2pT7sjiQ4Iw",
-            authDomain: "taebankwat.firebaseapp.com",
-            databaseURL: "https://taebankwat-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "taebankwat",
-            storageBucket: "taebankwat.firebasestorage.app",
-            messagingSenderId: "134684838871",
-            appId: "1:134684838871:web:4b47416599ed4ce95c5992"
-        };
+    const form = document.getElementById('application-form');
+    const examLevelSelect = document.getElementById('exam-level');
+    const prevEduSection = document.getElementById('prev-edu-section');
+    const prevEduInputs = document.querySelectorAll('.prev-edu-input');
+    const reviewPanel = document.getElementById('review-panel');
+    const reviewList = document.getElementById('review-list');
+    const submitMessage = document.getElementById('submit-message');
+    const applicationNumberEl = document.getElementById('application-number');
+    const submitButton = document.getElementById('submit-button');
 
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
+    lucide.createIcons();
+
+    // สร้างหมายเลขใบสมัคร
+    function createApplicationNumber() {
+      return 'EXAM-' + Date.now().toString().slice(-6);
+    }
+    applicationNumberEl.textContent = createApplicationNumber();
+
+    // Logic จัดการซ่อน/แสดง ฟิลด์วุฒิการศึกษาเดิม
+    examLevelSelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      // หากเป็นชั้นเริ่มต้น (ชั้นตรี หรือ ไวยากรณ์) ไม่ต้องกรอกประโยคเดิม
+      if (val === 'นักธรรมชั้นตรี' || val === 'ธรรมศึกษาชั้นตรี' || val === 'บาลีไวยากรณ์') {
+        prevEduSection.classList.add('hidden');
+        prevEduInputs.forEach(input => {
+          input.required = false;
+          input.value = '-'; // อุดช่องโหว่ให้ใส่ - อัตโนมัติเผื่อส่งฐานข้อมูล
+        });
+      } else {
+        prevEduSection.classList.remove('hidden');
+        prevEduInputs.forEach(input => {
+          input.required = true;
+          if(input.value === '-') input.value = ''; // เคลียร์ค่าที่เคยใส่ - อัตโนมัติออก
+        });
+      }
+    });
+
+    function showMessage(element, message, type) {
+      element.className = 'mt-5 rounded-xl border px-4 py-3.5 text-sm block font-medium flex items-center gap-2';
+      const iconHTML = type === 'success' 
+        ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> `
+        : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> `;
+      element.innerHTML = iconHTML + message;
+      if (type === 'success') { element.classList.add('border-emerald-200', 'bg-emerald-50', 'text-emerald-700'); } 
+      else { element.classList.add('border-rose-200', 'bg-rose-50', 'text-rose-700'); }
+    }
+
+    function clearMessage(element) {
+      element.className = 'mt-5 hidden rounded-xl border px-4 py-3 text-sm';
+      element.textContent = '';
+    }
+
+    function fieldValue(id) { return document.getElementById(id) ? document.getElementById(id).value.trim() : ''; }
+
+    function buildReview() {
+      const isBeginner = prevEduSection.classList.contains('hidden');
+      
+      const labels = [
+        ['ระดับชั้นที่สอบ', 'exam-level-text'],
+        ['รหัสสนามสอบ', 'exam-center-code'], ['ชื่อสนามสอบ', 'exam-center-name'],
+        ['ตำบล (สนามสอบ)', 'exam-center-subdistrict'], ['อำเภอ (สนามสอบ)', 'exam-center-district'],
+        ['จังหวัด (สนามสอบ)', 'exam-center-province'], ['ภาค', 'exam-center-region'],
+        ['เลข ปชช. ๑๓ หลัก', 'id-card'], ['คำนำหน้า', 'title'],
+        ['ชื่อ', 'first-name'], ['ฉายา', 'monastic-name'], ['นามสกุล', 'last-name'],
+        ['เกิด', 'birth-date'], ['อุปสมบท', 'ordination-date'],
+        ['ชื่อวัด/สถานที่อยู่', 'current-temple'], ['ตำบล', 'current-subdistrict'],
+        ['อำเภอ', 'current-district'], ['จังหวัด', 'current-province']
+      ];
+
+      // เพิ่มฟิลด์วุฒิเดิมหากไม่ใช่ชั้นเริ่มต้น
+      if (!isBeginner) {
+        labels.push(
+          ['สำนักศาสนศึกษา (เดิม)', 'prev-edu-center'], ['ตำบล (เดิม)', 'prev-edu-subdistrict'],
+          ['อำเภอ (เดิม)', 'prev-edu-district'], ['จังหวัด (เดิม)', 'prev-edu-province'],
+          ['สำนักเรียน', 'prev-edu-office'], ['พ.ศ. ที่สอบได้', 'prev-edu-year'],
+          ['เลขที่ ปกศ.', 'prev-edu-cert-no'], ['สำนักเรียนวัด/คณะ', 'prev-edu-provincial-office']
+        );
+      }
+      
+      labels.push(['หมายเหตุ', 'remarks']);
+      
+      reviewList.replaceChildren();
+      labels.forEach(([label, id]) => {
+        const row = document.createElement('div');
+        row.className = 'review-row border-b border-slate-100 last:border-0 md:border-r';
+        const labelEl = document.createElement('span'); labelEl.className = 'font-semibold text-slate-500 text-sm'; labelEl.textContent = label;
+        const valueEl = document.createElement('span'); valueEl.className = 'font-medium text-slate-800 text-sm break-words';
         
-        let membersData = [];
-        let txData = [];
-        let myChart = null; 
-        
-        const ADMIN_PASS = "2598";
-
-        window.doLogin = () => {
-            const input = document.getElementById('pass').value;
-            if(input === ADMIN_PASS) {
-                document.getElementById('loginSection').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loginSection').classList.add('hidden');
-                    document.getElementById('mainApp').classList.remove('hidden');
-                    initData();
-                }, 400);
-            } else {
-                Swal.fire({ icon: 'error', title: 'ACCESS DENIED', background: '#121C33', color: '#F0F6FC', confirmButtonColor: '#D4AF37' });
-            }
-        };
-
-        function initData() {
-            onValue(ref(db, 'members'), (snap) => {
-                membersData = snap.val() ? Object.values(snap.val()) : [];
-                onValue(ref(db, 'transactions'), (tSnap) => {
-                    // เก็บคีย์ของรายการด้วย เพื่อใช้เวลาสั่งลบ
-                    const txObj = tSnap.val() || {};
-                    txData = Object.keys(txObj).map(key => ({
-                        id: key,
-                        ...txObj[key]
-                    }));
-                    render();
-                    updateChart(); 
-                });
-            });
+        let val = '';
+        if (id === 'exam-level-text') {
+          val = examLevelSelect.value;
+        } else {
+          val = fieldValue(id);
         }
 
-        // --- DRAW DOUGHNUT CHART ---
-        function updateChart() {
-            const ctx = document.getElementById('financeChart').getContext('2d');
-            
-            let memberBalances = [];
-            membersData.forEach(m => {
-                let bal = 0;
-                txData.filter(t => t.studentCode === m.code).forEach(t => {
-                    bal += (t.type === 'deposit' ? parseFloat(t.amount) : -parseFloat(t.amount));
-                });
-                if(bal > 0) memberBalances.push({ name: m.nick || m.name, balance: bal });
-            });
-
-            memberBalances.sort((a,b) => b.balance - a.balance);
-            const labels = memberBalances.map(m => m.name);
-            const data = memberBalances.map(m => m.balance);
-
-            // โทนสีเข้มพรีเมียม (ทอง, ฟ้า, น้ำเงิน, ม่วง)
-            const bgColors = [ '#D4AF37', '#3B82F6', '#60A5FA', '#10B981', '#8B5CF6', '#F59E0B', '#06B6D4', '#EC4899', '#6366F1', '#14B8A6' ];
-
-            if(myChart) myChart.destroy();
-            if(data.length === 0) {
-                labels.push('ยังไม่มียอดเงิน');
-                data.push(1);
-                bgColors.unshift('#1E2B4D');
-            }
-
-            myChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: labels,
-                    datasets: [{ data: data, backgroundColor: bgColors, borderWidth: 3, borderColor: '#121C33', hoverOffset: 6 }]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false, cutout: '70%', 
-                    plugins: {
-                        legend: { position: 'right', labels: { color: '#8B9BB4', font: {family: 'Sarabun', size: 12, weight: 500}, boxWidth: 12, padding: 15, usePointStyle: true } },
-                        tooltip: {
-                            backgroundColor: '#070B19', titleColor: '#FFF', bodyColor: '#8B9BB4',
-                            titleFont: { family: 'Sarabun', size: 14, weight: 'bold' }, bodyFont: { family: 'Outfit', size: 14 },
-                            padding: 12, borderColor: '#1E2B4D', borderWidth: 1, boxShadow: '0 4px 6px rgba(0,0,0,0.4)',
-                            callbacks: {
-                                label: function(context) {
-                                    if(data.length === 1 && labels[0] === 'ยังไม่มียอดเงิน') return ' 0 บาท';
-                                    const value = context.raw;
-                                    const total = context.chart._metasets[context.datasetIndex].total;
-                                    const percentage = ((value / total) * 100).toFixed(1) + '%';
-                                    return ` ฿${value.toLocaleString()} (${percentage})`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
+        if ((id === 'birth-date' || id === 'ordination-date') && val && val !== '-') {
+            const dateObj = new Date(val);
+            val = dateObj.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' });
         }
+        valueEl.textContent = val || '-';
+        row.appendChild(labelEl); row.appendChild(valueEl); reviewList.appendChild(row);
+      });
+    }
 
-        // --- RENDER MEMBER LIST ---
-        function render(data = membersData) {
-            const tbody = document.getElementById('tableBody');
-            tbody.innerHTML = '';
-            
-            let totalSys = 0;
-            document.getElementById('totalMembers').innerText = membersData.length;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // เช็คว่าเลือกระดับชั้นหรือยัง
+      if(!examLevelSelect.value) {
+        alert('กรุณาเลือกระดับชั้นที่สมัครสอบ (มุมขวาบน)');
+        examLevelSelect.focus();
+        return;
+      }
 
-            if(data.length === 0) document.getElementById('emptyState').classList.remove('hidden');
-            else document.getElementById('emptyState').classList.add('hidden');
+      if (form.checkValidity()) { 
+        buildReview(); 
+        reviewPanel.classList.remove('hidden'); 
+      } else { 
+        form.reportValidity(); 
+      }
+    });
 
-            data.sort((a,b) => a.code - b.code).forEach(m => {
-                let bal = 0;
-                txData.filter(t => t.studentCode === m.code).forEach(t => {
-                    bal += (t.type === 'deposit' ? parseFloat(t.amount) : -parseFloat(t.amount));
-                });
-                totalSys += bal;
-                const safeCode = String(m.code).replace(/[^a-zA-Z0-9]/g, '');
+    document.getElementById('close-review').addEventListener('click', () => reviewPanel.classList.add('hidden'));
+    document.getElementById('edit-button').addEventListener('click', () => reviewPanel.classList.add('hidden'));
 
-                tbody.innerHTML += `
-                    <div class="user-card">
-                        <div class="flex-1 pr-2">
-                            <div class="flex items-baseline gap-2 mb-1">
-                                <span class="font-num text-[11px] text-[#D4AF37] font-bold tracking-[2px] bg-[rgba(212,175,55,0.1)] border border-[rgba(212,175,55,0.2)] px-2 py-0.5 rounded-md">${safeCode}</span>
-                            </div>
-                            <h4 class="font-bold text-[16px] text-[var(--text-main)] leading-tight mt-1">${m.nick}</h4>
-                            <p class="text-[11px] text-[var(--text-muted)] truncate w-32">${m.name}</p>
-                            <div class="mt-2 text-[22px] font-num font-semibold ${bal >= 0 ? 'text-[#10B981]' : 'text-[#EF4444]'}">
-                                ฿${bal.toLocaleString()}
-                            </div>
-                        </div>
-                        
-                        <div class="flex flex-col gap-2.5 w-36">
-                            <button onclick="window.openTxModal('${safeCode}', '${m.nick}')" class="btn-action justify-center shadow-sm">
-                                <i class="fas fa-bolt text-[#D4AF37]"></i> ทำรายการ
-                            </button>
-                            <div class="grid grid-cols-3 gap-1.5">
-                                <button onclick="window.openHistoryModal('${safeCode}', '${m.nick}')" class="btn-tool btn-tool-history" title="ดูประวัติ/ลบรายการ">
-                                    <i class="fas fa-history text-sm"></i>
-                                </button>
-                                <button onclick="window.openEditModal('${safeCode}', '${m.nick}', '${m.name}')" class="btn-tool btn-tool-edit" title="แก้ไขชื่อ">
-                                    <i class="fas fa-pen text-[13px]"></i>
-                                </button>
-                                <button onclick="window.del('${safeCode}')" class="btn-tool btn-tool-del" title="ลบบัญชี">
-                                    <i class="fas fa-trash text-[13px]"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            document.getElementById('totalSystemBalance').innerText = totalSys.toLocaleString(undefined, {minimumFractionDigits:2});
-        }
+    submitButton.addEventListener('click', () => {
+      if(SCRIPT_URL.includes('XXXXXXXXXXX')) {
+          showMessage(submitMessage, 'กรุณาใส่ Web App URL ของ Google Sheets ในโค้ดก่อนครับ', 'error');
+          return;
+      }
 
-        // --- ACTIONS ---
-        window.openTxModal = async (code, nick) => {
-            const result = await Swal.fire({
-                title: `<span style="font-family:'Sarabun'; color:#D4AF37; font-size:1.3rem; font-weight:bold;">ทำรายการ: ${nick}</span>`,
-                text: 'เลือกประเภทรายการที่ต้องการ',
-                background: '#121C33', color: '#F0F6FC',
-                showDenyButton: true, showCancelButton: true,
-                confirmButtonText: '<i class="fas fa-arrow-down"></i> ฝากเงินเข้า',
-                confirmButtonColor: '#10B981',
-                denyButtonText: '<i class="fas fa-arrow-up"></i> ถอนเงินออก',
-                denyButtonColor: '#EF4444',
-                cancelButtonText: 'ยกเลิก', cancelButtonColor: '#1E2B4D',
-                customClass: { actions: 'flex flex-col gap-3 w-full px-6', confirmButton: 'w-full shadow-sm', denyButton: 'w-full m-0 shadow-sm', cancelButton: 'w-full m-0 text-[#8B9BB4] font-semibold border border-[#1E2B4D]' }
-            });
+      submitButton.disabled = true;
+      submitButton.innerHTML = `<i data-lucide="loader-2" class="h-4 w-4 animate-spin"></i> กำลังบันทึก...`;
+      lucide.createIcons();
+      showMessage(submitMessage, 'กำลังส่งข้อมูลไปที่ฐานข้อมูล...', 'success');
 
-            if (result.isConfirmed || result.isDenied) {
-                const isDeposit = result.isConfirmed;
-                const { value: amount } = await Swal.fire({
-                    title: `<span style="font-family:'Sarabun'; font-size:1.2rem; font-weight:bold; color:#FFF">ระบุจำนวนเงิน${isDeposit?'ฝาก':'ถอน'}</span>`,
-                    input: 'number',
-                    inputAttributes: { min: 1, placeholder: '0.00' },
-                    background: '#121C33', color: '#F0F6FC',
-                    confirmButtonText: 'ยืนยันรายการ', confirmButtonColor: '#D4AF37',
-                    customClass: { input: 'text-center font-num text-3xl text-[#D4AF37] bg-[#0B1121] border-[#1E2B4D] font-semibold' },
-                    inputValidator: (value) => { if (!value || value <= 0) return 'กรุณาใส่จำนวนเงินที่ถูกต้อง!' }
-                });
+      const formData = new FormData();
+      formData.append('application_number', applicationNumberEl.textContent);
+      formData.append('exam_level', examLevelSelect.value);
+      
+      const fieldMapping = {
+        'exam_center_code': 'exam-center-code', 'exam_center_name': 'exam-center-name',
+        'exam_center_subdistrict': 'exam-center-subdistrict', 'exam_center_district': 'exam-center-district',
+        'exam_center_province': 'exam-center-province', 'exam_center_region': 'exam-center-region',
+        'id_card': 'id-card', 'title': 'title', 'first_name': 'first-name', 
+        'monastic_name': 'monastic-name', 'last_name': 'last-name',
+        'birth_date': 'birth-date', 'ordination_date': 'ordination-date',
+        'current_temple': 'current-temple', 'current_subdistrict': 'current-subdistrict',
+        'current_district': 'current-district', 'current_province': 'current-province',
+        'prev_edu_center': 'prev-edu-center', 'prev_edu_subdistrict': 'prev-edu-subdistrict',
+        'prev_edu_district': 'prev-edu-district', 'prev_edu_province': 'prev-edu-province',
+        'prev_edu_office': 'prev-edu-office', 'prev_edu_year': 'prev-edu-year',
+        'prev_edu_cert_no': 'prev-edu-cert-no', 'prev_edu_provincial_office': 'prev-edu-provincial-office',
+        'remarks': 'remarks'
+      };
 
-                if (amount) {
-                    await push(ref(db, 'transactions'), {
-                        studentCode: code, type: isDeposit ? 'deposit' : 'withdraw',
-                        amount: amount, date: new Date().toISOString()
-                    });
-                    Swal.fire({ icon: 'success', title: 'บันทึกสำเร็จ', text: `${isDeposit?'+':'-'} ${parseFloat(amount).toLocaleString()} ฿`, timer: 1500, showConfirmButton: false, background:'#121C33', color:'#F0F6FC' });
-                }
-            }
-        };
+      for (const [key, id] of Object.entries(fieldMapping)) {
+        formData.append(key, fieldValue(id));
+      }
 
-        // 📝 หน้าต่างดูประวัติและลบรายการ
-        window.openHistoryModal = (code, nick) => {
-            let userTxs = txData.filter(t => t.studentCode === code);
-            userTxs.sort((a,b) => new Date(b.date) - new Date(a.date));
+      fetch(SCRIPT_URL, { method: 'POST', body: formData })
+        .then(() => {
+          showMessage(submitMessage, 'บันทึกข้อมูลเรียบร้อยแล้ว!', 'success');
+          submitButton.innerHTML = `<i data-lucide="check-circle" class="h-4 w-4"></i> บันทึกสำเร็จ`;
+          lucide.createIcons();
+          submitButton.classList.replace('bg-[#d97706]', 'bg-emerald-600');
 
-            let html = `<div class="max-h-72 overflow-y-auto pr-1 space-y-2 mt-2">`;
-            
-            if(userTxs.length === 0) {
-                html += `<div class="text-center py-6 text-[#4B5E82] text-sm bg-[#0B1121] rounded-xl border border-[#1E2B4D]">ไม่มีประวัติการทำรายการ</div>`;
-            } else {
-                userTxs.forEach(t => {
-                    const isDep = t.type === 'deposit';
-                    const dateObj = new Date(t.date);
-                    const dateStr = `${dateObj.toLocaleDateString('th-TH', {day:'2-digit', month:'short'})} ${dateObj.toLocaleTimeString('th-TH', {hour:'2-digit', minute:'2-digit'})}`;
-                    
-                    html += `
-                        <div class="flex justify-between items-center bg-[#0B1121] border border-[#1E2B4D] p-3 rounded-xl hover:bg-[#16223D] transition">
-                            <div class="text-left">
-                                <p class="text-[13px] font-semibold ${isDep?'text-[#10B981]':'text-[#EF4444]'}">${isDep ? 'รับเงินเข้า' : 'ถอนเงินออก'}</p>
-                                <p class="text-[10px] text-[#8B9BB4] font-num">${dateStr}</p>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <span class="text-base font-bold font-num ${isDep ? 'text-[#10B981]' : 'text-[#EF4444]'}">${isDep ? '+' : '-'}${parseFloat(t.amount).toLocaleString()}</span>
-                                <button onclick="deleteTx('${t.id}', '${code}', '${nick}')" class="w-7 h-7 rounded-full bg-red-900/30 text-red-400 hover:bg-red-500 hover:text-white flex items-center justify-center transition border border-red-800/50 shadow-sm" title="ลบรายการนี้">
-                                    <i class="fas fa-times text-[10px]"></i>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                });
-            }
-            html += `</div>`;
-
-            Swal.fire({
-                title: `<span style="font-family:'Sarabun'; font-weight:bold; font-size:1.2rem; color:#FFF;"><i class="fas fa-list-alt text-[#D4AF37] mr-1"></i> ประวัติ: ${nick}</span>`,
-                html: html,
-                background: '#121C33',
-                showConfirmButton: false,
-                showCloseButton: true,
-                customClass: { closeButton: 'text-white' }
-            });
-        };
-
-        // 🗑️ ฟังก์ชันลบรายการย้อนหลัง
-        window.deleteTx = (txId, code, nick) => {
-            Swal.fire({
-                title: '<span style="font-family:\'Sarabun\'; color:#FFF;">ลบรายการนี้?</span>',
-                text: "ยอดเงินจะถูกคำนวณหักลบใหม่ทันที",
-                icon: 'warning', background: '#121C33', color: '#F0F6FC',
-                showCancelButton: true, confirmButtonColor: '#EF4444', cancelButtonColor: '#1E2B4D',
-                confirmButtonText: 'ลบรายการ', cancelButtonText: 'ยกเลิก',
-                customClass: { cancelButton: 'text-[#8B9BB4] font-semibold' }
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    await remove(ref(db, 'transactions/' + txId));
-                    setTimeout(() => { window.openHistoryModal(code, nick); }, 300);
-                } else {
-                    window.openHistoryModal(code, nick);
-                }
-            });
-        };
-
-        window.openAddModal = async () => {
-            const { value: formValues } = await Swal.fire({
-                title: '<span style="font-family:\'Sarabun\'; font-weight:bold; color:#FFF;">เพิ่มบัญชีใหม่</span>', background: '#121C33', color: '#F0F6FC',
-                html: `
-                    <input id="swal-code" class="swal2-input input-light font-num tracking-widest text-center font-semibold" placeholder="เลขบัญชี 6 หลัก">
-                    <input id="swal-nick" class="swal2-input input-light text-center" placeholder="ชื่อเล่น (ฉายา)">
-                    <input id="swal-name" class="swal2-input input-light text-center text-sm" placeholder="ชื่อจริง-นามสกุล">
-                `,
-                confirmButtonText: 'สร้างบัญชี', confirmButtonColor: '#D4AF37',
-                preConfirm: () => [ document.getElementById('swal-code').value.trim(), document.getElementById('swal-nick').value.trim(), document.getElementById('swal-name').value.trim() ]
-            });
-
-            if (formValues && formValues[0]) {
-                const [code, nick, name] = formValues;
-                const cleanCode = code.replace(/[^a-zA-Z0-9]/g, '');
-                if(cleanCode) {
-                    await set(ref(db, 'members/' + cleanCode), { code: cleanCode, nick, name });
-                    Swal.fire({ icon: 'success', title: 'เพิ่มบัญชีแล้ว', timer: 1000, showConfirmButton: false, background:'#121C33' });
-                }
-            }
-        };
-
-        window.openEditModal = async (code, oldNick, oldName) => {
-            const { value: formValues } = await Swal.fire({
-                title: '<span style="font-family:\'Sarabun\'; font-weight:bold; color:#FFF;">แก้ไขข้อมูล</span>', background: '#121C33', color: '#F0F6FC',
-                html: `
-                    <div class="text-left text-xs text-[#8B9BB4] mb-1 ml-1">รหัสบัญชี (แก้ไขไม่ได้)</div>
-                    <input class="swal2-input input-light bg-[#070B19] text-[#4B5E82] cursor-not-allowed font-num text-center mb-4 mt-0" value="${code}" disabled>
-                    <div class="text-left text-xs text-[#8B9BB4] mb-1 ml-1">ชื่อเล่น (ฉายา)</div>
-                    <input id="edit-nick" class="swal2-input input-light mt-0 mb-4" value="${oldNick}">
-                    <div class="text-left text-xs text-[#8B9BB4] mb-1 ml-1">ชื่อจริง-นามสกุล</div>
-                    <input id="edit-name" class="swal2-input input-light text-sm mt-0" value="${oldName}">
-                `,
-                confirmButtonText: 'อัปเดต', confirmButtonColor: '#3B82F6',
-                preConfirm: () => [ document.getElementById('edit-nick').value, document.getElementById('edit-name').value ]
-            });
-
-            if (formValues) {
-                await set(ref(db, 'members/' + code), { code, nick: formValues[0], name: formValues[1] });
-                Swal.fire({ icon: 'success', title: 'อัปเดตแล้ว', timer: 1000, showConfirmButton: false, background:'#121C33' });
-            }
-        };
-
-        window.del = (code) => {
-            const cleanCode = String(code).trim();
-            Swal.fire({
-                title: '<span style="font-family:\'Sarabun\'; font-weight:bold; color:#FFF;">ยืนยันการลบบัญชี?</span>', text: "ข้อมูลเงินฝากและประวัติทั้งหมดจะหายไป", 
-                icon: 'warning', background: '#121C33', color: '#F0F6FC', 
-                showCancelButton: true, confirmButtonColor: '#EF4444', confirmButtonText: 'ลบทิ้งถาวร',
-                cancelButtonText: 'ยกเลิก', cancelButtonColor: '#1E2B4D', customClass: { cancelButton: 'text-[#8B9BB4] font-semibold' }
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    await remove(ref(db, 'members/' + cleanCode));
-                    const userTxs = txData.filter(t => t.studentCode === cleanCode);
-                    for(let t of userTxs) await remove(ref(db, 'transactions/' + t.id));
-                    Swal.fire({title:'ลบเรียบร้อย', icon:'success', timer:1000, showConfirmButton:false, background:'#121C33'});
-                }
-            });
-        };
-
-        window.importCSV = (input) => {
-            const file = input.files[0];
-            if (!file) return;
-            Papa.parse(file, {
-                header: true,
-                complete: async (results) => {
-                    let count = 0;
-                    for (const row of results.data) {
-                        if (row.เลขที่บัญชี) {
-                            const code = row.เลขที่บัญชี.toString().trim().replace(/[^a-zA-Z0-9]/g, '');
-                            if(!code) continue;
-                            await set(ref(db, 'members/' + code), { code: code, nick: row['นมัสการ สามเณร..'] || '', name: row.ชื่อจริง || '' });
-                            if (row.ยอดคงเหลือ) await push(ref(db, 'transactions'), { studentCode: code, type: 'deposit', amount: parseFloat(row.ยอดคงเหลือ.replace(/,/g, '')), date: new Date().toISOString() });
-                            count++;
-                        }
-                    }
-                    Swal.fire({ title: 'นำเข้าสำเร็จ', text: `อัปเดตข้อมูล ${count} รายการ`, icon: 'success', confirmButtonColor: '#D4AF37', background:'#121C33', color:'#FFF' });
-                    input.value = '';
-                }
-            });
-        };
-
-        window.doSearch = () => {
-            const t = document.getElementById('search').value.toLowerCase();
-            const filtered = membersData.filter(m => m.code.includes(t) || m.nick.toLowerCase().includes(t) || m.name.toLowerCase().includes(t));
-            render(filtered);
-        };
-    </script>
+          setTimeout(() => {
+            reviewPanel.classList.add('hidden');
+            form.reset();
+            examLevelSelect.value = '';
+            prevEduSection.classList.remove('hidden'); // Reset กล่องกลับมา
+            applicationNumberEl.textContent = createApplicationNumber();
+            submitButton.disabled = false;
+            submitButton.classList.replace('bg-emerald-600', 'bg-[#d97706]');
+            submitButton.innerHTML = `<i data-lucide="send" class="h-4 w-4"></i> บันทึกส่งข้อมูล`;
+            lucide.createIcons();
+            clearMessage(submitMessage);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 2500);
+        })
+        .catch(() => {
+          showMessage(submitMessage, 'เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง', 'error');
+          submitButton.disabled = false;
+          submitButton.innerHTML = `<i data-lucide="send" class="h-4 w-4"></i> ลองใหม่อีกครั้ง`;
+          lucide.createIcons();
+        });
+    });
+  </script>
 </body>
 </html>
