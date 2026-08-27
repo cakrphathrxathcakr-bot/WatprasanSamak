@@ -16,47 +16,51 @@
     }
     * { box-sizing: border-box; }
     body { margin: 0; font-family: "Sarabun", sans-serif; color: var(--text-main); background: #f1f5f9; }
-    .paper-mark { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 28px 28px; }
-    .thai-heading { font-family: "Pridi", serif; }
-    .form-field {
-      width: 100%; border: 1.5px solid #cbd5e1; border-radius: 0.75rem; background: #ffffff;
-      padding: 0.85rem 1rem; color: var(--text-main); font: inherit; transition: all 0.25s;
-    }
-    .form-field:focus { outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15); }
     
-    /* สไตล์สำหรับช่องที่ถูกล็อก (Disabled) */
-    .form-field:disabled {
-      background-color: #f8fafc;
-      color: #94a3b8;
-      border-color: #e2e8f0;
-      cursor: not-allowed;
-      box-shadow: none;
+    /* ซ่อนส่วนกระดาษพิมพ์ในหน้าจอปกติ */
+    #printable-document { display: none; }
+    
+    @media screen {
+      .paper-mark { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 28px 28px; }
+      .thai-heading { font-family: "Pridi", serif; }
+      .form-field {
+        width: 100%; border: 1.5px solid #cbd5e1; border-radius: 0.75rem; background: #ffffff;
+        padding: 0.85rem 1rem; color: var(--text-main); font: inherit; transition: all 0.25s;
+      }
+      .form-field:focus { outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15); }
+      .form-field:disabled { background-color: #f8fafc; color: #94a3b8; border-color: #e2e8f0; cursor: not-allowed; box-shadow: none; }
+      .section-rule { border-top: 2px dashed #e2e8f0; }
+      .section-number {
+        display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #ffffff; font-weight: 700;
+        font-family: 'Pridi', serif; box-shadow: 0 4px 12px rgba(6, 78, 59, 0.25);
+      }
+      .review-row:nth-child(odd) { background: #f8fafc; }
+      .review-row { display: grid; grid-template-columns: minmax(160px, .8fr) 1.5fr; gap: 1rem; padding: 0.85rem 1.25rem; }
+      .btn-primary { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(6, 78, 59, 0.2); }
+      .radio-card-input:checked + .radio-card { border-color: var(--gold); background-color: #fffbeb; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15); }
+      .radio-card-input:checked + .radio-card .radio-title { color: var(--gold); }
+      .radio-card-input:checked + .radio-card .check-icon { opacity: 1; transform: scale(1); }
     }
 
-    .section-rule { border-top: 2px dashed #e2e8f0; }
-    .section-number {
-      display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #ffffff; font-weight: 700;
-      font-family: 'Pridi', serif; box-shadow: 0 4px 12px rgba(6, 78, 59, 0.25);
-    }
-    .review-row:nth-child(odd) { background: #f8fafc; }
-    .review-row { display: grid; grid-template-columns: minmax(160px, .8fr) 1.5fr; gap: 1rem; padding: 0.85rem 1.25rem; }
-    .btn-primary { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(6, 78, 59, 0.2); }
-    
-    .radio-card-input:checked + .radio-card {
-      border-color: var(--gold); background-color: #fffbeb; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15);
-    }
-    .radio-card-input:checked + .radio-card .radio-title { color: var(--gold); }
-    .radio-card-input:checked + .radio-card .check-icon { opacity: 1; transform: scale(1); }
-    
     @media (max-width: 640px) { .review-row { grid-template-columns: 1fr; gap: 0.25rem; padding: 0.75rem 1rem; } }
+    
+    /* สไตล์สำหรับการสั่งพิมพ์ (PDF) */
+    @media print {
+      @page { size: A4; margin: 15mm; }
+      body { background: white; color: black; font-size: 16pt; line-height: 1.6; }
+      .no-print, main, #review-panel { display: none !important; }
+      #printable-document { display: block !important; }
+      .print-border-b { border-bottom: 1px dotted #000; display: inline-block; padding: 0 10px; min-width: 50px; text-align: center; font-weight: bold; }
+    }
   </style>
 </head>
 <body class="paper-mark py-6 sm:py-12 min-h-screen">
-  <main class="mx-auto w-full max-w-4xl px-4 sm:px-6">
+  
+  <!-- หน้าเว็บหลัก -->
+  <main class="mx-auto w-full max-w-4xl px-4 sm:px-6 no-print">
     <div class="overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-15px_rgba(6,78,59,0.15)] ring-1 ring-slate-200">
-      
       <header class="relative overflow-hidden bg-gradient-to-br from-[#064e3b] via-[#065f46] to-[#047857] px-6 py-12 text-center sm:px-12">
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent bg-[length:24px_24px]"></div>
         <div class="relative z-10 mx-auto flex max-w-3xl flex-col items-center">
@@ -77,13 +81,12 @@
       </section>
 
       <form id="application-form" class="px-6 py-8 sm:px-12 sm:py-10" novalidate>
-        
+        <!-- 1. ระดับชั้นที่สมัครสอบ -->
         <section class="pt-2">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">1</span>
             <h2 class="thai-heading text-2xl text-[#064e3b]">ระดับชั้นที่สมัครสอบ <span class="text-red-500 text-lg">*</span></h2>
           </div>
-          
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <label class="cursor-pointer relative">
               <input type="radio" name="exam-level" value="นักธรรมชั้นตรี" class="radio-card-input sr-only" required>
@@ -93,7 +96,6 @@
                 <div class="text-xs text-slate-500 mt-2 bg-slate-100 px-2 py-1 rounded-md">(ไม่ต้องกรอกวุฒิเดิม)</div>
               </div>
             </label>
-            
             <label class="cursor-pointer relative">
               <input type="radio" name="exam-level" value="นักธรรมชั้นโท" class="radio-card-input sr-only" required>
               <div class="radio-card rounded-2xl border-2 border-slate-200 p-5 transition-all hover:bg-slate-50 flex flex-col items-center justify-center text-center h-full relative overflow-hidden">
@@ -101,7 +103,6 @@
                 <div class="radio-title font-bold text-lg text-slate-700 transition-colors thai-heading">นักธรรมชั้นโท</div>
               </div>
             </label>
-
             <label class="cursor-pointer relative">
               <input type="radio" name="exam-level" value="นักธรรมชั้นเอก" class="radio-card-input sr-only" required>
               <div class="radio-card rounded-2xl border-2 border-slate-200 p-5 transition-all hover:bg-slate-50 flex flex-col items-center justify-center text-center h-full relative overflow-hidden">
@@ -112,6 +113,7 @@
           </div>
         </section>
 
+        <!-- 2. ประวัติผู้เข้าสอบ -->
         <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">2</span>
@@ -148,7 +150,6 @@
               <label class="mb-2 block font-semibold text-slate-700">นามสกุล <span class="text-red-500">*</span></label> 
               <input id="last-name" class="form-field" type="text" required>
             </div>
-            
             <div>
               <label class="mb-2 block font-semibold text-slate-700">เกิด (วัน/เดือน/ปี พ.ศ.) <span class="text-red-500">*</span></label> 
               <div class="grid grid-cols-3 gap-2">
@@ -165,7 +166,6 @@
                 <input id="birth-year" class="form-field text-center px-2" type="number" min="2400" max="2600" placeholder="พ.ศ." required>
               </div>
             </div>
-
             <div>
               <label class="mb-2 block font-semibold text-slate-700">อุปสมบท (วัน/เดือน/ปี พ.ศ.) <span class="text-red-500">*</span></label> 
               <div class="grid grid-cols-3 gap-2">
@@ -186,6 +186,7 @@
           </div>
         </section>
 
+        <!-- 3. ที่อยู่ปัจจุบัน -->
         <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">3</span>
@@ -211,14 +212,14 @@
           </div>
         </section>
 
+        <!-- 4. ประโยคเดิม -->
         <section id="prev-edu-section" class="section-rule mt-12 pt-10 transition-all duration-300">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">4</span>
             <h2 class="thai-heading text-2xl text-[#064e3b]">ประโยคเดิม (วุฒิเดิมที่สอบได้)</h2>
           </div>
           <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 grid gap-8">
-            
-            <!-- ส่วนนักธรรม -->
+            <!-- นักธรรม -->
             <div>
               <h3 class="font-bold text-lg text-emerald-800 mb-4 border-b border-slate-200 pb-2">วุฒินักธรรม</h3>
               <div class="grid gap-4 md:grid-cols-2">
@@ -226,10 +227,8 @@
                   <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒินักธรรม <span class="text-red-500">*</span></label> 
                   <select id="dhamma-level" class="form-field prev-edu-input" required>
                     <option value="">-- เลือกวุฒิ --</option>
-                    <option value="ไม่มี">ไม่มี</option>
-                    <option value="ตรี">ตรี</option>
-                    <option value="โท">โท</option>
-                    <option value="เอก">เอก</option>
+                    <option value="ไม่มี">ไม่มี</option><option value="ตรี">ตรี</option>
+                    <option value="โท">โท</option><option value="เอก">เอก</option>
                   </select>
                 </div>
                 <div>
@@ -246,8 +245,7 @@
                 </div>
               </div>
             </div>
-
-            <!-- ส่วนบาลี -->
+            <!-- บาลี -->
             <div>
               <h3 class="font-bold text-lg text-emerald-800 mb-4 border-b border-slate-200 pb-2">วุฒิบาลี</h3>
               <div class="grid gap-4 md:grid-cols-2">
@@ -255,14 +253,10 @@
                   <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒิบาลี <span class="text-red-500">*</span></label> 
                   <select id="pali-level" class="form-field prev-edu-input" required>
                     <option value="">-- เลือกวุฒิ --</option>
-                    <option value="ไม่มี">ไม่มี</option>
-                    <option value="1-2">ประโยค 1-2</option>
-                    <option value="3">ประโยค ป.ธ. 3</option>
-                    <option value="4">ประโยค ป.ธ. 4</option>
-                    <option value="5">ประโยค ป.ธ. 5</option>
-                    <option value="6">ประโยค ป.ธ. 6</option>
-                    <option value="7">ประโยค ป.ธ. 7</option>
-                    <option value="8">ประโยค ป.ธ. 8</option>
+                    <option value="ไม่มี">ไม่มี</option><option value="1-2">ประโยค 1-2</option>
+                    <option value="3">ประโยค ป.ธ. 3</option><option value="4">ประโยค ป.ธ. 4</option>
+                    <option value="5">ประโยค ป.ธ. 5</option><option value="6">ประโยค ป.ธ. 6</option>
+                    <option value="7">ประโยค ป.ธ. 7</option><option value="8">ประโยค ป.ธ. 8</option>
                     <option value="9">ประโยค ป.ธ. 9</option>
                   </select>
                 </div>
@@ -280,7 +274,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </section>
 
@@ -295,8 +288,6 @@
           </div>
         </section>
 
-        <div id="form-message" class="mt-8 hidden rounded-xl border px-4 py-3 text-sm" role="status"></div>
-        
         <div class="mt-12 flex flex-col items-stretch justify-between gap-6 border-t-2 border-slate-100 pt-8 sm:flex-row sm:items-center">
           <p class="text-sm text-[#d97706] font-medium flex items-center gap-2 bg-amber-50 px-4 py-2 rounded-lg border border-amber-200/50">
             <i data-lucide="info" class="h-4 w-4"></i> โปรดตรวจสอบข้อมูลทั้งหมดให้ถูกต้องก่อนบันทึก
@@ -310,29 +301,114 @@
     </div>
   </main>
 
-  <div id="review-panel" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-md p-4 sm:p-8 transition-opacity">
+  <!-- หน้าต่าง Review (Modal) -->
+  <div id="review-panel" class="no-print fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-md p-4 sm:p-8 transition-opacity">
     <div class="mx-auto my-4 sm:my-8 w-full max-w-4xl rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden flex flex-col">
       <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-6 py-6 sm:px-10">
         <div>
-          <p class="text-sm font-bold text-[#d97706] tracking-wider mb-1">ขั้นตอนสุดท้าย</p>
-          <h2 class="thai-heading text-[#064e3b] text-2xl">ยืนยันข้อมูลผู้ขอเข้าสอบ</h2>
+          <p class="text-sm font-bold text-[#d97706] tracking-wider mb-1" id="modal-subtitle">ขั้นตอนสุดท้าย</p>
+          <h2 class="thai-heading text-[#064e3b] text-2xl" id="modal-title">ยืนยันข้อมูลผู้ขอเข้าสอบ</h2>
         </div>
         <button id="close-review" class="rounded-full p-2 text-slate-400 hover:bg-slate-200 hover:text-slate-700 transition-colors"> 
           <i data-lucide="x" class="h-6 w-6"></i> 
         </button>
       </div>
       
-      <div class="px-6 py-6 sm:px-10 flex-1 overflow-y-auto max-h-[70vh]">
+      <div class="px-6 py-6 sm:px-10 flex-1 overflow-y-auto max-h-[70vh]" id="modal-body-content">
         <div id="review-list" class="overflow-hidden rounded-2xl border border-slate-200 bg-white grid grid-cols-1 md:grid-cols-2"></div>
-        <div id="submit-message" class="mt-6 hidden rounded-xl border px-4 py-4 text-sm font-medium"></div>
       </div>
 
-      <div class="bg-slate-50 px-6 py-6 sm:px-10 border-t border-slate-100 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+      <div class="bg-slate-50 px-6 py-6 sm:px-10 border-t border-slate-100 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end" id="modal-footer-buttons">
         <button id="edit-button" class="inline-flex items-center justify-center rounded-xl border-2 border-slate-300 bg-white text-slate-700 px-8 py-3.5 font-bold hover:bg-slate-50 hover:text-[#064e3b] transition-colors" type="button">กลับไปแก้ไข</button> 
         <button id="submit-button" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#d97706] text-white px-10 py-3.5 font-bold shadow-lg hover:bg-[#b45309]" type="button"> 
           <i data-lucide="send" class="h-5 w-5"></i> 
           <span>บันทึกส่งข้อมูล</span> 
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- โครงสร้างเอกสาร PDF สำหรับพิมพ์ (ซ่อนในหน้าจอปกติ จะแสดงเมื่อสั่งพิมพ์) -->
+  <div id="printable-document">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h1 style="font-size: 24pt; font-weight: bold; margin-bottom: 5px;">ใบสมัครเข้าสอบความรู้ธรรมสนามหลวง</h1>
+      <p style="font-size: 18pt;">ประจำปีการศึกษา ....................................</p>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+      <p>
+        <strong>ระดับชั้นที่สมัครสอบ:</strong> <span class="print-border-b" id="print-exam-level"></span>
+      </p>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+      <p style="margin-bottom: 10px;">
+        <strong>๑. ประวัติผู้เข้าสอบ:</strong>
+      </p>
+      <p style="text-indent: 40px; margin-bottom: 10px;">
+        ข้าพเจ้า <span class="print-border-b" id="print-fullname"></span> 
+        ฉายา <span class="print-border-b" id="print-monastic"></span>
+        นามสกุล <span class="print-border-b" id="print-lastname"></span>
+      </p>
+      <p style="text-indent: 40px; margin-bottom: 10px;">
+        เลขประจำตัวประชาชน <span class="print-border-b" id="print-idcard"></span> 
+        เกิดเมื่อวันที่ <span class="print-border-b" id="print-birth"></span>
+      </p>
+      <p style="text-indent: 40px; margin-bottom: 10px;">
+        อุปสมบทเมื่อวันที่ <span class="print-border-b" id="print-ord"></span>
+      </p>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+      <p style="margin-bottom: 10px;">
+        <strong>๒. ที่อยู่ปัจจุบัน (สังกัดวัด):</strong>
+      </p>
+      <p style="text-indent: 40px; margin-bottom: 10px;">
+        วัด/สถานที่อยู่ <span class="print-border-b" id="print-temple"></span>
+        ตำบล <span class="print-border-b" id="print-subdist"></span>
+      </p>
+      <p style="text-indent: 40px; margin-bottom: 10px;">
+        อำเภอ <span class="print-border-b" id="print-dist"></span>
+        จังหวัด <span class="print-border-b" id="print-prov"></span>
+      </p>
+    </div>
+
+    <div id="print-edu-block" style="margin-bottom: 25px;">
+      <p style="margin-bottom: 10px;">
+        <strong>๓. ประวัติการศึกษา (ประโยคเดิมที่สอบได้):</strong>
+      </p>
+      <p style="text-indent: 40px; margin-bottom: 10px;">
+        วุฒินักธรรม <span class="print-border-b" id="print-dh-level"></span>
+        ปีที่สอบได้ (พ.ศ.) <span class="print-border-b" id="print-dh-year"></span>
+      </p>
+      <p style="text-indent: 40px; margin-bottom: 10px;">
+        สำนักเรียนคณะจังหวัด <span class="print-border-b" id="print-dh-prov"></span>
+        เลขที่ใบประกาศ <span class="print-border-b" id="print-dh-cert"></span>
+      </p>
+      <p style="text-indent: 40px; margin-bottom: 10px; margin-top: 20px;">
+        วุฒิบาลี <span class="print-border-b" id="print-pa-level"></span>
+        ปีที่สอบได้ (พ.ศ.) <span class="print-border-b" id="print-pa-year"></span>
+      </p>
+      <p style="text-indent: 40px; margin-bottom: 10px;">
+        สำนักเรียนคณะจังหวัด <span class="print-border-b" id="print-pa-prov"></span>
+        เลขที่ใบประกาศ <span class="print-border-b" id="print-pa-cert"></span>
+      </p>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+      <p><strong>๔. หมายเหตุ:</strong> <span class="print-border-b" id="print-remarks"></span></p>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 80px; padding: 0 40px;">
+      <div style="text-align: center;">
+        <p>(ลงชื่อ)...........................................................ผู้รับรอง</p>
+        <p style="margin-top: 10px;">(...........................................................)</p>
+        <p style="margin-top: 10px;">ตำแหน่ง เจ้าอาวาสวัด...............................</p>
+      </div>
+      <div style="text-align: center;">
+        <p>(ลงชื่อ)...........................................................ผู้สมัครสอบ</p>
+        <p style="margin-top: 10px;">( <span class="print-border-b" id="print-sign-name" style="min-width: 150px;"></span> )</p>
+        <p style="margin-top: 10px;">วันที่...........เดือน...........................พ.ศ.............</p>
       </div>
     </div>
   </div>
@@ -344,8 +420,6 @@
     const examRadios = document.querySelectorAll('input[name="exam-level"]');
     const prevEduSection = document.getElementById('prev-edu-section');
     const prevEduInputs = document.querySelectorAll('.prev-edu-input');
-    
-    // Element กลุ่มวุฒิที่สอบได้เดิม
     const dhammaLevelSelect = document.getElementById('dhamma-level');
     const dhammaRelatedInputs = document.querySelectorAll('.dhamma-related');
     const paliLevelSelect = document.getElementById('pali-level');
@@ -353,9 +427,9 @@
 
     const reviewPanel = document.getElementById('review-panel');
     const reviewList = document.getElementById('review-list');
-    const submitMessage = document.getElementById('submit-message');
     const applicationNumberEl = document.getElementById('application-number');
     const submitButton = document.getElementById('submit-button');
+    const modalFooterButtons = document.getElementById('modal-footer-buttons');
 
     lucide.createIcons();
 
@@ -377,7 +451,6 @@
       return `${day} ${month} ${year}`;
     }
 
-    // Logic: ซ่อน/แสดง ภาคประวัติการศึกษา เมื่อเลือก "นักธรรมชั้นตรี"
     examRadios.forEach(radio => {
       radio.addEventListener('change', (e) => {
         const val = e.target.value;
@@ -387,55 +460,31 @@
         } else {
           prevEduSection.classList.remove('hidden');
           setTimeout(() => prevEduSection.classList.remove('opacity-0'), 10);
-          // รีเฟรชสถานะ Required ใหม่ ตามตัวเลือกที่มีอยู่
           dhammaLevelSelect.dispatchEvent(new Event('change'));
           paliLevelSelect.dispatchEvent(new Event('change'));
         }
       });
     });
 
-    // Logic: ปิดช่องกรอก (Disabled) อัตโนมัติเมื่อเลือก "ไม่มี" (วุฒินักธรรม)
     dhammaLevelSelect.addEventListener('change', (e) => {
       const isNone = (e.target.value === 'ไม่มี');
       dhammaRelatedInputs.forEach(input => {
         input.disabled = isNone;
-        input.required = !isNone && !prevEduSection.classList.contains('hidden'); // ห้าม set require ถ้าเซคชันโดนซ่อน
-        if (isNone) {
-          input.value = (input.type === 'number') ? '0' : '-';
-        } else if (input.value === '-' || input.value === '0') {
-          input.value = ''; // เคลียร์ช่องถ้าโดนปลดล็อกให้กรอกใหม่
-        }
+        input.required = !isNone && !prevEduSection.classList.contains('hidden');
+        if (isNone) { input.value = (input.type === 'number') ? '0' : '-'; } 
+        else if (input.value === '-' || input.value === '0') { input.value = ''; }
       });
     });
 
-    // Logic: ปิดช่องกรอก (Disabled) อัตโนมัติเมื่อเลือก "ไม่มี" (วุฒิบาลี)
     paliLevelSelect.addEventListener('change', (e) => {
       const isNone = (e.target.value === 'ไม่มี');
       paliRelatedInputs.forEach(input => {
         input.disabled = isNone;
         input.required = !isNone && !prevEduSection.classList.contains('hidden');
-        if (isNone) {
-          input.value = (input.type === 'number') ? '0' : '-';
-        } else if (input.value === '-' || input.value === '0') {
-          input.value = '';
-        }
+        if (isNone) { input.value = (input.type === 'number') ? '0' : '-'; } 
+        else if (input.value === '-' || input.value === '0') { input.value = ''; }
       });
     });
-
-    function showMessage(element, message, type) {
-      element.className = 'mt-6 rounded-xl border px-5 py-4 text-sm block font-medium flex items-center gap-3';
-      const iconHTML = type === 'success' 
-        ? `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> `
-        : `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> `;
-      element.innerHTML = iconHTML + message;
-      if (type === 'success') { element.classList.add('border-emerald-200', 'bg-emerald-50', 'text-emerald-800'); } 
-      else { element.classList.add('border-rose-200', 'bg-rose-50', 'text-rose-800'); }
-    }
-
-    function clearMessage(element) {
-      element.className = 'mt-6 hidden rounded-xl border px-4 py-3 text-sm';
-      element.textContent = '';
-    }
 
     function fieldValue(id) { return document.getElementById(id) ? document.getElementById(id).value.trim() : ''; }
 
@@ -460,7 +509,6 @@
           ['สำนักเรียน (บาลี)', 'pali-province'], ['เลขที่ใบประกาศ (บาลี)', 'pali-cert-no']
         );
       }
-      
       labels.push(['หมายเหตุ', 'remarks']);
       
       reviewList.replaceChildren();
@@ -471,28 +519,56 @@
         const valueEl = document.createElement('span'); valueEl.className = 'font-medium text-[#064e3b] text-sm break-words';
         
         let val = '';
-        if (id === 'exam-level-display') {
-          val = selectedLevel;
-        } else if (id === 'birth-date-combined') {
-          val = getCombinedDate('birth');
-        } else if (id === 'ordination-date-combined') {
-          val = getCombinedDate('ordination');
-        } else {
-          val = fieldValue(id);
-        }
+        if (id === 'exam-level-display') val = selectedLevel;
+        else if (id === 'birth-date-combined') val = getCombinedDate('birth');
+        else if (id === 'ordination-date-combined') val = getCombinedDate('ordination');
+        else val = fieldValue(id);
 
         valueEl.textContent = val || '-';
         row.appendChild(labelEl); row.appendChild(valueEl); reviewList.appendChild(row);
       });
     }
 
+    // เตรียมข้อมูลลงแบบฟอร์มสำหรับพิมพ์
+    function preparePrintDocument() {
+        const title = fieldValue('title');
+        const fname = fieldValue('first-name');
+        
+        document.getElementById('print-exam-level').textContent = getSelectedExamLevel();
+        document.getElementById('print-fullname').textContent = title + fname;
+        document.getElementById('print-monastic').textContent = fieldValue('monastic-name') !== '-' ? fieldValue('monastic-name') : 'ไม่มี';
+        document.getElementById('print-lastname').textContent = fieldValue('last-name');
+        document.getElementById('print-idcard').textContent = fieldValue('id-card');
+        document.getElementById('print-birth').textContent = getCombinedDate('birth');
+        document.getElementById('print-ord').textContent = getCombinedDate('ordination');
+        
+        document.getElementById('print-temple').textContent = fieldValue('current-temple');
+        document.getElementById('print-subdist').textContent = fieldValue('current-subdistrict');
+        document.getElementById('print-dist').textContent = fieldValue('current-district');
+        document.getElementById('print-prov').textContent = fieldValue('current-province');
+
+        if(getSelectedExamLevel() === 'นักธรรมชั้นตรี') {
+            document.getElementById('print-edu-block').style.display = 'none';
+        } else {
+            document.getElementById('print-edu-block').style.display = 'block';
+            document.getElementById('print-dh-level').textContent = fieldValue('dhamma-level');
+            document.getElementById('print-dh-year').textContent = fieldValue('dhamma-year');
+            document.getElementById('print-dh-prov').textContent = fieldValue('dhamma-province');
+            document.getElementById('print-dh-cert').textContent = fieldValue('dhamma-cert-no');
+
+            document.getElementById('print-pa-level').textContent = fieldValue('pali-level');
+            document.getElementById('print-pa-year').textContent = fieldValue('pali-year');
+            document.getElementById('print-pa-prov').textContent = fieldValue('pali-province');
+            document.getElementById('print-pa-cert').textContent = fieldValue('pali-cert-no');
+        }
+
+        document.getElementById('print-remarks').textContent = fieldValue('remarks') || '-';
+        document.getElementById('print-sign-name').textContent = title + fname + " " + fieldValue('last-name');
+    }
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const selectedLevel = getSelectedExamLevel();
-      if(!selectedLevel) {
-        alert('กรุณาเลือกระดับชั้นที่สมัครสอบ (ข้อ 1)');
-        return;
-      }
+      if(!getSelectedExamLevel()) { alert('กรุณาเลือกระดับชั้นที่สมัครสอบ (ข้อ 1)'); return; }
 
       if (form.checkValidity()) { 
         buildReview(); 
@@ -509,7 +585,6 @@
       submitButton.disabled = true;
       submitButton.innerHTML = `<i data-lucide="loader-2" class="h-5 w-5 animate-spin"></i> กำลังบันทึก...`;
       lucide.createIcons();
-      showMessage(submitMessage, 'กำลังส่งข้อมูลไปที่ระบบ...', 'success');
 
       const formData = new FormData();
       formData.append('application_number', applicationNumberEl.textContent);
@@ -530,7 +605,6 @@
       };
 
       const isBeginner = (getSelectedExamLevel() === 'นักธรรมชั้นตรี');
-
       for (const [key, id] of Object.entries(fieldMapping)) {
         if (isBeginner && (key.startsWith('dhamma_') || key.startsWith('pali_'))) {
           formData.append(key, '-'); 
@@ -541,30 +615,37 @@
 
       fetch(SCRIPT_URL, { method: 'POST', body: formData })
         .then(() => {
-          showMessage(submitMessage, 'บันทึกข้อมูลเรียบร้อยแล้ว!', 'success');
-          submitButton.innerHTML = `<i data-lucide="check-circle" class="h-5 w-5"></i> บันทึกสำเร็จ`;
-          lucide.createIcons();
-          submitButton.classList.replace('bg-[#d97706]', 'bg-emerald-600');
+          // เตรียมเอกสารสำหรับพิมพ์
+          preparePrintDocument();
 
-          setTimeout(() => {
-            reviewPanel.classList.add('hidden');
-            form.reset();
-            prevEduSection.classList.remove('hidden'); 
-            dhammaLevelSelect.dispatchEvent(new Event('change')); // รีเซ็ตการล็อกช่องกลับมา
-            paliLevelSelect.dispatchEvent(new Event('change'));
-            applicationNumberEl.textContent = createApplicationNumber();
-            submitButton.disabled = false;
-            submitButton.classList.replace('bg-emerald-600', 'bg-[#d97706]');
-            submitButton.innerHTML = `<i data-lucide="send" class="h-5 w-5"></i> บันทึกส่งข้อมูล`;
-            lucide.createIcons();
-            clearMessage(submitMessage);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }, 2500);
+          // แสดงสถานะสำเร็จใน Modal
+          document.getElementById('modal-title').textContent = "บันทึกข้อมูลสำเร็จ!";
+          document.getElementById('modal-title').className = "thai-heading text-emerald-700 text-2xl";
+          document.getElementById('modal-subtitle').textContent = "ระบบส่งข้อมูลของคุณเข้าส่วนกลางเรียบร้อยแล้ว";
+          
+          document.getElementById('modal-body-content').innerHTML = `
+            <div class="flex flex-col items-center justify-center p-8 text-center bg-emerald-50 rounded-2xl border border-emerald-100">
+                <div class="h-20 w-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
+                    <i data-lucide="check-circle-2" class="h-10 w-10"></i>
+                </div>
+                <h3 class="text-xl font-bold text-emerald-800 mb-2">ข้อมูลถูกบันทึกเข้าระบบแล้ว</h3>
+                <p class="text-slate-600">คุณสามารถพิมพ์ใบสมัคร หรือบันทึกเป็น PDF เพื่อนำไปให้เจ้าอาวาสลงนามได้ทันที</p>
+            </div>
+          `;
+          
+          modalFooterButtons.innerHTML = `
+            <button onclick="location.reload()" class="inline-flex items-center justify-center rounded-xl border-2 border-slate-300 bg-white text-slate-700 px-8 py-3.5 font-bold hover:bg-slate-50 transition-colors" type="button">กลับไปเริ่มใหม่</button> 
+            <button onclick="window.print()" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#064e3b] text-white px-10 py-3.5 font-bold shadow-lg hover:bg-[#047857]" type="button"> 
+              <i data-lucide="printer" class="h-5 w-5"></i> 
+              <span>🖨️ พิมพ์/บันทึก PDF ใบสมัคร</span> 
+            </button>
+          `;
+          lucide.createIcons();
         })
         .catch(() => {
-          showMessage(submitMessage, 'เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง', 'error');
+          alert("เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง");
           submitButton.disabled = false;
-          submitButton.innerHTML = `<i data-lucide="send" class="h-5 w-5"></i> ลองใหม่อีกครั้ง`;
+          submitButton.innerHTML = `<i data-lucide="send" class="h-5 w-5"></i> บันทึกส่งข้อมูล`;
           lucide.createIcons();
         });
     });
