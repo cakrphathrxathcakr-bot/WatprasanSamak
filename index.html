@@ -51,67 +51,41 @@
       </header>
 
       <section class="border-b border-slate-200 bg-slate-50/80 px-5 py-4 sm:px-10">
-        <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
-          <div>
-            <p class="text-sm font-semibold text-slate-500">ลำดับ/เลขอ้างอิง</p>
-            <p id="application-number" class="mt-1 font-bold tracking-[.1em] text-[#1e3a8a] text-lg"></p>
-          </div>
-          <div class="flex items-center gap-2 text-sm text-slate-500 font-medium bg-white px-3 py-1.5 rounded-full ring-1 ring-slate-200 shadow-sm">
-            <label for="exam-level" class="font-semibold text-emerald-700">เลือกระดับชั้น:</label>
-            <select id="exam-level" class="bg-transparent outline-none text-[#1e3a8a] font-bold" required>
-              <option value="">-- กรุณาเลือก --</option>
-              <optgroup label="นักธรรม">
-                <option value="นักธรรมชั้นตรี">นักธรรมชั้นตรี (ไม่ต้องกรอกวุฒิเดิม)</option>
-                <option value="นักธรรมชั้นโท">นักธรรมชั้นโท</option>
-                <option value="นักธรรมชั้นเอก">นักธรรมชั้นเอก</option>
-              </optgroup>
-              <optgroup label="ธรรมศึกษา">
-                <option value="ธรรมศึกษาชั้นตรี">ธรรมศึกษาชั้นตรี (ไม่ต้องกรอกวุฒิเดิม)</option>
-                <option value="ธรรมศึกษาชั้นโท">ธรรมศึกษาชั้นโท</option>
-                <option value="ธรรมศึกษาชั้นเอก">ธรรมศึกษาชั้นเอก</option>
-              </optgroup>
-              <optgroup label="บาลี">
-                <option value="บาลีไวยากรณ์">บาลีไวยากรณ์ (ไม่ต้องกรอกวุฒิเดิม)</option>
-                <option value="ประโยค 1-2">ประโยค 1-2</option>
-                <option value="ประโยค ป.ธ.3">ประโยค ป.ธ.3 ขึ้นไป</option>
-              </optgroup>
-            </select>
-          </div>
+        <div class="flex items-center gap-3">
+          <p class="text-sm font-semibold text-slate-500">ลำดับ/เลขอ้างอิง:</p>
+          <p id="application-number" class="font-bold tracking-[.1em] text-[#1e3a8a] text-lg"></p>
         </div>
       </section>
 
       <form id="application-form" class="px-5 py-8 sm:px-12 sm:py-10" novalidate>
         
-        <!-- ส่วนที่ 1: ข้อมูลสนามสอบ -->
+        <!-- ส่วนที่ 1: ข้อมูลการสมัคร -->
         <section class="pt-2">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">1</span>
-            <h2 class="thai-heading text-xl text-[#1e3a8a]">ข้อมูลสนามสอบ</h2>
+            <h2 class="thai-heading text-xl text-[#1e3a8a]">ข้อมูลการสมัคร</h2>
           </div>
           <div class="grid gap-6 md:grid-cols-2">
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">รหัสสนามสอบ <span class="text-red-500">*</span></label> 
-              <input id="exam-center-code" class="form-field" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">ชื่อสนามสอบ <span class="text-red-500">*</span></label> 
-              <input id="exam-center-name" class="form-field" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">ตำบล <span class="text-red-500">*</span></label> 
-              <input id="exam-center-subdistrict" class="form-field" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">อำเภอ <span class="text-red-500">*</span></label> 
-              <input id="exam-center-district" class="form-field" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
-              <input id="exam-center-province" class="form-field" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">ภาค <span class="text-red-500">*</span></label> 
-              <input id="exam-center-region" class="form-field" type="text" placeholder="เช่น 1, 2, 14" required>
+              <label class="mb-2 block font-semibold text-slate-700" for="exam-level">ระดับชั้นที่สอบ <span class="text-red-500">*</span></label>
+              <select id="exam-level" class="form-field font-bold text-[#1e3a8a]" required>
+                <option value="">-- กรุณาเลือก --</option>
+                <optgroup label="นักธรรม">
+                  <option value="นักธรรมชั้นตรี">นักธรรมชั้นตรี (ไม่ต้องกรอกวุฒิเดิม)</option>
+                  <option value="นักธรรมชั้นโท">นักธรรมชั้นโท</option>
+                  <option value="นักธรรมชั้นเอก">นักธรรมชั้นเอก</option>
+                </optgroup>
+                <optgroup label="ธรรมศึกษา">
+                  <option value="ธรรมศึกษาชั้นตรี">ธรรมศึกษาชั้นตรี (ไม่ต้องกรอกวุฒิเดิม)</option>
+                  <option value="ธรรมศึกษาชั้นโท">ธรรมศึกษาชั้นโท</option>
+                  <option value="ธรรมศึกษาชั้นเอก">ธรรมศึกษาชั้นเอก</option>
+                </optgroup>
+                <optgroup label="บาลี">
+                  <option value="บาลีไวยากรณ์">บาลีไวยากรณ์ (ไม่ต้องกรอกวุฒิเดิม)</option>
+                  <option value="ประโยค 1-2">ประโยค 1-2</option>
+                  <option value="ประโยค ป.ธ.3">ประโยค ป.ธ.3 ขึ้นไป</option>
+                </optgroup>
+              </select>
             </div>
           </div>
         </section>
@@ -124,11 +98,11 @@
           </div>
           <div class="grid gap-6 md:grid-cols-2">
             <div class="md:col-span-2">
-              <label class="mb-2 block font-semibold text-slate-700">เลขประจำตัวประชาชน ๑๓ หลัก <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="id-card">เลขประจำตัวประชาชน ๑๓ หลัก <span class="text-red-500">*</span></label> 
               <input id="id-card" class="form-field" type="text" maxlength="13" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">คำนำหน้าชื่อ <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="title">คำนำหน้าชื่อ <span class="text-red-500">*</span></label> 
               <select id="title" class="form-field" required>
                 <option value="">-- เลือกคำนำหน้า --</option>
                 <option value="พระ">พระ</option>
@@ -142,23 +116,23 @@
               </select>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">ชื่อ <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="first-name">ชื่อ <span class="text-red-500">*</span></label> 
               <input id="first-name" class="form-field" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">ฉายา <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="monastic-name">ฉายา <span class="text-red-500">*</span></label> 
               <input id="monastic-name" class="form-field" type="text" placeholder="หากไม่มีให้ใส่ -" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">นามสกุล <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="last-name">นามสกุล <span class="text-red-500">*</span></label> 
               <input id="last-name" class="form-field" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">เกิด (วัน / เดือน / ปี) <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="birth-date">เกิด (วัน / เดือน / ปี) <span class="text-red-500">*</span></label> 
               <input id="birth-date" class="form-field" type="date" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">อุปสมบท (วัน / เดือน / ปี) <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="ordination-date">อุปสมบท (วัน / เดือน / ปี) <span class="text-red-500">*</span></label> 
               <input id="ordination-date" class="form-field" type="date" required>
               <p class="text-xs text-slate-500 mt-1">ฆราวาสให้ใส่วันที่ปัจจุบันหรือข้ามไป (ระบบจะบันทึกตามจริง)</p>
             </div>
@@ -173,19 +147,19 @@
           </div>
           <div class="grid gap-6 md:grid-cols-2">
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">ชื่อวัด/สถานที่อยู่ <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="current-temple">ชื่อวัด/สถานที่อยู่ <span class="text-red-500">*</span></label> 
               <input id="current-temple" class="form-field" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">ตำบล <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="current-subdistrict">ตำบล <span class="text-red-500">*</span></label> 
               <input id="current-subdistrict" class="form-field" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">อำเภอ <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="current-district">อำเภอ <span class="text-red-500">*</span></label> 
               <input id="current-district" class="form-field" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="current-province">จังหวัด <span class="text-red-500">*</span></label> 
               <input id="current-province" class="form-field" type="text" required>
             </div>
           </div>
@@ -199,35 +173,35 @@
           </div>
           <div class="grid gap-6 md:grid-cols-2">
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">สำนักศาสนศึกษา/สถานศึกษา <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-center">สำนักศาสนศึกษา/สถานศึกษา <span class="text-red-500">*</span></label> 
               <input id="prev-edu-center" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">ตำบล <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-subdistrict">ตำบล <span class="text-red-500">*</span></label> 
               <input id="prev-edu-subdistrict" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">อำเภอ <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-district">อำเภอ <span class="text-red-500">*</span></label> 
               <input id="prev-edu-district" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-province">จังหวัด <span class="text-red-500">*</span></label> 
               <input id="prev-edu-province" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">สำนักเรียน <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-office">สำนักเรียน <span class="text-red-500">*</span></label> 
               <input id="prev-edu-office" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">พ.ศ. (ที่สอบได้) <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-year">พ.ศ. (ที่สอบได้) <span class="text-red-500">*</span></label> 
               <input id="prev-edu-year" class="form-field prev-edu-input" type="number" min="2400" max="2600" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">เลขที่ ปกศ. <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-cert-no">เลขที่ ปกศ. <span class="text-red-500">*</span></label> 
               <input id="prev-edu-cert-no" class="form-field prev-edu-input" type="text" required>
             </div>
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">สำนักเรียนวัด/คณะจังหวัด <span class="text-red-500">*</span></label> 
+              <label class="mb-2 block font-semibold text-slate-700" for="prev-edu-provincial-office">สำนักเรียนวัด/คณะจังหวัด <span class="text-red-500">*</span></label> 
               <input id="prev-edu-provincial-office" class="form-field prev-edu-input" type="text" required>
             </div>
           </div>
@@ -240,7 +214,7 @@
             <h2 class="thai-heading text-xl text-[#1e3a8a]">เพิ่มเติม</h2>
           </div>
           <div>
-            <label class="mb-2 block font-semibold text-slate-700">หมายเหตุ <span class="text-red-500">*</span></label> 
+            <label class="mb-2 block font-semibold text-slate-700" for="remarks">หมายเหตุ <span class="text-red-500">*</span></label> 
             <textarea id="remarks" class="form-field h-24" placeholder="กรอกหมายเหตุ (หากไม่มีให้ใส่ - )" required></textarea>
           </div>
         </section>
@@ -314,18 +288,17 @@
     // Logic จัดการซ่อน/แสดง ฟิลด์วุฒิการศึกษาเดิม
     examLevelSelect.addEventListener('change', (e) => {
       const val = e.target.value;
-      // หากเป็นชั้นเริ่มต้น (ชั้นตรี หรือ ไวยากรณ์) ไม่ต้องกรอกประโยคเดิม
       if (val === 'นักธรรมชั้นตรี' || val === 'ธรรมศึกษาชั้นตรี' || val === 'บาลีไวยากรณ์') {
         prevEduSection.classList.add('hidden');
         prevEduInputs.forEach(input => {
           input.required = false;
-          input.value = '-'; // อุดช่องโหว่ให้ใส่ - อัตโนมัติเผื่อส่งฐานข้อมูล
+          input.value = '-'; 
         });
       } else {
         prevEduSection.classList.remove('hidden');
         prevEduInputs.forEach(input => {
           input.required = true;
-          if(input.value === '-') input.value = ''; // เคลียร์ค่าที่เคยใส่ - อัตโนมัติออก
+          if(input.value === '-') input.value = ''; 
         });
       }
     });
@@ -351,10 +324,7 @@
       const isBeginner = prevEduSection.classList.contains('hidden');
       
       const labels = [
-        ['ระดับชั้นที่สอบ', 'exam-level-text'],
-        ['รหัสสนามสอบ', 'exam-center-code'], ['ชื่อสนามสอบ', 'exam-center-name'],
-        ['ตำบล (สนามสอบ)', 'exam-center-subdistrict'], ['อำเภอ (สนามสอบ)', 'exam-center-district'],
-        ['จังหวัด (สนามสอบ)', 'exam-center-province'], ['ภาค', 'exam-center-region'],
+        ['ระดับชั้นที่สอบ', 'exam-level'],
         ['เลข ปชช. ๑๓ หลัก', 'id-card'], ['คำนำหน้า', 'title'],
         ['ชื่อ', 'first-name'], ['ฉายา', 'monastic-name'], ['นามสกุล', 'last-name'],
         ['เกิด', 'birth-date'], ['อุปสมบท', 'ordination-date'],
@@ -362,7 +332,6 @@
         ['อำเภอ', 'current-district'], ['จังหวัด', 'current-province']
       ];
 
-      // เพิ่มฟิลด์วุฒิเดิมหากไม่ใช่ชั้นเริ่มต้น
       if (!isBeginner) {
         labels.push(
           ['สำนักศาสนศึกษา (เดิม)', 'prev-edu-center'], ['ตำบล (เดิม)', 'prev-edu-subdistrict'],
@@ -381,12 +350,7 @@
         const labelEl = document.createElement('span'); labelEl.className = 'font-semibold text-slate-500 text-sm'; labelEl.textContent = label;
         const valueEl = document.createElement('span'); valueEl.className = 'font-medium text-slate-800 text-sm break-words';
         
-        let val = '';
-        if (id === 'exam-level-text') {
-          val = examLevelSelect.value;
-        } else {
-          val = fieldValue(id);
-        }
+        let val = fieldValue(id);
 
         if ((id === 'birth-date' || id === 'ordination-date') && val && val !== '-') {
             const dateObj = new Date(val);
@@ -399,13 +363,6 @@
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      // เช็คว่าเลือกระดับชั้นหรือยัง
-      if(!examLevelSelect.value) {
-        alert('กรุณาเลือกระดับชั้นที่สมัครสอบ (มุมขวาบน)');
-        examLevelSelect.focus();
-        return;
-      }
-
       if (form.checkValidity()) { 
         buildReview(); 
         reviewPanel.classList.remove('hidden'); 
@@ -430,12 +387,9 @@
 
       const formData = new FormData();
       formData.append('application_number', applicationNumberEl.textContent);
-      formData.append('exam_level', examLevelSelect.value);
       
       const fieldMapping = {
-        'exam_center_code': 'exam-center-code', 'exam_center_name': 'exam-center-name',
-        'exam_center_subdistrict': 'exam-center-subdistrict', 'exam_center_district': 'exam-center-district',
-        'exam_center_province': 'exam-center-province', 'exam_center_region': 'exam-center-region',
+        'exam_level': 'exam-level',
         'id_card': 'id-card', 'title': 'title', 'first_name': 'first-name', 
         'monastic_name': 'monastic-name', 'last_name': 'last-name',
         'birth_date': 'birth-date', 'ordination_date': 'ordination-date',
@@ -462,8 +416,7 @@
           setTimeout(() => {
             reviewPanel.classList.add('hidden');
             form.reset();
-            examLevelSelect.value = '';
-            prevEduSection.classList.remove('hidden'); // Reset กล่องกลับมา
+            prevEduSection.classList.remove('hidden'); 
             applicationNumberEl.textContent = createApplicationNumber();
             submitButton.disabled = false;
             submitButton.classList.replace('bg-emerald-600', 'bg-[#d97706]');
