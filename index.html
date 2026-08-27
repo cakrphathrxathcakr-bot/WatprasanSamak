@@ -23,6 +23,16 @@
       padding: 0.85rem 1rem; color: var(--text-main); font: inherit; transition: all 0.25s;
     }
     .form-field:focus { outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15); }
+    
+    /* สไตล์สำหรับช่องที่ถูกล็อก (Disabled) */
+    .form-field:disabled {
+      background-color: #f8fafc;
+      color: #94a3b8;
+      border-color: #e2e8f0;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
     .section-rule { border-top: 2px dashed #e2e8f0; }
     .section-number {
       display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 12px;
@@ -215,6 +225,7 @@
                 <div>
                   <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒินักธรรม <span class="text-red-500">*</span></label> 
                   <select id="dhamma-level" class="form-field prev-edu-input" required>
+                    <option value="">-- เลือกวุฒิ --</option>
                     <option value="ไม่มี">ไม่มี</option>
                     <option value="ตรี">ตรี</option>
                     <option value="โท">โท</option>
@@ -223,15 +234,15 @@
                 </div>
                 <div>
                   <label class="mb-1 block font-semibold text-slate-700 text-sm">ปีที่สอบได้ (พ.ศ.) <span class="text-red-500">*</span></label> 
-                  <input id="dhamma-year" class="form-field prev-edu-input" type="number" min="2400" max="2600" placeholder="ถ้าไม่มีให้ใส่ 0" required>
+                  <input id="dhamma-year" class="form-field prev-edu-input dhamma-related" type="number" min="2400" max="2600" placeholder="ระบุ พ.ศ." required>
                 </div>
                 <div>
                   <label class="mb-1 block font-semibold text-slate-700 text-sm">สำนักเรียนคณะจังหวัด <span class="text-red-500">*</span></label> 
-                  <input id="dhamma-province" class="form-field prev-edu-input" type="text" placeholder="ถ้าไม่มีให้ใส่ -" required>
+                  <input id="dhamma-province" class="form-field prev-edu-input dhamma-related" type="text" placeholder="ชื่อจังหวัด" required>
                 </div>
                 <div>
                   <label class="mb-1 block font-semibold text-slate-700 text-sm">เลขที่ใบประกาศ <span class="text-red-500">*</span></label> 
-                  <input id="dhamma-cert-no" class="form-field prev-edu-input" type="text" placeholder="ถ้าไม่มีให้ใส่ -" required>
+                  <input id="dhamma-cert-no" class="form-field prev-edu-input dhamma-related" type="text" placeholder="ระบุเลขที่" required>
                 </div>
               </div>
             </div>
@@ -243,6 +254,7 @@
                 <div>
                   <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒิบาลี <span class="text-red-500">*</span></label> 
                   <select id="pali-level" class="form-field prev-edu-input" required>
+                    <option value="">-- เลือกวุฒิ --</option>
                     <option value="ไม่มี">ไม่มี</option>
                     <option value="1-2">ประโยค 1-2</option>
                     <option value="3">ประโยค ป.ธ. 3</option>
@@ -256,15 +268,15 @@
                 </div>
                 <div>
                   <label class="mb-1 block font-semibold text-slate-700 text-sm">ปีที่สอบได้ (พ.ศ.) <span class="text-red-500">*</span></label> 
-                  <input id="pali-year" class="form-field prev-edu-input" type="number" min="2400" max="2600" placeholder="ถ้าไม่มีให้ใส่ 0" required>
+                  <input id="pali-year" class="form-field prev-edu-input pali-related" type="number" min="2400" max="2600" placeholder="ระบุ พ.ศ." required>
                 </div>
                 <div>
                   <label class="mb-1 block font-semibold text-slate-700 text-sm">สำนักเรียนคณะจังหวัด <span class="text-red-500">*</span></label> 
-                  <input id="pali-province" class="form-field prev-edu-input" type="text" placeholder="ถ้าไม่มีให้ใส่ -" required>
+                  <input id="pali-province" class="form-field prev-edu-input pali-related" type="text" placeholder="ชื่อจังหวัด" required>
                 </div>
                 <div>
                   <label class="mb-1 block font-semibold text-slate-700 text-sm">เลขที่ใบประกาศ <span class="text-red-500">*</span></label> 
-                  <input id="pali-cert-no" class="form-field prev-edu-input" type="text" placeholder="ถ้าไม่มีให้ใส่ -" required>
+                  <input id="pali-cert-no" class="form-field prev-edu-input pali-related" type="text" placeholder="ระบุเลขที่" required>
                 </div>
               </div>
             </div>
@@ -287,7 +299,7 @@
         
         <div class="mt-12 flex flex-col items-stretch justify-between gap-6 border-t-2 border-slate-100 pt-8 sm:flex-row sm:items-center">
           <p class="text-sm text-[#d97706] font-medium flex items-center gap-2 bg-amber-50 px-4 py-2 rounded-lg border border-amber-200/50">
-            <i data-lucide="info" class="h-4 w-4"></i> โปรดตรวจสอบข้อมูลทั้งหมดให้ถูกต้อง
+            <i data-lucide="info" class="h-4 w-4"></i> โปรดตรวจสอบข้อมูลทั้งหมดให้ถูกต้องก่อนบันทึก
           </p>
           <button id="review-btn" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#064e3b] text-white px-10 py-4 font-bold text-lg focus:outline-none focus:ring-4 focus:ring-emerald-500/30" type="submit"> 
             <i data-lucide="file-check-2" class="h-6 w-6"></i> 
@@ -332,6 +344,13 @@
     const examRadios = document.querySelectorAll('input[name="exam-level"]');
     const prevEduSection = document.getElementById('prev-edu-section');
     const prevEduInputs = document.querySelectorAll('.prev-edu-input');
+    
+    // Element กลุ่มวุฒิที่สอบได้เดิม
+    const dhammaLevelSelect = document.getElementById('dhamma-level');
+    const dhammaRelatedInputs = document.querySelectorAll('.dhamma-related');
+    const paliLevelSelect = document.getElementById('pali-level');
+    const paliRelatedInputs = document.querySelectorAll('.pali-related');
+
     const reviewPanel = document.getElementById('review-panel');
     const reviewList = document.getElementById('review-list');
     const submitMessage = document.getElementById('submit-message');
@@ -358,21 +377,47 @@
       return `${day} ${month} ${year}`;
     }
 
+    // Logic: ซ่อน/แสดง ภาคประวัติการศึกษา เมื่อเลือก "นักธรรมชั้นตรี"
     examRadios.forEach(radio => {
       radio.addEventListener('change', (e) => {
         const val = e.target.value;
         if (val === 'นักธรรมชั้นตรี') {
-          prevEduSection.classList.add('hidden');
-          prevEduSection.classList.add('opacity-0');
-          prevEduInputs.forEach(input => {
-            input.required = false;
-          });
+          prevEduSection.classList.add('hidden', 'opacity-0');
+          prevEduInputs.forEach(input => input.required = false);
         } else {
           prevEduSection.classList.remove('hidden');
           setTimeout(() => prevEduSection.classList.remove('opacity-0'), 10);
-          prevEduInputs.forEach(input => {
-            input.required = true;
-          });
+          // รีเฟรชสถานะ Required ใหม่ ตามตัวเลือกที่มีอยู่
+          dhammaLevelSelect.dispatchEvent(new Event('change'));
+          paliLevelSelect.dispatchEvent(new Event('change'));
+        }
+      });
+    });
+
+    // Logic: ปิดช่องกรอก (Disabled) อัตโนมัติเมื่อเลือก "ไม่มี" (วุฒินักธรรม)
+    dhammaLevelSelect.addEventListener('change', (e) => {
+      const isNone = (e.target.value === 'ไม่มี');
+      dhammaRelatedInputs.forEach(input => {
+        input.disabled = isNone;
+        input.required = !isNone && !prevEduSection.classList.contains('hidden'); // ห้าม set require ถ้าเซคชันโดนซ่อน
+        if (isNone) {
+          input.value = (input.type === 'number') ? '0' : '-';
+        } else if (input.value === '-' || input.value === '0') {
+          input.value = ''; // เคลียร์ช่องถ้าโดนปลดล็อกให้กรอกใหม่
+        }
+      });
+    });
+
+    // Logic: ปิดช่องกรอก (Disabled) อัตโนมัติเมื่อเลือก "ไม่มี" (วุฒิบาลี)
+    paliLevelSelect.addEventListener('change', (e) => {
+      const isNone = (e.target.value === 'ไม่มี');
+      paliRelatedInputs.forEach(input => {
+        input.disabled = isNone;
+        input.required = !isNone && !prevEduSection.classList.contains('hidden');
+        if (isNone) {
+          input.value = (input.type === 'number') ? '0' : '-';
+        } else if (input.value === '-' || input.value === '0') {
+          input.value = '';
         }
       });
     });
@@ -488,7 +533,7 @@
 
       for (const [key, id] of Object.entries(fieldMapping)) {
         if (isBeginner && (key.startsWith('dhamma_') || key.startsWith('pali_'))) {
-          formData.append(key, '-'); // ใส่ค่าขีดถ้าเป็นชั้นตรีและไม่ต้องส่งวุฒิเดิม
+          formData.append(key, '-'); 
         } else {
           formData.append(key, fieldValue(id));
         }
@@ -505,6 +550,8 @@
             reviewPanel.classList.add('hidden');
             form.reset();
             prevEduSection.classList.remove('hidden'); 
+            dhammaLevelSelect.dispatchEvent(new Event('change')); // รีเซ็ตการล็อกช่องกลับมา
+            paliLevelSelect.dispatchEvent(new Event('change'));
             applicationNumberEl.textContent = createApplicationNumber();
             submitButton.disabled = false;
             submitButton.classList.replace('bg-emerald-600', 'bg-[#d97706]');
