@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>บัญชีผู้ขอเข้าสอบความรู้ ธรรมศึกษา สนามหลวง</title>
+  <title>ใบสมัครขอเข้าศึกษาพระปริยัติธรรม วัดประสานศรัทธา</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Pridi:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,7 +17,6 @@
     * { box-sizing: border-box; }
     body { margin: 0; font-family: "Sarabun", sans-serif; color: var(--text-main); background: #f1f5f9; }
     
-    /* ซ่อนส่วนกระดาษพิมพ์ในหน้าจอปกติ */
     #printable-document { display: none; }
     
     @media screen {
@@ -35,8 +34,6 @@
         background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #ffffff; font-weight: 700;
         font-family: 'Pridi', serif; box-shadow: 0 4px 12px rgba(6, 78, 59, 0.25);
       }
-      .review-row:nth-child(odd) { background: #f8fafc; }
-      .review-row { display: grid; grid-template-columns: minmax(160px, .8fr) 1.5fr; gap: 1rem; padding: 0.85rem 1.25rem; }
       .btn-primary { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
       .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(6, 78, 59, 0.2); }
       .radio-card-input:checked + .radio-card { border-color: var(--gold); background-color: #fffbeb; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15); }
@@ -44,90 +41,75 @@
       .radio-card-input:checked + .radio-card .check-icon { opacity: 1; transform: scale(1); }
     }
 
-    @media (max-width: 640px) { .review-row { grid-template-columns: 1fr; gap: 0.25rem; padding: 0.75rem 1rem; } }
-    
-    /* สไตล์สำหรับการสั่งพิมพ์ (PDF) */
+    /* การตั้งค่าหน้าพิมพ์ (Print CSS) ให้เป๊ะตามไฟล์ต้นฉบับ */
     @media print {
-      @page { size: A4; margin: 15mm; }
-      body { background: white; color: black; font-size: 16pt; line-height: 1.6; }
+      @page { size: A4; margin: 15mm 20mm; }
+      body { background: white; color: #000; font-size: 15pt; line-height: 1.4; }
       .no-print, main, #review-panel { display: none !important; }
-      #printable-document { display: block !important; }
-      .print-border-b { border-bottom: 1px dotted #000; display: inline-block; padding: 0 10px; min-width: 50px; text-align: center; font-weight: bold; }
+      #printable-document { display: block !important; position: relative; }
+      
+      .print-title-wrapper { text-align: center; margin-bottom: 20px; font-weight: bold; }
+      .print-title-1 { font-size: 18pt; margin-bottom: 5px; }
+      .print-title-2 { font-size: 16pt; margin-bottom: 5px; }
+      .print-title-3 { font-size: 14pt; font-weight: normal; }
+      
+      .photo-box { position: absolute; top: 0; right: 0; width: 30mm; height: 40mm; border: 1px solid #000; display: flex; align-items: center; justify-content: center; font-size: 10pt; text-align: center; }
+      
+      .print-sec-title { font-weight: bold; font-size: 15pt; margin-top: 15px; margin-bottom: 10px; }
+      .print-row { display: flex; flex-wrap: wrap; margin-bottom: 8px; align-items: baseline; }
+      .print-label { white-space: nowrap; margin-right: 5px; }
+      .print-val { border-bottom: 1px dotted #000; display: inline-block; padding: 0 5px; text-align: center; color: #000; flex-grow: 1; min-width: 40px; }
+      
+      .id-card-boxes { display: inline-flex; gap: 2px; }
+      .id-card-box { border: 1px solid #000; width: 18px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 14pt; }
+      .id-dash { margin: 0 4px; }
+      
+      .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-left: 20px; }
+      .checkbox-item { display: flex; align-items: center; gap: 8px; }
+      .check-box { width: 16px; height: 16px; border: 1px solid #000; display: inline-block; position: relative; }
+      .check-box.checked::after { content: '✓'; position: absolute; top: -5px; left: 1px; font-size: 14pt; }
+      
+      .declaration { text-indent: 40px; margin-top: 20px; text-align: justify; }
+      
+      .signature-block { display: flex; justify-content: flex-end; margin-top: 20px; margin-bottom: 20px; }
+      .signature-content { text-align: center; width: 60%; }
+      
+      .bottom-blocks { display: flex; gap: 20px; margin-top: 10px; align-items: flex-start; }
+      .official-use { border: 1px solid #000; padding: 10px; width: 35%; height: 180px; }
+      .required-docs { border: 1px solid #000; padding: 10px; width: 65%; font-size: 13pt; position: relative; }
+      .qr-placeholder { position: absolute; right: 10px; bottom: 10px; width: 60px; height: 60px; border: 1px dashed #000; text-align: center; font-size: 9pt; display: flex; align-items: center; justify-content: center; }
     }
   </style>
 </head>
 <body class="paper-mark py-6 sm:py-12 min-h-screen">
   
-  <!-- หน้าเว็บหลัก -->
   <main class="mx-auto w-full max-w-4xl px-4 sm:px-6 no-print">
     <div class="overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-15px_rgba(6,78,59,0.15)] ring-1 ring-slate-200">
-      <header class="relative overflow-hidden bg-gradient-to-br from-[#064e3b] via-[#065f46] to-[#047857] px-6 py-12 text-center sm:px-12">
+      
+      <header class="relative overflow-hidden bg-gradient-to-br from-[#064e3b] via-[#065f46] to-[#047857] px-6 py-10 text-center sm:px-12">
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent bg-[length:24px_24px]"></div>
         <div class="relative z-10 mx-auto flex max-w-3xl flex-col items-center">
-          <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-[#fbbf24] bg-white/10 backdrop-blur-md text-[#fbbf24] shadow-[0_0_25px_rgba(251,191,36,0.25)] rotate-3">
+          <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-[#fbbf24] bg-white/10 backdrop-blur-md text-[#fbbf24] shadow-[0_0_25px_rgba(251,191,36,0.25)] rotate-3">
             <i data-lucide="book-open-check" class="h-8 w-8 -rotate-3"></i>
           </div>
-          <p class="mb-2 tracking-[.2em] text-[#fbbf24] font-medium text-sm">การศึกษาคณะสงฆ์</p>
-          <h1 class="thai-heading text-3xl sm:text-4xl text-white mt-1 drop-shadow-lg">บัญชีผู้ขอเข้าสอบความรู้</h1>
-          <p class="mt-3 text-emerald-100 font-light text-lg">แฟ้มสำหรับส่งสำนักงานแม่กองธรรมสนามหลวง</p>
+          <h1 class="thai-heading text-2xl sm:text-3xl text-white mt-1 drop-shadow-lg">ใบสมัครขอเข้าศึกษาพระปริยัติธรรม แผนกธรรมและบาลี</h1>
+          <p class="mt-2 text-emerald-100 font-light text-lg">สำนักศาสนศึกษาวัดประสานศรัทธา ประจำปีการศึกษา ๒๕๖๙</p>
         </div>
       </header>
 
-      <section class="border-b border-slate-100 bg-slate-50/50 px-6 py-4 sm:px-12 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-          <p class="text-sm font-semibold text-slate-500">เลขที่รายการ:</p>
-          <p id="application-number" class="font-bold tracking-[.1em] text-[#064e3b] text-lg bg-white px-3 py-1 rounded-lg shadow-sm border border-slate-200"></p>
-        </div>
-      </section>
-
       <form id="application-form" class="px-6 py-8 sm:px-12 sm:py-10" novalidate>
-        <!-- 1. ระดับชั้นที่สมัครสอบ -->
+        
+        <!-- 1. ข้อมูลประวัติส่วนตัว -->
         <section class="pt-2">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">1</span>
-            <h2 class="thai-heading text-2xl text-[#064e3b]">ระดับชั้นที่สมัครสอบ <span class="text-red-500 text-lg">*</span></h2>
+            <h2 class="thai-heading text-2xl text-[#064e3b]">ข้อมูลประวัติส่วนตัว</h2>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <label class="cursor-pointer relative">
-              <input type="radio" name="exam-level" value="นักธรรมชั้นตรี" class="radio-card-input sr-only" required>
-              <div class="radio-card rounded-2xl border-2 border-slate-200 p-5 transition-all hover:bg-slate-50 flex flex-col items-center justify-center text-center h-full relative overflow-hidden">
-                <i data-lucide="check-circle-2" class="check-icon absolute top-3 right-3 h-5 w-5 text-[#d97706] opacity-0 transition-all scale-50"></i>
-                <div class="radio-title font-bold text-lg text-slate-700 transition-colors thai-heading">นักธรรมชั้นตรี</div>
-                <div class="text-xs text-slate-500 mt-2 bg-slate-100 px-2 py-1 rounded-md">(ไม่ต้องกรอกวุฒิเดิม)</div>
-              </div>
-            </label>
-            <label class="cursor-pointer relative">
-              <input type="radio" name="exam-level" value="นักธรรมชั้นโท" class="radio-card-input sr-only" required>
-              <div class="radio-card rounded-2xl border-2 border-slate-200 p-5 transition-all hover:bg-slate-50 flex flex-col items-center justify-center text-center h-full relative overflow-hidden">
-                <i data-lucide="check-circle-2" class="check-icon absolute top-3 right-3 h-5 w-5 text-[#d97706] opacity-0 transition-all scale-50"></i>
-                <div class="radio-title font-bold text-lg text-slate-700 transition-colors thai-heading">นักธรรมชั้นโท</div>
-              </div>
-            </label>
-            <label class="cursor-pointer relative">
-              <input type="radio" name="exam-level" value="นักธรรมชั้นเอก" class="radio-card-input sr-only" required>
-              <div class="radio-card rounded-2xl border-2 border-slate-200 p-5 transition-all hover:bg-slate-50 flex flex-col items-center justify-center text-center h-full relative overflow-hidden">
-                <i data-lucide="check-circle-2" class="check-icon absolute top-3 right-3 h-5 w-5 text-[#d97706] opacity-0 transition-all scale-50"></i>
-                <div class="radio-title font-bold text-lg text-slate-700 transition-colors thai-heading">นักธรรมชั้นเอก</div>
-              </div>
-            </label>
-          </div>
-        </section>
-
-        <!-- 2. ประวัติผู้เข้าสอบ -->
-        <section class="section-rule mt-12 pt-10">
-          <div class="mb-6 flex items-center gap-4">
-            <span class="section-number">2</span>
-            <h2 class="thai-heading text-2xl text-[#064e3b]">ประวัติผู้เข้าสอบ</h2>
-          </div>
-          <div class="grid gap-6 md:grid-cols-2">
-            <div class="md:col-span-2">
-              <label class="mb-2 block font-semibold text-slate-700">เลขประจำตัวประชาชน ๑๓ หลัก <span class="text-red-500">*</span></label> 
-              <input id="id-card" class="form-field text-lg tracking-widest text-center md:text-left" type="text" maxlength="13" placeholder="ระบุเฉพาะตัวเลข 13 หลัก" required>
-            </div>
-            <div>
+          <div class="grid gap-6 md:grid-cols-12">
+            <div class="md:col-span-3">
               <label class="mb-2 block font-semibold text-slate-700">คำนำหน้าชื่อ <span class="text-red-500">*</span></label> 
               <select id="title" class="form-field" required>
-                <option value="">-- เลือกคำนำหน้า --</option>
+                <option value="">-- เลือก --</option>
                 <option value="พระ">พระ</option>
                 <option value="พระมหา">พระมหา</option>
                 <option value="สามเณร">สามเณร</option>
@@ -138,19 +120,29 @@
                 <option value="เด็กหญิง">เด็กหญิง</option>
               </select>
             </div>
-            <div>
+            <div class="md:col-span-4">
               <label class="mb-2 block font-semibold text-slate-700">ชื่อ <span class="text-red-500">*</span></label> 
               <input id="first-name" class="form-field" type="text" required>
             </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">ฉายา <span class="text-red-500">*</span></label> 
-              <input id="monastic-name" class="form-field" type="text" placeholder="หากไม่มีให้ใส่เครื่องหมาย -" required>
-            </div>
-            <div>
+            <div class="md:col-span-5">
               <label class="mb-2 block font-semibold text-slate-700">นามสกุล <span class="text-red-500">*</span></label> 
               <input id="last-name" class="form-field" type="text" required>
             </div>
-            <div>
+            
+            <div class="md:col-span-4">
+              <label class="mb-2 block font-semibold text-slate-700">ฉายา (ถ้ามี)</label> 
+              <input id="monastic-name" class="form-field" type="text" placeholder="ระบุฉายา หรือเว้นว่าง">
+            </div>
+            <div class="md:col-span-4">
+              <label class="mb-2 block font-semibold text-slate-700">อายุ (ปี) <span class="text-red-500">*</span></label> 
+              <input id="age" class="form-field" type="number" min="1" max="120" required>
+            </div>
+            <div class="md:col-span-4">
+              <label class="mb-2 block font-semibold text-slate-700">พรรษา (ถ้ามี)</label> 
+              <input id="ordination-years" class="form-field" type="number" min="0" max="100" placeholder="ฆราวาสเว้นว่าง">
+            </div>
+
+            <div class="md:col-span-6">
               <label class="mb-2 block font-semibold text-slate-700">เกิด (วัน/เดือน/ปี พ.ศ.) <span class="text-red-500">*</span></label> 
               <div class="grid grid-cols-3 gap-2">
                 <input id="birth-day" class="form-field text-center px-2" type="number" min="1" max="31" placeholder="วัน" required>
@@ -166,486 +158,454 @@
                 <input id="birth-year" class="form-field text-center px-2" type="number" min="2400" max="2600" placeholder="พ.ศ." required>
               </div>
             </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">อุปสมบท (วัน/เดือน/ปี พ.ศ.) <span class="text-red-500">*</span></label> 
-              <div class="grid grid-cols-3 gap-2">
-                <input id="ordination-day" class="form-field text-center px-2" type="number" min="1" max="31" placeholder="วัน" required>
-                <select id="ordination-month" class="form-field text-center px-1" required>
-                  <option value="">เดือน</option>
-                  <option value="มกราคม">ม.ค.</option><option value="กุมภาพันธ์">ก.พ.</option>
-                  <option value="มีนาคม">มี.ค.</option><option value="เมษายน">เม.ย.</option>
-                  <option value="พฤษภาคม">พ.ค.</option><option value="มิถุนายน">มิ.ย.</option>
-                  <option value="กรกฎาคม">ก.ค.</option><option value="สิงหาคม">ส.ค.</option>
-                  <option value="กันยายน">ก.ย.</option><option value="ตุลาคม">ต.ค.</option>
-                  <option value="พฤศจิกายน">พ.ย.</option><option value="ธันวาคม">ธ.ค.</option>
-                </select>
-                <input id="ordination-year" class="form-field text-center px-2" type="number" min="2400" max="2600" placeholder="พ.ศ." required>
-              </div>
-              <p class="text-xs text-slate-500 mt-1.5 flex items-center gap-1"><i data-lucide="info" class="h-3 w-3"></i> ฆราวาสให้ใส่วันที่ปัจจุบัน</p>
+            <div class="md:col-span-6">
+              <label class="mb-2 block font-semibold text-slate-700">เลขประจำตัวประชาชน ๑๓ หลัก <span class="text-red-500">*</span></label> 
+              <input id="id-card" class="form-field tracking-widest text-center" type="text" maxlength="13" required>
             </div>
           </div>
         </section>
 
-        <!-- 3. ที่อยู่ปัจจุบัน -->
+        <!-- 2. ข้อมูลที่อยู่และการติดต่อ -->
+        <section class="section-rule mt-12 pt-10">
+          <div class="mb-6 flex items-center gap-4">
+            <span class="section-number">2</span>
+            <h2 class="thai-heading text-2xl text-[#064e3b]">ข้อมูลที่อยู่และการติดต่อ</h2>
+          </div>
+          <div class="grid gap-6 md:grid-cols-12">
+            <div class="md:col-span-6">
+              <label class="mb-2 block font-semibold text-slate-700">สังกัดวัด / สถานที่อยู่ <span class="text-red-500">*</span></label> 
+              <input id="current-temple" class="form-field" type="text" required>
+            </div>
+            <div class="md:col-span-3">
+              <label class="mb-2 block font-semibold text-slate-700">หมู่ที่</label> 
+              <input id="moo" class="form-field" type="text">
+            </div>
+            <div class="md:col-span-3">
+              <label class="mb-2 block font-semibold text-slate-700">ถนน</label> 
+              <input id="road" class="form-field" type="text">
+            </div>
+            <div class="md:col-span-4">
+              <label class="mb-2 block font-semibold text-slate-700">ตำบล/แขวง <span class="text-red-500">*</span></label> 
+              <input id="subdistrict" class="form-field" type="text" required>
+            </div>
+            <div class="md:col-span-4">
+              <label class="mb-2 block font-semibold text-slate-700">อำเภอ/เขต <span class="text-red-500">*</span></label> 
+              <input id="district" class="form-field" type="text" required>
+            </div>
+            <div class="md:col-span-4">
+              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
+              <input id="province" class="form-field" type="text" required>
+            </div>
+            <div class="md:col-span-4">
+              <label class="mb-2 block font-semibold text-slate-700">รหัสไปรษณีย์ <span class="text-red-500">*</span></label> 
+              <input id="postcode" class="form-field" type="text" maxlength="5" required>
+            </div>
+            <div class="md:col-span-4">
+              <label class="mb-2 block font-semibold text-slate-700">เบอร์โทรศัพท์ <span class="text-red-500">*</span></label> 
+              <input id="phone" class="form-field" type="tel" required>
+            </div>
+            <div class="md:col-span-4">
+              <label class="mb-2 block font-semibold text-slate-700">ID Line</label> 
+              <input id="line-id" class="form-field" type="text">
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. วุฒิการศึกษาเดิม -->
         <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">3</span>
-            <h2 class="thai-heading text-2xl text-[#064e3b]">ที่อยู่ปัจจุบัน</h2>
+            <h2 class="thai-heading text-2xl text-[#064e3b]">วุฒิการศึกษาเดิม</h2>
           </div>
-          <div class="grid gap-6 md:grid-cols-2">
+          <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 grid gap-6">
             <div>
-              <label class="mb-2 block font-semibold text-slate-700">ชื่อวัด/สถานที่อยู่ <span class="text-red-500">*</span></label> 
-              <input id="current-temple" class="form-field" type="text" required>
+              <label class="mb-2 block font-semibold text-slate-700">วุฒิการศึกษาทางโลก ระดับ <span class="text-red-500">*</span></label> 
+              <input id="secular-edu" class="form-field" type="text" placeholder="เช่น ม.3, ม.6, ปริญญาตรี" required>
             </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">ตำบล <span class="text-red-500">*</span></label> 
-              <input id="current-subdistrict" class="form-field" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">อำเภอ <span class="text-red-500">*</span></label> 
-              <input id="current-district" class="form-field" type="text" required>
-            </div>
-            <div>
-              <label class="mb-2 block font-semibold text-slate-700">จังหวัด <span class="text-red-500">*</span></label> 
-              <input id="current-province" class="form-field" type="text" required>
-            </div>
-          </div>
-        </section>
-
-        <!-- 4. ประโยคเดิม -->
-        <section id="prev-edu-section" class="section-rule mt-12 pt-10 transition-all duration-300">
-          <div class="mb-6 flex items-center gap-4">
-            <span class="section-number">4</span>
-            <h2 class="thai-heading text-2xl text-[#064e3b]">ประโยคเดิม (วุฒิเดิมที่สอบได้)</h2>
-          </div>
-          <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 grid gap-8">
-            <!-- นักธรรม -->
-            <div>
-              <h3 class="font-bold text-lg text-emerald-800 mb-4 border-b border-slate-200 pb-2">วุฒินักธรรม</h3>
-              <div class="grid gap-4 md:grid-cols-2">
-                <div>
-                  <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒินักธรรม <span class="text-red-500">*</span></label> 
-                  <select id="dhamma-level" class="form-field prev-edu-input" required>
-                    <option value="">-- เลือกวุฒิ --</option>
-                    <option value="ไม่มี">ไม่มี</option><option value="ตรี">ตรี</option>
-                    <option value="โท">โท</option><option value="เอก">เอก</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="mb-1 block font-semibold text-slate-700 text-sm">ปีที่สอบได้ (พ.ศ.) <span class="text-red-500">*</span></label> 
-                  <input id="dhamma-year" class="form-field prev-edu-input dhamma-related" type="number" min="2400" max="2600" placeholder="ระบุ พ.ศ." required>
-                </div>
-                <div>
-                  <label class="mb-1 block font-semibold text-slate-700 text-sm">สำนักเรียนคณะจังหวัด <span class="text-red-500">*</span></label> 
-                  <input id="dhamma-province" class="form-field prev-edu-input dhamma-related" type="text" placeholder="ชื่อจังหวัด" required>
-                </div>
-                <div>
-                  <label class="mb-1 block font-semibold text-slate-700 text-sm">เลขที่ใบประกาศ <span class="text-red-500">*</span></label> 
-                  <input id="dhamma-cert-no" class="form-field prev-edu-input dhamma-related" type="text" placeholder="ระบุเลขที่" required>
-                </div>
+            <div class="grid gap-4 md:grid-cols-3 items-end">
+              <div>
+                <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒินักธรรม <span class="text-red-500">*</span></label> 
+                <select id="dhamma-level" class="form-field" required>
+                  <option value="">-- เลือกวุฒิ --</option>
+                  <option value="ไม่มี">ไม่มี</option><option value="ตรี">ตรี</option>
+                  <option value="โท">โท</option><option value="เอก">เอก</option>
+                </select>
+              </div>
+              <div>
+                <label class="mb-1 block font-semibold text-slate-700 text-sm">สำนักศาสนศึกษา (จาก)</label> 
+                <input id="dhamma-office" class="form-field dhamma-related" type="text">
+              </div>
+              <div>
+                <label class="mb-1 block font-semibold text-slate-700 text-sm">เลขที่ใบประกาศ</label> 
+                <input id="dhamma-cert-no" class="form-field dhamma-related" type="text">
               </div>
             </div>
-            <!-- บาลี -->
-            <div>
-              <h3 class="font-bold text-lg text-emerald-800 mb-4 border-b border-slate-200 pb-2">วุฒิบาลี</h3>
-              <div class="grid gap-4 md:grid-cols-2">
-                <div>
-                  <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒิบาลี <span class="text-red-500">*</span></label> 
-                  <select id="pali-level" class="form-field prev-edu-input" required>
-                    <option value="">-- เลือกวุฒิ --</option>
-                    <option value="ไม่มี">ไม่มี</option><option value="1-2">ประโยค 1-2</option>
-                    <option value="3">ประโยค ป.ธ. 3</option><option value="4">ประโยค ป.ธ. 4</option>
-                    <option value="5">ประโยค ป.ธ. 5</option><option value="6">ประโยค ป.ธ. 6</option>
-                    <option value="7">ประโยค ป.ธ. 7</option><option value="8">ประโยค ป.ธ. 8</option>
-                    <option value="9">ประโยค ป.ธ. 9</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="mb-1 block font-semibold text-slate-700 text-sm">ปีที่สอบได้ (พ.ศ.) <span class="text-red-500">*</span></label> 
-                  <input id="pali-year" class="form-field prev-edu-input pali-related" type="number" min="2400" max="2600" placeholder="ระบุ พ.ศ." required>
-                </div>
-                <div>
-                  <label class="mb-1 block font-semibold text-slate-700 text-sm">สำนักเรียนคณะจังหวัด <span class="text-red-500">*</span></label> 
-                  <input id="pali-province" class="form-field prev-edu-input pali-related" type="text" placeholder="ชื่อจังหวัด" required>
-                </div>
-                <div>
-                  <label class="mb-1 block font-semibold text-slate-700 text-sm">เลขที่ใบประกาศ <span class="text-red-500">*</span></label> 
-                  <input id="pali-cert-no" class="form-field prev-edu-input pali-related" type="text" placeholder="ระบุเลขที่" required>
-                </div>
+            <div class="grid gap-4 md:grid-cols-3 items-end">
+              <div>
+                <label class="mb-1 block font-semibold text-slate-700 text-sm">วุฒิบาลี <span class="text-red-500">*</span></label> 
+                <select id="pali-level" class="form-field" required>
+                  <option value="">-- เลือกวุฒิ --</option>
+                  <option value="ไม่มี">ไม่มี</option><option value="1-2">ประโยค 1-2</option>
+                  <option value="3">ประโยค ป.ธ. 3</option><option value="4">ประโยค ป.ธ. 4</option>
+                  <option value="5">ประโยค ป.ธ. 5</option><option value="6">ประโยค ป.ธ. 6</option>
+                  <option value="7">ประโยค ป.ธ. 7</option><option value="8">ประโยค ป.ธ. 8</option>
+                  <option value="9">ประโยค ป.ธ. 9</option>
+                </select>
+              </div>
+              <div>
+                <label class="mb-1 block font-semibold text-slate-700 text-sm">สำนักศาสนศึกษา (จาก)</label> 
+                <input id="pali-office" class="form-field pali-related" type="text">
+              </div>
+              <div>
+                <label class="mb-1 block font-semibold text-slate-700 text-sm">เลขที่ใบประกาศ</label> 
+                <input id="pali-cert-no" class="form-field pali-related" type="text">
               </div>
             </div>
           </div>
         </section>
 
+        <!-- 4. ประสงค์เรียนต่อ -->
         <section class="section-rule mt-12 pt-10">
           <div class="mb-6 flex items-center gap-4">
-            <span class="section-number">5</span>
-            <h2 class="thai-heading text-2xl text-[#064e3b]">เพิ่มเติม (ไม่บังคับ)</h2>
+            <span class="section-number">4</span>
+            <h2 class="thai-heading text-2xl text-[#064e3b]">มีความประสงค์ในการสมัครเรียนต่อในชั้น <span class="text-red-500 text-lg">*</span></h2>
           </div>
-          <div>
-            <label class="mb-2 block font-semibold text-slate-700">หมายเหตุ</label> 
-            <textarea id="remarks" class="form-field h-28 resize-none" placeholder="กรอกหมายเหตุ หรือเว้นว่างไว้"></textarea>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="border border-slate-200 rounded-xl p-5">
+              <h3 class="font-bold text-emerald-800 mb-4 border-b pb-2">แผนกธรรม</h3>
+              <div class="flex flex-col gap-3">
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="นักธรรมตรี" required class="w-4 h-4 text-emerald-600"> นักธรรมตรี / ธรรมศึกษาตรี</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="นักธรรมโท" required class="w-4 h-4 text-emerald-600"> นักธรรมโท / ธรรมศึกษาโท</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="นักธรรมเอก" required class="w-4 h-4 text-emerald-600"> นักธรรมเอก / ธรรมศึกษาเอก</label>
+              </div>
+            </div>
+            <div class="border border-slate-200 rounded-xl p-5">
+              <h3 class="font-bold text-emerald-800 mb-4 border-b pb-2">แผนกบาลี</h3>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ประโยค 1-2" required class="w-4 h-4 text-emerald-600"> ประโยค 1-2</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.3" required class="w-4 h-4 text-emerald-600"> ป.ธ.3</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.4" required class="w-4 h-4 text-emerald-600"> ป.ธ.4</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.5" required class="w-4 h-4 text-emerald-600"> ป.ธ.5</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.6" required class="w-4 h-4 text-emerald-600"> ป.ธ.6</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.7" required class="w-4 h-4 text-emerald-600"> ป.ธ.7</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.8" required class="w-4 h-4 text-emerald-600"> ป.ธ.8</label>
+                <label class="cursor-pointer flex items-center gap-3"><input type="radio" name="exam-level" value="ป.ธ.9" required class="w-4 h-4 text-emerald-600"> ป.ธ.9</label>
+              </div>
+            </div>
           </div>
         </section>
 
+        <div id="form-message" class="mt-8 hidden rounded-xl border px-4 py-3 text-sm"></div>
+        
         <div class="mt-12 flex flex-col items-stretch justify-between gap-6 border-t-2 border-slate-100 pt-8 sm:flex-row sm:items-center">
           <p class="text-sm text-[#d97706] font-medium flex items-center gap-2 bg-amber-50 px-4 py-2 rounded-lg border border-amber-200/50">
             <i data-lucide="info" class="h-4 w-4"></i> โปรดตรวจสอบข้อมูลทั้งหมดให้ถูกต้องก่อนบันทึก
           </p>
-          <button id="review-btn" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#064e3b] text-white px-10 py-4 font-bold text-lg focus:outline-none focus:ring-4 focus:ring-emerald-500/30" type="submit"> 
-            <i data-lucide="file-check-2" class="h-6 w-6"></i> 
-            <span>ตรวจสอบข้อมูลบัญชี</span> 
+          <button class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#064e3b] text-white px-10 py-4 font-bold text-lg focus:outline-none focus:ring-4 focus:ring-emerald-500/30" type="submit" id="main-submit-btn"> 
+            <i data-lucide="send" class="h-6 w-6"></i> 
+            <span>บันทึกและสร้างใบสมัคร</span> 
           </button>
         </div>
       </form>
     </div>
   </main>
 
-  <!-- หน้าต่าง Review (Modal) -->
-  <div id="review-panel" class="no-print fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-md p-4 sm:p-8 transition-opacity">
-    <div class="mx-auto my-4 sm:my-8 w-full max-w-4xl rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden flex flex-col">
-      <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-6 py-6 sm:px-10">
-        <div>
-          <p class="text-sm font-bold text-[#d97706] tracking-wider mb-1" id="modal-subtitle">ขั้นตอนสุดท้าย</p>
-          <h2 class="thai-heading text-[#064e3b] text-2xl" id="modal-title">ยืนยันข้อมูลผู้ขอเข้าสอบ</h2>
-        </div>
-        <button id="close-review" class="rounded-full p-2 text-slate-400 hover:bg-slate-200 hover:text-slate-700 transition-colors"> 
-          <i data-lucide="x" class="h-6 w-6"></i> 
-        </button>
+  <!-- หน้าต่างความสำเร็จ -->
+  <div id="success-panel" class="no-print fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-md p-4 sm:p-8 transition-opacity">
+    <div class="mx-auto my-4 sm:my-8 w-full max-w-2xl rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden flex flex-col p-10 text-center">
+      <div class="h-24 w-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <i data-lucide="check-circle-2" class="h-12 w-12"></i>
       </div>
+      <h2 class="thai-heading text-[#064e3b] text-3xl mb-3">บันทึกข้อมูลสำเร็จ!</h2>
+      <p class="text-slate-600 text-lg mb-8">ระบบจัดทำฟอร์มใบสมัครสำหรับปริ้นและลงนามเรียบร้อยแล้ว</p>
       
-      <div class="px-6 py-6 sm:px-10 flex-1 overflow-y-auto max-h-[70vh]" id="modal-body-content">
-        <div id="review-list" class="overflow-hidden rounded-2xl border border-slate-200 bg-white grid grid-cols-1 md:grid-cols-2"></div>
-      </div>
-
-      <div class="bg-slate-50 px-6 py-6 sm:px-10 border-t border-slate-100 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end" id="modal-footer-buttons">
-        <button id="edit-button" class="inline-flex items-center justify-center rounded-xl border-2 border-slate-300 bg-white text-slate-700 px-8 py-3.5 font-bold hover:bg-slate-50 hover:text-[#064e3b] transition-colors" type="button">กลับไปแก้ไข</button> 
-        <button id="submit-button" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#d97706] text-white px-10 py-3.5 font-bold shadow-lg hover:bg-[#b45309]" type="button"> 
-          <i data-lucide="send" class="h-5 w-5"></i> 
-          <span>บันทึกส่งข้อมูล</span> 
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <button onclick="location.reload()" class="inline-flex items-center justify-center rounded-xl border-2 border-slate-300 bg-white text-slate-700 px-8 py-3.5 font-bold hover:bg-slate-50 transition-colors" type="button">กลับไปหน้าแรก</button> 
+        <button onclick="window.print()" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#d97706] text-white px-10 py-3.5 font-bold shadow-lg hover:bg-[#b45309]" type="button"> 
+          <i data-lucide="printer" class="h-5 w-5"></i> 
+          <span>🖨️ พิมพ์/บันทึก PDF ใบสมัคร</span> 
         </button>
       </div>
     </div>
   </div>
 
-  <!-- โครงสร้างเอกสาร PDF สำหรับพิมพ์ (ซ่อนในหน้าจอปกติ จะแสดงเมื่อสั่งพิมพ์) -->
+  <!-- โครงสร้างเอกสาร PDF สำหรับพิมพ์ (อิงจากใบสมัครขอเข้าศึกษาพระปริยัติธรรม) -->
   <div id="printable-document">
-    <div style="text-align: center; margin-bottom: 30px;">
-      <h1 style="font-size: 24pt; font-weight: bold; margin-bottom: 5px;">ใบสมัครเข้าสอบความรู้ธรรมสนามหลวง</h1>
-      <p style="font-size: 18pt;">ประจำปีการศึกษา ....................................</p>
+    <div class="photo-box">
+      ติดภาพถ่าย<br>๑ นิ้ว หรือ ๑.๕ นิ้ว
     </div>
 
-    <div style="margin-bottom: 25px;">
-      <p>
-        <strong>ระดับชั้นที่สมัครสอบ:</strong> <span class="print-border-b" id="print-exam-level"></span>
-      </p>
+    <div class="print-title-wrapper">
+      <div class="print-title-1">ใบสมัครขอเข้าศึกษาพระปริยัติธรรม แผนกธรรมและบาลี</div>
+      <div class="print-title-2">สำนักศาสนศึกษาวัดประสานศรัทธา</div>
+      <div class="print-title-3">ประจำปีการศึกษา ๒๕๖๙</div>
     </div>
 
-    <div style="margin-bottom: 25px;">
-      <p style="margin-bottom: 10px;">
-        <strong>๑. ประวัติผู้เข้าสอบ:</strong>
-      </p>
-      <p style="text-indent: 40px; margin-bottom: 10px;">
-        ข้าพเจ้า <span class="print-border-b" id="print-fullname"></span> 
-        ฉายา <span class="print-border-b" id="print-monastic"></span>
-        นามสกุล <span class="print-border-b" id="print-lastname"></span>
-      </p>
-      <p style="text-indent: 40px; margin-bottom: 10px;">
-        เลขประจำตัวประชาชน <span class="print-border-b" id="print-idcard"></span> 
-        เกิดเมื่อวันที่ <span class="print-border-b" id="print-birth"></span>
-      </p>
-      <p style="text-indent: 40px; margin-bottom: 10px;">
-        อุปสมบทเมื่อวันที่ <span class="print-border-b" id="print-ord"></span>
-      </p>
+    <div class="print-sec-title">๑. ข้อมูลประวัติส่วนตัว</div>
+    <div class="print-row">
+      <span class="print-label">ชื่อ</span><span class="print-val" id="p-name" style="flex:2;"></span>
+      <span class="print-label">ฉายา</span><span class="print-val" id="p-monastic" style="flex:1;"></span>
+      <span class="print-label">นามสกุล</span><span class="print-val" id="p-last" style="flex:2;"></span>
     </div>
-
-    <div style="margin-bottom: 25px;">
-      <p style="margin-bottom: 10px;">
-        <strong>๒. ที่อยู่ปัจจุบัน (สังกัดวัด):</strong>
-      </p>
-      <p style="text-indent: 40px; margin-bottom: 10px;">
-        วัด/สถานที่อยู่ <span class="print-border-b" id="print-temple"></span>
-        ตำบล <span class="print-border-b" id="print-subdist"></span>
-      </p>
-      <p style="text-indent: 40px; margin-bottom: 10px;">
-        อำเภอ <span class="print-border-b" id="print-dist"></span>
-        จังหวัด <span class="print-border-b" id="print-prov"></span>
-      </p>
+    <div class="print-row">
+      <span class="print-label">อายุ</span><span class="print-val" id="p-age" style="flex:0.5;"></span><span class="print-label">ปี</span>
+      <span class="print-label">พรรษา</span><span class="print-val" id="p-ord" style="flex:0.5;"></span>
+      <span class="print-label">เกิดวันที่</span><span class="print-val" id="p-bday" style="flex:0.5;"></span>
+      <span class="print-label">เดือน</span><span class="print-val" id="p-bmonth" style="flex:1;"></span>
+      <span class="print-label">พ.ศ.</span><span class="print-val" id="p-byear" style="flex:0.8;"></span>
     </div>
-
-    <div id="print-edu-block" style="margin-bottom: 25px;">
-      <p style="margin-bottom: 10px;">
-        <strong>๓. ประวัติการศึกษา (ประโยคเดิมที่สอบได้):</strong>
-      </p>
-      <p style="text-indent: 40px; margin-bottom: 10px;">
-        วุฒินักธรรม <span class="print-border-b" id="print-dh-level"></span>
-        ปีที่สอบได้ (พ.ศ.) <span class="print-border-b" id="print-dh-year"></span>
-      </p>
-      <p style="text-indent: 40px; margin-bottom: 10px;">
-        สำนักเรียนคณะจังหวัด <span class="print-border-b" id="print-dh-prov"></span>
-        เลขที่ใบประกาศ <span class="print-border-b" id="print-dh-cert"></span>
-      </p>
-      <p style="text-indent: 40px; margin-bottom: 10px; margin-top: 20px;">
-        วุฒิบาลี <span class="print-border-b" id="print-pa-level"></span>
-        ปีที่สอบได้ (พ.ศ.) <span class="print-border-b" id="print-pa-year"></span>
-      </p>
-      <p style="text-indent: 40px; margin-bottom: 10px;">
-        สำนักเรียนคณะจังหวัด <span class="print-border-b" id="print-pa-prov"></span>
-        เลขที่ใบประกาศ <span class="print-border-b" id="print-pa-cert"></span>
-      </p>
-    </div>
-
-    <div style="margin-bottom: 40px;">
-      <p><strong>๔. หมายเหตุ:</strong> <span class="print-border-b" id="print-remarks"></span></p>
-    </div>
-
-    <div style="display: flex; justify-content: space-between; margin-top: 80px; padding: 0 40px;">
-      <div style="text-align: center;">
-        <p>(ลงชื่อ)...........................................................ผู้รับรอง</p>
-        <p style="margin-top: 10px;">(...........................................................)</p>
-        <p style="margin-top: 10px;">ตำแหน่ง เจ้าอาวาสวัด...............................</p>
+    <div class="print-row" style="margin-top: 10px;">
+      <span class="print-label">เลขประจำตัวประชาชน</span>
+      <div class="id-card-boxes" id="p-idboxes">
+        <!-- Rendered by JS -->
       </div>
-      <div style="text-align: center;">
-        <p>(ลงชื่อ)...........................................................ผู้สมัครสอบ</p>
-        <p style="margin-top: 10px;">( <span class="print-border-b" id="print-sign-name" style="min-width: 150px;"></span> )</p>
-        <p style="margin-top: 10px;">วันที่...........เดือน...........................พ.ศ.............</p>
+    </div>
+
+    <div class="print-sec-title">๒. ข้อมูลที่อยู่และการติดต่อ</div>
+    <div class="print-row">
+      <span class="print-label">สังกัดวัด</span><span class="print-val" id="p-temple" style="flex:2;"></span>
+      <span class="print-label">หมู่ที่</span><span class="print-val" id="p-moo" style="flex:0.5;"></span>
+      <span class="print-label">ถนน</span><span class="print-val" id="p-road" style="flex:1.5;"></span>
+    </div>
+    <div class="print-row">
+      <span class="print-label">ตำบล/แขวง</span><span class="print-val" id="p-sub" style="flex:1;"></span>
+      <span class="print-label">อำเภอ/เขต</span><span class="print-val" id="p-dist" style="flex:1;"></span>
+      <span class="print-label">จังหวัด</span><span class="print-val" id="p-prov" style="flex:1;"></span>
+    </div>
+    <div class="print-row">
+      <span class="print-label">รหัสไปรษณีย์</span><span class="print-val" id="p-post" style="flex:1;"></span>
+      <span class="print-label">เบอร์โทรศัพท์</span><span class="print-val" id="p-phone" style="flex:1.5;"></span>
+      <span class="print-label">ID Line</span><span class="print-val" id="p-line" style="flex:1.5;"></span>
+    </div>
+
+    <div class="print-sec-title">๓. วุฒิการศึกษาเดิม</div>
+    <div class="print-row">
+      <span class="print-label">วุฒิการศึกษาทางโลก ระดับ</span><span class="print-val" id="p-secular" style="flex:1;"></span>
+    </div>
+    <div class="print-row">
+      <span class="print-label">วุฒินักธรรม</span><span class="print-val" id="p-dh-lvl" style="flex:0.8;"></span>
+      <span class="print-label">สำนักศาสนศึกษา</span><span class="print-val" id="p-dh-sch" style="flex:2;"></span>
+      <span class="print-label">จาก</span><span class="print-val" id="p-dh-from" style="flex:1; border-bottom:none;"></span> <!-- "จาก" is part of the sentence but usually no fill -->
+      <span class="print-label">เลขที่ใบประกาศ</span><span class="print-val" id="p-dh-cert" style="flex:1;"></span>
+    </div>
+    <div class="print-row">
+      <span class="print-label">วุฒิบาลี</span><span class="print-val" id="p-pa-lvl" style="flex:1;"></span>
+      <span class="print-label">สำนักศาสนศึกษา</span><span class="print-val" id="p-pa-sch" style="flex:2;"></span>
+      <span class="print-label">เลขที่ใบประกาศ</span><span class="print-val" id="p-pa-cert" style="flex:1;"></span>
+    </div>
+
+    <div class="print-sec-title">๔. มีความประสงค์ในการสมัครเรียนต่อในชั้น</div>
+    <div class="checkbox-grid">
+      <div>
+        <div style="font-weight: bold; margin-bottom: 5px;">แผนกธรรม</div>
+        <div class="checkbox-item"><span class="check-box" id="cb-dh-1"></span> นักธรรมตรี</div>
+        <div class="checkbox-item"><span class="check-box" id="cb-dh-2"></span> นักธรรมโท</div>
+        <div class="checkbox-item"><span class="check-box" id="cb-dh-3"></span> นักธรรมเอก</div>
+      </div>
+      <div>
+        <div style="font-weight: bold; margin-bottom: 5px;">แผนกบาลี</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+          <div class="checkbox-item"><span class="check-box" id="cb-pa-1"></span> ประโยค ๑-๒</div>
+          <div class="checkbox-item"><span class="check-box" id="cb-pa-6"></span> ป.ธ.๖</div>
+          <div class="checkbox-item"><span class="check-box" id="cb-pa-3"></span> ป.ธ.๓</div>
+          <div class="checkbox-item"><span class="check-box" id="cb-pa-7"></span> ป.ธ.๗</div>
+          <div class="checkbox-item"><span class="check-box" id="cb-pa-4"></span> ป.ธ.๔</div>
+          <div class="checkbox-item"><span class="check-box" id="cb-pa-8"></span> ป.ธ.๘</div>
+          <div class="checkbox-item"><span class="check-box" id="cb-pa-5"></span> ป.ธ.๕</div>
+          <div class="checkbox-item"><span class="check-box" id="cb-pa-9"></span> ป.ธ.๙</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="declaration">
+      ข้าพเจ้าขอรับรองว่าข้อมูลข้างต้นเป็นความจริงทุกประการ และหากได้รับอนุญาตให้เข้าศึกษาแล้ว ข้าพเจ้ายินดีที่จะตั้งใจศึกษาเล่าเรียน และปฏิบัติตามระเบียบของสำนักศาสนศึกษาทุกประการ
+    </div>
+
+    <div class="signature-block">
+      <div class="signature-content">
+        <div class="print-row" style="justify-content: center;">
+          <span class="print-label">ลงชื่อ</span><span class="print-val" style="width: 200px; flex:none;"></span><span class="print-label">ผู้สมัคร</span>
+        </div>
+        <div style="margin-top: 10px;">
+          (<span class="print-val" id="p-signname" style="width: 200px; flex:none; border-bottom: none;"></span>)
+        </div>
+        <div class="print-row" style="justify-content: center; margin-top: 10px;">
+          <span class="print-label">วันที่</span><span class="print-val" style="width: 40px; flex:none;"></span>
+          <span class="print-label">เดือน</span><span class="print-val" style="width: 100px; flex:none;"></span>
+          <span class="print-label">พ.ศ.</span><span class="print-val" style="width: 60px; flex:none;"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-blocks">
+      <div class="official-use">
+        <div style="text-align: center; font-weight: bold; margin-bottom: 20px;">สำหรับเจ้าหน้าที่</div>
+      </div>
+      <div class="required-docs">
+        <div style="font-weight: bold; margin-bottom: 10px;">หมายเหตุ: เอกสารที่ต้องแนบ</div>
+        <div class="checkbox-item"><span class="check-box"></span> ๑. รูปถ่ายขนาด ๑ นิ้ว หรือ ๑.๕ นิ้ว จำนวน ๑ รูป</div>
+        <div class="checkbox-item"><span class="check-box"></span> ๒. สำเนาหนังสือสุทธิ จำนวน ๑ ฉบับ (รับรองสำเนาถูกต้อง)</div>
+        <div class="checkbox-item"><span class="check-box"></span> ๓. สำเนาบัตรประจำตัวประชาชน จำนวน ๑ ฉบับ (รับรองสำเนาถูกต้อง)</div>
+        <div class="checkbox-item"><span class="check-box"></span> ๔. สำเนาใบประกาศนียบัตรนักธรรม/บาลี (ถ้ามี) จำนวน ๑ ฉบับ</div>
+        <div style="font-size: 11pt; margin-top: 10px; color: #333;">**กรณีไม่ได้เอาเอกสารมา กรุณาแจ้งเจ้าหน้าที่ และถ่ายภาพส่งในกลุ่มไลน์ภายหลัง</div>
+        <div class="qr-placeholder">กลุ่มไลน์<br>ส่งเอกสาร</div>
       </div>
     </div>
   </div>
 
   <script>
+    // URL ของ Google Apps Script
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDShK_0ZIhg0IG6LCI9RgnDELik2umcCQDMt5kfgn6iygCnQhXHrCZqz7AJNMfKYL8/exec';
 
     const form = document.getElementById('application-form');
-    const examRadios = document.querySelectorAll('input[name="exam-level"]');
-    const prevEduSection = document.getElementById('prev-edu-section');
-    const prevEduInputs = document.querySelectorAll('.prev-edu-input');
     const dhammaLevelSelect = document.getElementById('dhamma-level');
     const dhammaRelatedInputs = document.querySelectorAll('.dhamma-related');
     const paliLevelSelect = document.getElementById('pali-level');
     const paliRelatedInputs = document.querySelectorAll('.pali-related');
-
-    const reviewPanel = document.getElementById('review-panel');
-    const reviewList = document.getElementById('review-list');
-    const applicationNumberEl = document.getElementById('application-number');
-    const submitButton = document.getElementById('submit-button');
-    const modalFooterButtons = document.getElementById('modal-footer-buttons');
+    const successPanel = document.getElementById('success-panel');
+    const mainSubmitBtn = document.getElementById('main-submit-btn');
 
     lucide.createIcons();
 
-    function createApplicationNumber() {
-      return 'NKT-' + Date.now().toString().slice(-6);
-    }
-    applicationNumberEl.textContent = createApplicationNumber();
+    // Logic จัดการ Disable วุฒิการศึกษาเดิม
+    dhammaLevelSelect.addEventListener('change', (e) => {
+      const isNone = (e.target.value === 'ไม่มี' || e.target.value === '');
+      dhammaRelatedInputs.forEach(input => {
+        input.disabled = isNone;
+        if (isNone) input.value = '';
+      });
+    });
+
+    paliLevelSelect.addEventListener('change', (e) => {
+      const isNone = (e.target.value === 'ไม่มี' || e.target.value === '');
+      paliRelatedInputs.forEach(input => {
+        input.disabled = isNone;
+        if (isNone) input.value = '';
+      });
+    });
+
+    function fieldValue(id) { return document.getElementById(id) ? document.getElementById(id).value.trim() : ''; }
 
     function getSelectedExamLevel() {
       const selected = document.querySelector('input[name="exam-level"]:checked');
       return selected ? selected.value : '';
     }
 
-    function getCombinedDate(type) {
-      const day = document.getElementById(`${type}-day`).value;
-      const month = document.getElementById(`${type}-month`).value;
-      const year = document.getElementById(`${type}-year`).value;
-      if(!day || !month || !year) return '';
-      return `${day} ${month} ${year}`;
-    }
-
-    examRadios.forEach(radio => {
-      radio.addEventListener('change', (e) => {
-        const val = e.target.value;
-        if (val === 'นักธรรมชั้นตรี') {
-          prevEduSection.classList.add('hidden', 'opacity-0');
-          prevEduInputs.forEach(input => input.required = false);
-        } else {
-          prevEduSection.classList.remove('hidden');
-          setTimeout(() => prevEduSection.classList.remove('opacity-0'), 10);
-          dhammaLevelSelect.dispatchEvent(new Event('change'));
-          paliLevelSelect.dispatchEvent(new Event('change'));
-        }
-      });
-    });
-
-    dhammaLevelSelect.addEventListener('change', (e) => {
-      const isNone = (e.target.value === 'ไม่มี');
-      dhammaRelatedInputs.forEach(input => {
-        input.disabled = isNone;
-        input.required = !isNone && !prevEduSection.classList.contains('hidden');
-        if (isNone) { input.value = (input.type === 'number') ? '0' : '-'; } 
-        else if (input.value === '-' || input.value === '0') { input.value = ''; }
-      });
-    });
-
-    paliLevelSelect.addEventListener('change', (e) => {
-      const isNone = (e.target.value === 'ไม่มี');
-      paliRelatedInputs.forEach(input => {
-        input.disabled = isNone;
-        input.required = !isNone && !prevEduSection.classList.contains('hidden');
-        if (isNone) { input.value = (input.type === 'number') ? '0' : '-'; } 
-        else if (input.value === '-' || input.value === '0') { input.value = ''; }
-      });
-    });
-
-    function fieldValue(id) { return document.getElementById(id) ? document.getElementById(id).value.trim() : ''; }
-
-    function buildReview() {
-      const selectedLevel = getSelectedExamLevel();
-      const isBeginner = (selectedLevel === 'นักธรรมชั้นตรี');
-      
-      const labels = [
-        ['ระดับชั้นที่สอบ', 'exam-level-display'],
-        ['เลข ปชช. ๑๓ หลัก', 'id-card'], ['คำนำหน้า', 'title'],
-        ['ชื่อ', 'first-name'], ['ฉายา', 'monastic-name'], ['นามสกุล', 'last-name'],
-        ['เกิด', 'birth-date-combined'], ['อุปสมบท', 'ordination-date-combined'],
-        ['ชื่อวัด/สถานที่อยู่', 'current-temple'], ['ตำบล', 'current-subdistrict'],
-        ['อำเภอ', 'current-district'], ['จังหวัด', 'current-province']
-      ];
-
-      if (!isBeginner) {
-        labels.push(
-          ['วุฒินักธรรม', 'dhamma-level'], ['ปีที่สอบได้ (นักธรรม)', 'dhamma-year'],
-          ['สำนักเรียน (นักธรรม)', 'dhamma-province'], ['เลขที่ใบประกาศ (นักธรรม)', 'dhamma-cert-no'],
-          ['วุฒิบาลี', 'pali-level'], ['ปีที่สอบได้ (บาลี)', 'pali-year'],
-          ['สำนักเรียน (บาลี)', 'pali-province'], ['เลขที่ใบประกาศ (บาลี)', 'pali-cert-no']
-        );
-      }
-      labels.push(['หมายเหตุ', 'remarks']);
-      
-      reviewList.replaceChildren();
-      labels.forEach(([label, id]) => {
-        const row = document.createElement('div');
-        row.className = 'review-row border-b border-slate-100 last:border-0 md:border-r hover:bg-slate-50 transition-colors';
-        const labelEl = document.createElement('span'); labelEl.className = 'font-semibold text-slate-500 text-sm'; labelEl.textContent = label;
-        const valueEl = document.createElement('span'); valueEl.className = 'font-medium text-[#064e3b] text-sm break-words';
-        
-        let val = '';
-        if (id === 'exam-level-display') val = selectedLevel;
-        else if (id === 'birth-date-combined') val = getCombinedDate('birth');
-        else if (id === 'ordination-date-combined') val = getCombinedDate('ordination');
-        else val = fieldValue(id);
-
-        valueEl.textContent = val || '-';
-        row.appendChild(labelEl); row.appendChild(valueEl); reviewList.appendChild(row);
-      });
-    }
-
-    // เตรียมข้อมูลลงแบบฟอร์มสำหรับพิมพ์
+    // เตรียมเอกสารลงหน้า Print
     function preparePrintDocument() {
         const title = fieldValue('title');
         const fname = fieldValue('first-name');
+        const lname = fieldValue('last-name');
         
-        document.getElementById('print-exam-level').textContent = getSelectedExamLevel();
-        document.getElementById('print-fullname').textContent = title + fname;
-        document.getElementById('print-monastic').textContent = fieldValue('monastic-name') !== '-' ? fieldValue('monastic-name') : 'ไม่มี';
-        document.getElementById('print-lastname').textContent = fieldValue('last-name');
-        document.getElementById('print-idcard').textContent = fieldValue('id-card');
-        document.getElementById('print-birth').textContent = getCombinedDate('birth');
-        document.getElementById('print-ord').textContent = getCombinedDate('ordination');
+        document.getElementById('p-name').textContent = title + fname;
+        document.getElementById('p-monastic').textContent = fieldValue('monastic-name') || '-';
+        document.getElementById('p-last').textContent = lname;
+        document.getElementById('p-age').textContent = fieldValue('age');
+        document.getElementById('p-ord').textContent = fieldValue('ordination-years') || '-';
         
-        document.getElementById('print-temple').textContent = fieldValue('current-temple');
-        document.getElementById('print-subdist').textContent = fieldValue('current-subdistrict');
-        document.getElementById('print-dist').textContent = fieldValue('current-district');
-        document.getElementById('print-prov').textContent = fieldValue('current-province');
+        document.getElementById('p-bday').textContent = fieldValue('birth-day');
+        document.getElementById('p-bmonth').textContent = document.getElementById('birth-month').value;
+        document.getElementById('p-byear').textContent = fieldValue('birth-year');
 
-        if(getSelectedExamLevel() === 'นักธรรมชั้นตรี') {
-            document.getElementById('print-edu-block').style.display = 'none';
-        } else {
-            document.getElementById('print-edu-block').style.display = 'block';
-            document.getElementById('print-dh-level').textContent = fieldValue('dhamma-level');
-            document.getElementById('print-dh-year').textContent = fieldValue('dhamma-year');
-            document.getElementById('print-dh-prov').textContent = fieldValue('dhamma-province');
-            document.getElementById('print-dh-cert').textContent = fieldValue('dhamma-cert-no');
-
-            document.getElementById('print-pa-level').textContent = fieldValue('pali-level');
-            document.getElementById('print-pa-year').textContent = fieldValue('pali-year');
-            document.getElementById('print-pa-prov').textContent = fieldValue('pali-province');
-            document.getElementById('print-pa-cert').textContent = fieldValue('pali-cert-no');
+        // Render ID Card Boxes
+        const idCard = fieldValue('id-card').replace(/\D/g, '');
+        let idHtml = '';
+        for(let i=0; i<13; i++) {
+          idHtml += `<div class="id-card-box">${idCard[i] || '&nbsp;'}</div>`;
+          if(i===0 || i===4 || i===9 || i===11) idHtml += `<span class="id-dash">-</span>`;
         }
+        document.getElementById('p-idboxes').innerHTML = idHtml;
 
-        document.getElementById('print-remarks').textContent = fieldValue('remarks') || '-';
-        document.getElementById('print-sign-name').textContent = title + fname + " " + fieldValue('last-name');
+        document.getElementById('p-temple').textContent = fieldValue('current-temple');
+        document.getElementById('p-moo').textContent = fieldValue('moo') || '-';
+        document.getElementById('p-road').textContent = fieldValue('road') || '-';
+        document.getElementById('p-sub').textContent = fieldValue('subdistrict');
+        document.getElementById('p-dist').textContent = fieldValue('district');
+        document.getElementById('p-prov').textContent = fieldValue('province');
+        document.getElementById('p-post').textContent = fieldValue('postcode');
+        document.getElementById('p-phone').textContent = fieldValue('phone');
+        document.getElementById('p-line').textContent = fieldValue('line-id') || '-';
+
+        document.getElementById('p-secular').textContent = fieldValue('secular-edu');
+        document.getElementById('p-dh-lvl').textContent = fieldValue('dhamma-level') || '-';
+        document.getElementById('p-dh-sch').textContent = fieldValue('dhamma-office') || '-';
+        document.getElementById('p-dh-cert').textContent = fieldValue('dhamma-cert-no') || '-';
+
+        document.getElementById('p-pa-lvl').textContent = fieldValue('pali-level') || '-';
+        document.getElementById('p-pa-sch').textContent = fieldValue('pali-office') || '-';
+        document.getElementById('p-pa-cert').textContent = fieldValue('pali-cert-no') || '-';
+
+        document.getElementById('p-signname').textContent = title + fname + " " + lname;
+
+        // Checkboxes Exam Level
+        const exLevel = getSelectedExamLevel();
+        document.querySelectorAll('.check-box').forEach(cb => cb.classList.remove('checked'));
+        if(exLevel.includes('ตรี')) document.getElementById('cb-dh-1').classList.add('checked');
+        if(exLevel.includes('โท')) document.getElementById('cb-dh-2').classList.add('checked');
+        if(exLevel.includes('เอก')) document.getElementById('cb-dh-3').classList.add('checked');
+        
+        if(exLevel === 'ประโยค 1-2') document.getElementById('cb-pa-1').classList.add('checked');
+        if(exLevel === 'ป.ธ.3') document.getElementById('cb-pa-3').classList.add('checked');
+        if(exLevel === 'ป.ธ.4') document.getElementById('cb-pa-4').classList.add('checked');
+        if(exLevel === 'ป.ธ.5') document.getElementById('cb-pa-5').classList.add('checked');
+        if(exLevel === 'ป.ธ.6') document.getElementById('cb-pa-6').classList.add('checked');
+        if(exLevel === 'ป.ธ.7') document.getElementById('cb-pa-7').classList.add('checked');
+        if(exLevel === 'ป.ธ.8') document.getElementById('cb-pa-8').classList.add('checked');
+        if(exLevel === 'ป.ธ.9') document.getElementById('cb-pa-9').classList.add('checked');
     }
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      if(!getSelectedExamLevel()) { alert('กรุณาเลือกระดับชั้นที่สมัครสอบ (ข้อ 1)'); return; }
+      if(!getSelectedExamLevel()) { alert('กรุณาเลือกระดับชั้นที่จะสมัครเรียน (ข้อ 4)'); return; }
 
-      if (form.checkValidity()) { 
-        buildReview(); 
-        reviewPanel.classList.remove('hidden'); 
-      } else { 
+      if (!form.checkValidity()) { 
         form.reportValidity(); 
+        return;
       }
-    });
 
-    document.getElementById('close-review').addEventListener('click', () => reviewPanel.classList.add('hidden'));
-    document.getElementById('edit-button').addEventListener('click', () => reviewPanel.classList.add('hidden'));
-
-    submitButton.addEventListener('click', () => {
-      submitButton.disabled = true;
-      submitButton.innerHTML = `<i data-lucide="loader-2" class="h-5 w-5 animate-spin"></i> กำลังบันทึก...`;
+      mainSubmitBtn.disabled = true;
+      mainSubmitBtn.innerHTML = `<i data-lucide="loader-2" class="h-6 w-6 animate-spin"></i> <span>กำลังบันทึก...</span>`;
       lucide.createIcons();
 
-      const formData = new FormData();
-      formData.append('application_number', applicationNumberEl.textContent);
-      formData.append('exam_level', getSelectedExamLevel());
-      formData.append('birth_date', getCombinedDate('birth'));
-      formData.append('ordination_date', getCombinedDate('ordination'));
+      const bDate = `${fieldValue('birth-day')} ${document.getElementById('birth-month').value} ${fieldValue('birth-year')}`;
       
-      const fieldMapping = {
-        'id_card': 'id-card', 'title': 'title', 'first_name': 'first-name', 
-        'monastic_name': 'monastic-name', 'last_name': 'last-name',
-        'current_temple': 'current-temple', 'current_subdistrict': 'current-subdistrict',
-        'current_district': 'current-district', 'current_province': 'current-province',
-        'dhamma_level': 'dhamma-level', 'dhamma_year': 'dhamma-year',
-        'dhamma_province': 'dhamma-province', 'dhamma_cert_no': 'dhamma-cert-no',
-        'pali_level': 'pali-level', 'pali_year': 'pali-year',
-        'pali_province': 'pali-province', 'pali_cert_no': 'pali-cert-no',
-        'remarks': 'remarks'
-      };
-
-      const isBeginner = (getSelectedExamLevel() === 'นักธรรมชั้นตรี');
-      for (const [key, id] of Object.entries(fieldMapping)) {
-        if (isBeginner && (key.startsWith('dhamma_') || key.startsWith('pali_'))) {
-          formData.append(key, '-'); 
-        } else {
-          formData.append(key, fieldValue(id));
-        }
-      }
+      const formData = new FormData();
+      formData.append('application_number', 'APP-' + Date.now().toString().slice(-6));
+      formData.append('title', fieldValue('title'));
+      formData.append('first_name', fieldValue('first-name'));
+      formData.append('monastic_name', fieldValue('monastic-name'));
+      formData.append('last_name', fieldValue('last-name'));
+      formData.append('age', fieldValue('age'));
+      formData.append('ordination_years', fieldValue('ordination-years'));
+      formData.append('birth_date', bDate);
+      formData.append('id_card', fieldValue('id-card'));
+      formData.append('current_temple', fieldValue('current-temple'));
+      formData.append('moo', fieldValue('moo'));
+      formData.append('road', fieldValue('road'));
+      formData.append('subdistrict', fieldValue('subdistrict'));
+      formData.append('district', fieldValue('district'));
+      formData.append('province', fieldValue('province'));
+      formData.append('postcode', fieldValue('postcode'));
+      formData.append('phone', fieldValue('phone'));
+      formData.append('line_id', fieldValue('line-id'));
+      formData.append('secular_edu', fieldValue('secular-edu'));
+      formData.append('dhamma_level', fieldValue('dhamma-level'));
+      formData.append('dhamma_office', fieldValue('dhamma-office'));
+      formData.append('dhamma_cert_no', fieldValue('dhamma-cert-no'));
+      formData.append('pali_level', fieldValue('pali-level'));
+      formData.append('pali_office', fieldValue('pali-office'));
+      formData.append('pali_cert_no', fieldValue('pali-cert-no'));
+      formData.append('exam_level', getSelectedExamLevel());
 
       fetch(SCRIPT_URL, { method: 'POST', body: formData })
         .then(() => {
-          // เตรียมเอกสารสำหรับพิมพ์
           preparePrintDocument();
-
-          // แสดงสถานะสำเร็จใน Modal
-          document.getElementById('modal-title').textContent = "บันทึกข้อมูลสำเร็จ!";
-          document.getElementById('modal-title').className = "thai-heading text-emerald-700 text-2xl";
-          document.getElementById('modal-subtitle').textContent = "ระบบส่งข้อมูลของคุณเข้าส่วนกลางเรียบร้อยแล้ว";
-          
-          document.getElementById('modal-body-content').innerHTML = `
-            <div class="flex flex-col items-center justify-center p-8 text-center bg-emerald-50 rounded-2xl border border-emerald-100">
-                <div class="h-20 w-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
-                    <i data-lucide="check-circle-2" class="h-10 w-10"></i>
-                </div>
-                <h3 class="text-xl font-bold text-emerald-800 mb-2">ข้อมูลถูกบันทึกเข้าระบบแล้ว</h3>
-                <p class="text-slate-600">คุณสามารถพิมพ์ใบสมัคร หรือบันทึกเป็น PDF เพื่อนำไปให้เจ้าอาวาสลงนามได้ทันที</p>
-            </div>
-          `;
-          
-          modalFooterButtons.innerHTML = `
-            <button onclick="location.reload()" class="inline-flex items-center justify-center rounded-xl border-2 border-slate-300 bg-white text-slate-700 px-8 py-3.5 font-bold hover:bg-slate-50 transition-colors" type="button">กลับไปเริ่มใหม่</button> 
-            <button onclick="window.print()" class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#064e3b] text-white px-10 py-3.5 font-bold shadow-lg hover:bg-[#047857]" type="button"> 
-              <i data-lucide="printer" class="h-5 w-5"></i> 
-              <span>🖨️ พิมพ์/บันทึก PDF ใบสมัคร</span> 
-            </button>
-          `;
-          lucide.createIcons();
+          successPanel.classList.remove('hidden');
         })
         .catch(() => {
           alert("เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง");
-          submitButton.disabled = false;
-          submitButton.innerHTML = `<i data-lucide="send" class="h-5 w-5"></i> บันทึกส่งข้อมูล`;
+          mainSubmitBtn.disabled = false;
+          mainSubmitBtn.innerHTML = `<i data-lucide="send" class="h-6 w-6"></i> <span>บันทึกและสร้างใบสมัคร</span>`;
           lucide.createIcons();
         });
     });
