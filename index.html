@@ -6,8 +6,12 @@
   <title>ใบสมัครขอเข้าศึกษาพระปริยัติธรรม แผนกธรรม</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <!-- นำเข้าฟอนต์ Niramit, Sarabun และ Pridi จาก Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Niramit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&family=Pridi:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- นำเข้าฟอนต์ Sarabun (ฟอนต์ราชการ) และ Pridi จาก Google Fonts (เสถียร 100%) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Pridi:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     :root { 
       --primary: #4c1d95; 
@@ -42,40 +46,40 @@
       .radio-card-input:checked + .radio-card .check-icon { opacity: 1; transform: scale(1); }
     }
 
-    /* จัดหน้ากระดาษ A4 สำหรับพิมพ์ด้วยฟอนต์ Niramit */
+    /* จัดหน้ากระดาษ A4 แบบบีบพื้นที่เพื่อให้พอดี 1 หน้า โดยใช้ฟอนต์ Sarabun ของ Google */
     @media print {
-      @page { size: A4; margin: 10mm 15mm; }
+      @page { size: A4; margin: 8mm 12mm; }
       body { 
         background: white; color: #000; 
-        font-family: 'Niramit', sans-serif !important; 
-        font-size: 13.5pt; line-height: 1.35; 
+        font-family: 'Sarabun', sans-serif !important; 
+        font-size: 15.5pt; line-height: 1.15; 
       }
       .no-print, main, #review-panel { display: none !important; }
-      #printable-document { display: block !important; position: relative; padding-top: 0px; }
+      #printable-document { display: block !important; position: relative; padding-top: 5px; }
       
       .print-title-wrapper { text-align: center; margin-bottom: 5px; font-weight: bold; }
-      .print-title-1 { font-size: 17pt; margin-bottom: 0px; }
-      .print-title-2 { font-size: 15pt; margin-bottom: 0px; }
-      .print-title-3 { font-size: 13pt; font-weight: normal; }
-      .print-logo { width: 60px; height: 60px; margin: 0 auto 5px auto; display: block; object-fit: contain; }
+      .print-title-1 { font-size: 19pt; margin-bottom: 0px; }
+      .print-title-2 { font-size: 17pt; margin-bottom: 0px; }
+      .print-title-3 { font-size: 15pt; font-weight: normal; }
+      .print-logo { width: 55px; height: 55px; margin: 0 auto 5px auto; display: block; object-fit: contain; }
       
-      .photo-box { position: absolute; top: 0; right: 0; width: 23mm; height: 30mm; border: 1px solid #000; display: flex; align-items: center; justify-content: center; font-size: 10pt; text-align: center; line-height: 1.2; }
+      .photo-box { position: absolute; top: 0; right: 0; width: 22mm; height: 30mm; border: 1px solid #000; display: flex; align-items: center; justify-content: center; font-size: 10pt; text-align: center; line-height: 1.2; }
       
-      .print-sec-title { font-weight: bold; font-size: 14.5pt; margin-top: 5px; margin-bottom: 2px; }
-      .print-row { display: flex; flex-wrap: nowrap; margin-bottom: 3px; align-items: flex-end; width: 100%; }
+      .print-sec-title { font-weight: bold; font-size: 15.5pt; margin-top: 8px; margin-bottom: 4px; }
+      .print-row { display: flex; flex-wrap: nowrap; margin-bottom: 4px; align-items: flex-end; width: 100%; }
       .print-label { white-space: nowrap; margin-right: 5px; }
-      .print-val { border-bottom: 1px dotted #000; display: inline-block; padding: 0 4px; text-align: center; color: #000; flex-grow: 1; min-width: 20px; line-height: 1.1; overflow: hidden; white-space: nowrap; }
+      .print-val { border-bottom: 1px dotted #000; display: inline-block; padding: 0 4px; text-align: center; color: #000; flex-grow: 1; min-width: 20px; line-height: 1; overflow: hidden; white-space: nowrap; }
       
       .id-card-boxes { display: inline-flex; gap: 1px; }
-      .id-card-box { border: 1px solid #000; width: 15px; height: 21px; display: inline-flex; align-items: center; justify-content: center; font-size: 12pt; font-family: 'Niramit', sans-serif; }
+      .id-card-box { border: 1px solid #000; width: 14px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 14.5pt; font-family: 'Sarabun', sans-serif; font-weight: 500; }
       .id-dash { margin: 0 2px; }
       
-      .declaration { text-indent: 40px; margin-top: 15px; text-align: justify; font-size: 13.5pt; line-height: 1.35; }
+      .declaration { text-indent: 40px; margin-top: 10px; text-align: justify; font-size: 15pt; line-height: 1.2; }
       
-      .signature-block { display: flex; justify-content: flex-end; margin-top: 20px; margin-bottom: 15px; }
-      .signature-content { text-align: center; width: 50%; }
+      .signature-block { display: flex; justify-content: flex-end; margin-top: 10px; margin-bottom: 5px; }
+      .signature-content { text-align: center; width: 55%; }
       
-      .required-docs { border: 1px solid #000; padding: 8px 15px; width: 100%; font-size: 12.5pt; position: relative; line-height: 1.35; margin-top: 10px; }
+      .required-docs { border: 1px solid #000; padding: 6px 15px; width: 100%; font-size: 14pt; position: relative; line-height: 1.25; margin-top: 5px; }
       .checkbox-item { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
       .check-box { width: 12px; height: 12px; border: 1px solid #000; display: inline-block; position: relative; }
     }
@@ -97,9 +101,16 @@
         </div>
       </header>
 
+      <section class="border-b border-slate-100 bg-slate-50/50 px-6 py-4 sm:px-12 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <p class="text-sm font-semibold text-slate-500">เลขที่รายการ:</p>
+          <p id="application-number" class="font-bold tracking-[.1em] text-[#4c1d95] text-lg bg-white px-3 py-1 rounded-lg shadow-sm border border-slate-200"></p>
+        </div>
+      </section>
+
       <form id="application-form" class="px-6 py-8 sm:px-12 sm:py-10" novalidate>
         
-        <!-- 1. ระดับชั้นที่สมัครสอบ (ย้ายมาบนสุดเพื่อล็อกหน้า) -->
+        <!-- 1. ระดับชั้นที่สมัครสอบ -->
         <section class="pt-2">
           <div class="mb-6 flex items-center gap-4">
             <span class="section-number">1</span>
@@ -161,6 +172,7 @@
               <input id="monastic-name" class="form-field" type="text" placeholder="สามเณรเว้นว่างได้">
             </div>
             
+            <!-- เพิ่มช่องวันเกิดก่อน เพื่อให้อายุคำนวณอัตโนมัติ -->
             <div class="md:col-span-8">
               <label class="mb-2 block font-semibold text-slate-700">เกิด (วัน/เดือน/ปี พ.ศ.) <span class="text-red-500">*</span></label> 
               <div class="grid grid-cols-3 gap-2">
@@ -180,7 +192,7 @@
 
             <div class="md:col-span-4">
               <label class="mb-2 block font-semibold text-slate-700">อายุ (ปี) <span class="text-red-500">*</span></label> 
-              <input id="age" class="form-field bg-slate-50 text-slate-600 font-bold" type="number" placeholder="คำนวณอัตโนมัติ" readonly required>
+              <input id="age" class="form-field bg-slate-50 text-slate-600 font-bold" type="text" placeholder="คำนวณอัตโนมัติ" readonly required>
             </div>
             <div class="md:col-span-4">
               <label class="mb-2 block font-semibold text-slate-700">พรรษา (ถ้ามี)</label> 
@@ -388,7 +400,7 @@
 
     <div class="print-sec-title">๔. มีความประสงค์ในการสมัครเรียนต่อในชั้น</div>
     <div class="print-row" style="padding-left: 20px;">
-      <span class="print-val" id="p-exam-level-print" style="width: 100%; text-align: left; font-weight: bold; font-size: 15.5pt; border: none;"></span>
+      <span class="print-val" id="p-exam-level-print" style="width: 100%; text-align: left; font-weight: bold; font-size: 16.5pt; border: none;"></span>
     </div>
 
     <div class="declaration">
@@ -424,12 +436,16 @@
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDShK_0ZIhg0IG6LCI9RgnDELik2umcCQDMt5kfgn6iygCnQhXHrCZqz7AJNMfKYL8/exec';
 
     const form = document.getElementById('application-form');
+    const examRadios = document.querySelectorAll('input[name="exam-level"]');
+    const prevEduSection = document.getElementById('prev-edu-section');
+    const prevEduInputs = document.querySelectorAll('.prev-edu-input');
     const dhammaLevelSelect = document.getElementById('dhamma-level');
     const dhammaRelatedInputs = document.querySelectorAll('.dhamma-related');
+    
     const successPanel = document.getElementById('success-panel');
     const mainSubmitBtn = document.getElementById('main-submit-btn');
-    const examRadios = document.querySelectorAll('input[name="exam-level"]');
     
+    // ช่องคำนวณอายุ
     const bYearInput = document.getElementById('birth-year');
     const bMonthInput = document.getElementById('birth-month');
     const bDayInput = document.getElementById('birth-day');
@@ -437,7 +453,7 @@
 
     lucide.createIcons();
 
-    // คำนวณอายุอัตโนมัติ แม่นยำระดับเดือนและวัน
+    // คำนวณอายุอัตโนมัติ แม่นยำระดับเดือนและวัน (ปีปัจจุบัน 2569)
     function calculateAge() {
       const bYearVal = parseInt(bYearInput.value);
       const bMonthStr = bMonthInput.value;
@@ -448,12 +464,13 @@
         const bMonthIndex = months.indexOf(bMonthStr);
         
         const today = new Date();
-        const currentYearThai = today.getFullYear() + 543;
+        const currentYearThai = 2569; // อิงตามแบบฟอร์มหัวกระดาษ 2569
         const currentMonthIndex = today.getMonth();
         const currentDay = today.getDate();
 
         let calculatedAge = currentYearThai - bYearVal;
         
+        // ถ้ายีงไม่ถึงเดือนเกิด หรือ ถึงเดือนเกิดแล้วแต่วันที่ยังไม่ถึง ให้ลบอายุออก 1 ปี
         if (currentMonthIndex < bMonthIndex || (currentMonthIndex === bMonthIndex && currentDay < bDayVal)) {
           calculatedAge--;
         }
@@ -479,8 +496,6 @@
     examRadios.forEach(radio => {
       radio.addEventListener('change', (e) => {
         const val = e.target.value;
-        const prevEduSection = document.getElementById('prev-edu-section');
-        const prevEduInputs = document.querySelectorAll('.prev-edu-input');
         if (val === 'นักธรรมชั้นตรี') {
           prevEduSection.classList.add('hidden', 'opacity-0');
           dhammaLevelSelect.value = 'ไม่มี';
@@ -502,6 +517,7 @@
       });
     });
 
+    // Logic จัดการ Disable วุฒิการศึกษาเดิม ถ้าเปลี่ยนค่า Dropdown เป็น "ไม่มี"
     dhammaLevelSelect.addEventListener('change', (e) => {
       const isNone = (e.target.value === 'ไม่มี' || e.target.value === '');
       dhammaRelatedInputs.forEach(input => {
@@ -538,6 +554,7 @@
         document.getElementById('p-ord-month').textContent = document.getElementById('ordination-month').value || '-';
         document.getElementById('p-ord-year').textContent = toThaiNumerals(fieldValue('ordination-year') || '-');
 
+        // Render ID Card Boxes with Thai Numerals
         const idCard = fieldValue('id-card').replace(/\D/g, '');
         let idHtml = '';
         for(let i=0; i<13; i++) {
@@ -564,6 +581,7 @@
 
         document.getElementById('p-signname').textContent = title + fname + " " + lname;
 
+        // แสดงชั้นที่สมัครเรียนขึ้นมาโดยตรง
         document.getElementById('p-exam-level-print').textContent = `แผนกธรรม (${getSelectedExamLevel()})`;
     }
 
